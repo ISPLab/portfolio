@@ -81,6 +81,7 @@ watch(cocktailCode, fetchData);
     width: 90%;
     max-width: 1024px;
     margin: 0 auto;
+    overflow-x: hidden;
 }
 
 .cocktail-card {
@@ -211,6 +212,8 @@ watch(cocktailCode, fetchData);
     .cocktail-card {
         border-radius: 8px;
         border: 1px solid #ddd;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .cocktail-content {
@@ -229,7 +232,14 @@ watch(cocktailCode, fetchData);
 
 @media (max-width: 480px) {
     .cocktails-grid {
-        margin: 0 -10px;
+        width: 90vw;
+        margin: 0 auto;
+    }
+
+    .cocktail-card {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
     }
 
     .cocktail-info {
@@ -238,10 +248,6 @@ watch(cocktailCode, fetchData);
 
     .image-container {
         width: 180px;
-    }
-
-    .cocktail-card {
-        padding: 15px;
     }
 
     .cocktail-content {

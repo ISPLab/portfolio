@@ -25,12 +25,21 @@ const route = useRoute();
 </script>
 
 <style>
+/* Глобальные стили в начале */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Отключаем горизонтальный скролл */
+}
+
 .app-container {
     max-width: 1024px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
     gap: 30px;
+    overflow-x: hidden; /* Дополнительная защита от скролла */
 }
 
 .navigation {
