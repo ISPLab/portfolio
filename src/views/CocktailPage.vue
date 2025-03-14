@@ -150,18 +150,22 @@ watch(cocktailCode, fetchData);
 .image-container {
     position: sticky;
     top: 20px;
+    width: 300px;
 }
 
 .image-wrapper {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    padding-bottom: 100%;
     background-color: #f5f5f5;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .cocktail-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -188,9 +192,8 @@ watch(cocktailCode, fetchData);
         gap: 20px;
     }
 
-    .image-wrapper {
+    .image-container {
         width: 250px;
-        height: 250px;
     }
 }
 
@@ -201,47 +204,21 @@ watch(cocktailCode, fetchData);
     
     .image-container {
         position: static;
-    }
-
-    .image-wrapper {
         width: 100%;
         max-width: 300px;
         margin: 0 auto;
-    }
-
-    .cocktail-image {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    .ingredient-item {
-        grid-template-columns: 80px 1fr;
     }
 }
 
 @media (max-width: 480px) {
-    .cocktail-card {
-        padding: 15px;
-    }
-
-    .cocktail-content {
-        gap: 20px;
-    }
-
-    .cocktail-name {
-        font-size: 20px;
-    }
-
-    .ingredient-item {
-        grid-template-columns: 70px 1fr;
-        font-size: 14px;
+    .image-container {
+        max-width: 250px;
     }
 }
 
 @media (max-width: 360px) {
-    .cocktails-grid {
-        min-width: 360px;
+    .image-container {
+        max-width: 200px;
     }
 }
 </style> 
