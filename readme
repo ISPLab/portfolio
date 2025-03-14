@@ -6,6 +6,11 @@
 Имеет адаптивный дизайн
 Структурирована для масштабирования
 Для запуска приложения выполните:
+npm install
+npm run dev
+
+Production: https://maxbitsol-pvolk4rnq-andreys-projects-0d07a557.vercel.app 
+Github: https://github.com/ISPLab/maxbitsol.git
 
 
 
