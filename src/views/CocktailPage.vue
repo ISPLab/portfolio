@@ -24,7 +24,7 @@
 
                     <div class="cocktail-instructions">
                         <h3>Instructions:</h3>
-                        <p>{{ cocktail.strInstructions }}</p>
+                        <p class="instructions">{{ cocktail.strInstructions }}</p>
                     </div>
 
                     <div class="cocktail-ingredients">
@@ -112,7 +112,7 @@ watch(cocktailCode, fetchData);
 }
 
 .cocktail-info {
-    margin: 0;
+    width: 100%;
     display: block;
 }
 
@@ -131,6 +131,9 @@ watch(cocktailCode, fetchData);
 .cocktail-details p {
     margin: 0;
 }
+.cocktail-instructions {
+    margin-top: 30px;
+}
 
 .cocktail-instructions h3,
 .cocktail-ingredients h3 {
@@ -142,6 +145,7 @@ watch(cocktailCode, fetchData);
 .ingredients-list {
     display: grid;
     gap: 8px;
+    margin-top: 30px;
 }
 
 .ingredient-item {
@@ -156,6 +160,18 @@ watch(cocktailCode, fetchData);
 
 .ingredient {
     color: #2c3e50;
+}
+
+.instructions {
+    text-align: justify;
+    margin: 0;
+    width: 100%;
+
+}
+
+.cocktail-ingredients {
+    margin-top: 30px;
+    width: 100%;
 }
 
 @media (max-width: 1024px) {

@@ -1,5 +1,10 @@
 # Cocktail App
 
+![Cocktail App Screenshot](https://github.com/ISPLab/maxbitsol.git/cocktail-app/screenshots/app-screenshot.png)
+
+Приложение для просмотра рецептов коктейлей с подробной информацией о составе, способе приготовления и фотографиями. Позволяет искать коктейли по названию и просматривать различные вариации классических напитков.
+
+
 Vue 3 приложение для отображения информации о коктейлях с использованием Composition API и TypeScript.
 
 ## Задача
