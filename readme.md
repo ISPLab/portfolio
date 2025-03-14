@@ -1,6 +1,6 @@
 # Cocktail App
 
-![Cocktail App Screenshot](https://github.com/ISPLab/maxbitsol.git/cocktail-app/screenshots/app-screenshot.png)
+![Cocktail App Screenshot](https://github.com/ISPLab/maxbitsol/blob/main/screenshots/image.png)
 
 Приложение для просмотра рецептов коктейлей с подробной информацией о составе, способе приготовления и фотографиями. Позволяет искать коктейли по названию и просматривать различные вариации классических напитков.
 
