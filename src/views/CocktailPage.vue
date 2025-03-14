@@ -31,14 +31,14 @@
                     </div>
                 </div>
 
-                <v-img
-                    :src="cocktail.strDrinkThumb"
-                    :alt="cocktail.strDrink"
-                    class="cocktail-image"
-                    width="300"
-                    height="300"
-                    cover
-                />
+                <div>
+                    <img 
+                        :src="cocktail.strDrinkThumb"
+                        :alt="cocktail.strDrink"
+                        loading="lazy"
+                        class="cocktail-image"
+                    />
+                </div>
             </div>
         </div>
     </div>
@@ -134,8 +134,8 @@ watch(cocktailCode, fetchData);
 }
 
 .cocktail-image {
-    border-radius: 8px;
-    align-self: start;
+    max-width: 100%;
+    height: auto;
 }
 
 @media (max-width: 768px) {

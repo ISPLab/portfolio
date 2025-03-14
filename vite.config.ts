@@ -6,18 +6,38 @@ import { resolve } from 'path';
 export default defineConfig({
     plugins: [
         vue(),
-        vuetify({ autoImport: true }),
+        vuetify({ autoImport: true })
     ],
     resolve: {
         alias: {
-            '@': resolve(__dirname, 'src')
+            '@': resolve(__dirname, 'src'),
+            'vuetify': resolve(__dirname, 'node_modules/vuetify')
         }
+    },
+    optimizeDeps: {
+        include: ['vuetify']
     },
     build: {
         rollupOptions: {
-            input: {
-                main: resolve(__dirname, 'index.html'),
-            },
+            external: [
+                'vuetify/styles',
+                'vuetify',
+                'vuetify/components',
+                'vuetify/directives'
+            ],
+            output: {
+                globals: {
+                    vuetify: 'Vuetify',
+                    'vuetify/components': 'VuetifyComponents',
+                    'vuetify/directives': 'VuetifyDirectives'
+                }
+            }
         },
+        commonjsOptions: {
+            transformMixedEsModules: true
+        }
+    },
+    define: {
+        'process.env': {}
     }
 }); 
