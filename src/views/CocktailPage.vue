@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="image-container">
                     <img 
                         :src="cocktail.strDrinkThumb"
                         :alt="cocktail.strDrink"
@@ -77,6 +77,7 @@ watch(cocktailCode, fetchData);
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cocktail-content {
@@ -133,9 +134,17 @@ watch(cocktailCode, fetchData);
     color: #2c3e50;
 }
 
+.image-container {
+    position: sticky;
+    top: 20px;
+}
+
 .cocktail-image {
-    max-width: 100%;
-    height: auto;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -143,8 +152,11 @@ watch(cocktailCode, fetchData);
         grid-template-columns: 1fr;
     }
     
+    .image-container {
+        position: static;
+    }
+
     .cocktail-image {
-        order: -1;
         width: 100%;
         max-width: 300px;
         margin: 0 auto;

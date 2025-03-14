@@ -5,8 +5,7 @@ import { createPinia } from 'pinia'
 import VueLazyload from 'vue-lazyload'
 
 // Vuetify
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/dist/vuetify.css'
+import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 
 const vuetify = createVuetify()
