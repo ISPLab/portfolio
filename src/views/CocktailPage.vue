@@ -4,7 +4,15 @@
     <div v-else class="cocktails-grid">
         <div v-for="cocktail in cocktailsList" :key="cocktail.idDrink" class="cocktail-card">
             <div class="cocktail-content">
-                <div class="cocktail-info">
+                <div class="image-container">
+                    <img 
+                        :src="cocktail.strDrinkThumb" 
+                        :alt="cocktail.strDrink"
+                        loading="lazy"
+                        class="cocktail-image"
+                    />
+                </div>
+                <article class="cocktail-info">
                     <h2 class="cocktail-name">{{ cocktail.strDrink }}</h2>
                     
                     <div class="cocktail-details">
@@ -29,24 +37,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="image-container">
-                    <div class="image-wrapper">
-                        <img 
-                            v-lazy="{
-                                src: cocktail.strDrinkThumb,
-                                loading: '/loading-placeholder.png',
-                                error: '/error-placeholder.png'
-                            }"
-                            :alt="cocktail.strDrink"
-                            class="cocktail-image"
-                        />
-                        <div class="image-loading" v-show="$el && $el.classList.contains('lazy-loading')">
-                            Loading...
-                        </div>
-                    </div>
-                </div>
+                </article>
             </div>
         </div>
     </div>
@@ -97,20 +88,28 @@ watch(cocktailCode, fetchData);
 }
 
 .cocktail-content {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 30px;
-    position: relative;
     width: 100%;
-    max-width: 90vw;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.image-container {
+    float: right;
+    width: 300px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.cocktail-image {
+    width: 100%;
+    height: auto;
 }
 
 .cocktail-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-right: 300px;
+    margin: 0;
+    display: block;
 }
 
 .cocktail-name {
@@ -153,46 +152,6 @@ watch(cocktailCode, fetchData);
 
 .ingredient {
     color: #2c3e50;
-}
-
-.image-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-}
-
-.image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.cocktail-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.3s ease;
-}
-
-.image-loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #666;
-}
-
-.lazy-loading {
-    opacity: 0.5;
 }
 
 @media (max-width: 1024px) {
