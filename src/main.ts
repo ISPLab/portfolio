@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
-import VueLazyload from 'vue-lazyload'
 import App from './App.vue'
-import { createPinia } from 'pinia'
 import router from './router'
+import { createPinia } from 'pinia'
+import VueLazyload from 'vue-lazyload'
+
+// Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
