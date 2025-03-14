@@ -93,6 +93,7 @@ watch(cocktailCode, fetchData);
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .cocktail-content {
@@ -101,7 +102,8 @@ watch(cocktailCode, fetchData);
     gap: 30px;
     position: relative;
     width: 100%;
-    max-width: 900px;
+    max-width: 90vw;
+    margin: 0 auto;
 }
 
 .cocktail-info {
@@ -219,6 +221,7 @@ watch(cocktailCode, fetchData);
     .cocktail-content {
         grid-template-columns: 1fr;
         max-width: 600px;
+        margin: 0 auto;
     }
 
     .cocktail-info {
@@ -252,6 +255,7 @@ watch(cocktailCode, fetchData);
 
     .cocktail-content {
         max-width: 400px;
+        margin: 0 auto;
     }
 }
 
