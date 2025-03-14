@@ -97,12 +97,14 @@ watch(cocktailCode, fetchData);
     display: grid;
     grid-template-columns: minmax(0, 1fr) 300px;
     gap: 30px;
+    position: relative;
 }
 
 .cocktail-info {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-right: 300px;
 }
 
 .cocktail-name {
@@ -148,8 +150,9 @@ watch(cocktailCode, fetchData);
 }
 
 .image-container {
-    position: sticky;
-    top: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 300px;
 }
 
@@ -187,9 +190,8 @@ watch(cocktailCode, fetchData);
 }
 
 @media (max-width: 1024px) {
-    .cocktail-content {
-        grid-template-columns: minmax(0, 1fr) 250px;
-        gap: 20px;
+    .cocktail-info {
+        padding-right: 250px;
     }
 
     .image-container {
@@ -201,24 +203,33 @@ watch(cocktailCode, fetchData);
     .cocktail-content {
         grid-template-columns: 1fr;
     }
-    
+
+    .cocktail-info {
+        padding-right: 220px;
+    }
+
     .image-container {
-        position: static;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
+        width: 220px;
     }
 }
 
 @media (max-width: 480px) {
+    .cocktail-info {
+        padding-right: 180px;
+    }
+
     .image-container {
-        max-width: 250px;
+        width: 180px;
     }
 }
 
 @media (max-width: 360px) {
+    .cocktail-info {
+        padding-right: 150px;
+    }
+
     .image-container {
-        max-width: 200px;
+        width: 150px;
     }
 }
 </style> 
