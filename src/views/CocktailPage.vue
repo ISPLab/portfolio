@@ -32,12 +32,20 @@
                 </div>
 
                 <div class="image-container">
-                    <img 
-                        :src="cocktail.strDrinkThumb"
-                        :alt="cocktail.strDrink"
-                        loading="lazy"
-                        class="cocktail-image"
-                    />
+                    <div class="image-wrapper">
+                        <img 
+                            v-lazy="{
+                                src: cocktail.strDrinkThumb,
+                                loading: '/loading-placeholder.png',
+                                error: '/error-placeholder.png'
+                            }"
+                            :alt="cocktail.strDrink"
+                            class="cocktail-image"
+                        />
+                        <div class="image-loading" v-show="$el && $el.classList.contains('lazy-loading')">
+                            Loading...
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -139,12 +147,34 @@ watch(cocktailCode, fetchData);
     top: 20px;
 }
 
-.cocktail-image {
+.image-wrapper {
+    position: relative;
     width: 300px;
     height: 300px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cocktail-image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+.image-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+}
+
+.lazy-loading {
+    opacity: 0.5;
 }
 
 @media (max-width: 768px) {
@@ -154,6 +184,12 @@ watch(cocktailCode, fetchData);
     
     .image-container {
         position: static;
+    }
+
+    .image-wrapper {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
     }
 
     .cocktail-image {
