@@ -1,0 +1,27 @@
+import { createApp } from 'vue'
+import VueLazyload from 'vue-lazyload'
+import App from './App.vue'
+import { createPinia } from 'pinia'
+import router from './router'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
+const vuetify = createVuetify({
+  components,
+  directives,
+})
+
+const app = createApp(App)
+app.use(createPinia())
+app.use(router)
+app.use(vuetify)
+app.use(VueLazyload, {
+  // options
+  preLoad: 1.3,
+  error: 'error-image.jpg',
+  loading: 'loading-image.jpg',
+  attempt: 1
+})
+app.mount('#app') 
