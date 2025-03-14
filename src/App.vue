@@ -66,6 +66,45 @@ const route = useRoute();
 
 .main-content {
     flex: 1;
-    min-width: 0; /* Предотвращает переполнение flex-контейнера */
+    min-width: 0;
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .navigation {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: 0;
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .nav-link {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 10px;
+    }
+
+    .navigation {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .nav-link {
+        padding: 5px 8px;
+        font-size: 13px;
+    }
 }
 </style> 
