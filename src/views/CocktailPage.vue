@@ -4,9 +4,7 @@
     <div v-else class="cocktails-grid">
         <div v-for="cocktail in cocktailsList" :key="cocktail.idDrink" class="cocktail-card">
             <div class="cocktail-content">
-           
-                <article class="cocktail-info">
-                    <div class="image-container">
+                <div class="image-container">
                     <img 
                         :src="cocktail.strDrinkThumb" 
                         :alt="cocktail.strDrink"
@@ -14,6 +12,8 @@
                         class="cocktail-image"
                     />
                 </div>
+                
+                <article class="cocktail-info">
                     <h2 class="cocktail-name">{{ cocktail.strDrink }}</h2>
                     
                     <div class="cocktail-details">
@@ -98,7 +98,9 @@ watch(cocktailCode, fetchData);
 
 .image-container {
     float: right;
-    width: 300px;
+    width: 25%;
+    min-width: 200px;
+    max-width: 300px;
     margin-left: 20px;
     margin-bottom: 20px;
 }
@@ -106,6 +108,7 @@ watch(cocktailCode, fetchData);
 .cocktail-image {
     width: 100%;
     height: auto;
+    display: block;
 }
 
 .cocktail-info {
