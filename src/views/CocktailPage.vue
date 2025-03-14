@@ -78,8 +78,7 @@ watch(cocktailCode, fetchData);
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
-    width: 100%;
-    min-width: 360px;
+    width: 90%;
     max-width: 1024px;
     margin: 0 auto;
 }
@@ -91,6 +90,8 @@ watch(cocktailCode, fetchData);
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .cocktail-content {
@@ -98,6 +99,8 @@ watch(cocktailCode, fetchData);
     grid-template-columns: minmax(0, 1fr) 300px;
     gap: 30px;
     position: relative;
+    width: 100%;
+    max-width: 900px;
 }
 
 .cocktail-info {
@@ -200,8 +203,19 @@ watch(cocktailCode, fetchData);
 }
 
 @media (max-width: 768px) {
+    .cocktails-grid {
+        width: 90vw;
+        margin: 0 auto;
+    }
+
+    .cocktail-card {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
     .cocktail-content {
         grid-template-columns: 1fr;
+        max-width: 600px;
     }
 
     .cocktail-info {
@@ -214,12 +228,24 @@ watch(cocktailCode, fetchData);
 }
 
 @media (max-width: 480px) {
+    .cocktails-grid {
+        margin: 0 -10px;
+    }
+
     .cocktail-info {
         padding-right: 180px;
     }
 
     .image-container {
         width: 180px;
+    }
+
+    .cocktail-card {
+        padding: 15px;
+    }
+
+    .cocktail-content {
+        max-width: 400px;
     }
 }
 
@@ -230,6 +256,10 @@ watch(cocktailCode, fetchData);
 
     .image-container {
         width: 150px;
+    }
+
+    .cocktail-card {
+        padding: 10px;
     }
 }
 </style> 

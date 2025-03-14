@@ -27,7 +27,6 @@ const route = useRoute();
 <style>
 .app-container {
     max-width: 1024px;
-    min-width: 360px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -71,33 +70,44 @@ const route = useRoute();
 
 @media (max-width: 768px) {
     .app-container {
-        flex-direction: column;
-        gap: 20px;
         padding: 15px;
+        width: 100%;
+        min-width: 0;
+        gap: 15px;
+        flex-direction: column;
     }
 
     .navigation {
+        margin: 0 -15px;
+        border-radius: 0;
         flex-direction: row;
         flex-wrap: wrap;
-        min-width: 0;
-        width: 100%;
+        width: calc(100% + 30px);
         justify-content: center;
         padding: 10px;
         gap: 10px;
+        order: -1;
     }
 
     .nav-link {
         padding: 6px 10px;
         font-size: 14px;
     }
+
+    .main-content {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
     .app-container {
         padding: 10px;
+        gap: 10px;
     }
 
     .navigation {
+        margin: 0 -10px;
+        width: calc(100% + 20px);
         padding: 8px;
         gap: 8px;
     }
