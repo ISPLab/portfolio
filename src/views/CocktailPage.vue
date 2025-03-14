@@ -3,28 +3,43 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else class="cocktails-grid">
         <div v-for="cocktail in cocktailsList" :key="cocktail.idDrink" class="cocktail-card">
-            <v-img
-                :src="cocktail.strDrinkThumb"
-                :alt="cocktail.strDrink"
-                class="cocktail-image"
-                :aspect-ratio="16/9"
-                cover
-            >
-                <template v-slot:placeholder>
-                    <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                    >
-                        <v-progress-circular
-                            indeterminate
-                            color="grey lighten-5"
-                        ></v-progress-circular>
-                    </v-row>
-                </template>
-            </v-img>
-            <h2>{{ cocktail.strDrink }}</h2>
-            <p>{{ cocktail.strInstructions }}</p>
+            <div class="cocktail-content">
+                <div class="cocktail-info">
+                    <h2 class="cocktail-name">{{ cocktail.strDrink }}</h2>
+                    
+                    <div class="cocktail-details">
+                        <p><strong>Category:</strong> {{ cocktail.strCategory }}</p>
+                        <p><strong>Alcoholic:</strong> {{ cocktail.strAlcoholic }}</p>
+                        <p><strong>Glass:</strong> {{ cocktail.strGlass }}</p>
+                    </div>
+
+                    <div class="cocktail-instructions">
+                        <h3>Instructions:</h3>
+                        <p>{{ cocktail.strInstructions }}</p>
+                    </div>
+
+                    <div class="cocktail-ingredients">
+                        <h3>List of ingredients:</h3>
+                        <div class="ingredients-list">
+                            <div v-for="i in 15" :key="i" class="ingredient-item">
+                                <template v-if="cocktail[`strIngredient${i}`]">
+                                    <span class="measure">{{ cocktail[`strMeasure${i}`] }}</span>
+                                    <span class="ingredient">{{ cocktail[`strIngredient${i}`] }}</span>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <v-img
+                    :src="cocktail.strDrinkThumb"
+                    :alt="cocktail.strDrink"
+                    class="cocktail-image"
+                    width="300"
+                    height="300"
+                    cover
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -53,19 +68,90 @@ watch(cocktailCode, fetchData);
 <style scoped>
 .cocktails-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 30px;
 }
 
 .cocktail-card {
-    padding: 15px;
+    padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    background-color: white;
+}
+
+.cocktail-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+}
+
+.cocktail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cocktail-name {
+    margin: 0;
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+.cocktail-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cocktail-details p {
+    margin: 0;
+}
+
+.cocktail-instructions h3,
+.cocktail-ingredients h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.ingredients-list {
+    display: grid;
+    gap: 8px;
+}
+
+.ingredient-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 10px;
+}
+
+.measure {
+    color: #666;
+}
+
+.ingredient {
+    color: #2c3e50;
 }
 
 .cocktail-image {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
+    border-radius: 8px;
+    align-self: start;
+}
+
+@media (max-width: 768px) {
+    .cocktail-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .cocktail-image {
+        order: -1;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .ingredient-item {
+        grid-template-columns: 80px 1fr;
+    }
 }
 </style> 

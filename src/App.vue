@@ -30,26 +30,42 @@ const route = useRoute();
     min-width: 360px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    gap: 30px;
 }
 
 .navigation {
     display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 120px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    height: fit-content;
 }
 
 .nav-link {
     text-decoration: none;
     color: #333;
     text-transform: capitalize;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #e0e0e0;
 }
 
 .nav-link.active {
-    color: #42b983;
+    color: #fff;
+    background-color: #42b983;
     font-weight: bold;
 }
 
 .main-content {
-    width: 100%;
+    flex: 1;
+    min-width: 0; /* Предотвращает переполнение flex-контейнера */
 }
 </style> 
