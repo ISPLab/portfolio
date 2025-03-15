@@ -13,15 +13,14 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '/api': {
+            '/api/cocktails': {
                 target: 'https://www.thecocktaildb.com/api/json/v1/1',
                 changeOrigin: true,
                 secure: false,
                 rewrite: (path) => {
-                    // Преобразуем /api/cocktails?code=margarita в /search.php?s=margarita
                     const url = new URL(path, 'http://dummy.com');
                     const searchCode = url.searchParams.get('code');
-                    return `/search.php?s=${searchCode}`;
+                    return `/search.php?s=${searchCode || ''}`;
                 }
             }
         }

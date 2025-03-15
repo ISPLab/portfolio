@@ -13,11 +13,12 @@
         "test": "jest"
     },
     "dependencies": {
+        "@vercel/node": "^3.0.0",
+        "node-fetch": "^3.3.2",
         "pinia": "^2.0.0",
         "vue": "^3.4.0",
         "vue-lazyload": "^3.0.0",
-        "vue-router": "^4.0.0",
-        "@vercel/node": "^3.0.0"
+        "vue-router": "^4.0.0"
     },
     "devDependencies": {
         "@types/node": "^20.0.0",
@@ -40,5 +41,6 @@
             "eslint --fix",
             "prettier --write"
         ]
-    }
+    },
+    "type": "module"
 }
