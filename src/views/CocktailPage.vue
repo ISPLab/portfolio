@@ -98,9 +98,7 @@ watch(cocktailCode, fetchData);
 
 .image-container {
     float: right;
-    width: 25%;
-    min-width: 200px;
-    max-width: 300px;
+    width: 300px;
     margin-left: 20px;
     margin-bottom: 20px;
 }
@@ -166,7 +164,6 @@ watch(cocktailCode, fetchData);
     text-align: justify;
     margin: 0;
     width: 100%;
-
 }
 
 .cocktail-ingredients {
@@ -174,81 +171,27 @@ watch(cocktailCode, fetchData);
     width: 100%;
 }
 
-@media (max-width: 1024px) {
-    .cocktail-info {
-        padding-right: 250px;
-    }
-
+@media (max-width: 1200px) {
     .image-container {
         width: 250px;
     }
 }
 
-@media (max-width: 768px) {
-    .cocktails-grid {
-        width: 90vw;
-        margin: 0 auto;
-    }
-
-    .cocktail-card {
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .cocktail-content {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .cocktail-info {
-        padding-right: 220px;
-    }
-
+@media (max-width: 992px) {
     .image-container {
-        width: 220px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        width: 150px;
     }
 }
 
 @media (max-width: 480px) {
-    .cocktails-grid {
-        width: 90vw;
-        margin: 0 auto;
-    }
-
-    .cocktail-card {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 15px;
-    }
-
-    .cocktail-info {
-        padding-right: 180px;
-    }
-
     .image-container {
-        width: 180px;
-    }
-
-    .cocktail-content {
-        max-width: 400px;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: 360px) {
-    .cocktail-info {
-        padding-right: 150px;
-    }
-
-    .image-container {
-        width: 150px;
-    }
-
-    .cocktail-card {
-        padding: 10px;
+        width: 100px;
     }
 }
 </style> 
