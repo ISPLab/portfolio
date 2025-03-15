@@ -14,10 +14,19 @@ export const useCocktailStore = defineStore('cocktails', () => {
         error.value = null;
 
         try {
-            const response = await fetch(
-                `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${code}`
-            );
-            const data = await response.json();
+            const apiResponse = await fetch(`/api/cocktails?code=${code}`, {
+                method: 'GET',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            
+            if (!apiResponse.ok) {
+                throw new Error(`HTTP error! status: ${apiResponse.status}`);
+            }
+            
+            const data = await apiResponse.json();
             
             if (data.drinks) {
                 cocktails.value[code] = data.drinks;
@@ -25,7 +34,8 @@ export const useCocktailStore = defineStore('cocktails', () => {
                 throw new Error('No cocktails found');
             }
         } catch (e) {
-            error.value = e instanceof Error ? e.message : 'An error occurred';
+            console.error('API Error:', e);
+            error.value = e instanceof Error ? e.message : 'An error occurred while fetching data';
         } finally {
             loading.value = false;
         }
