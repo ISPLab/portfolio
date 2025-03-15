@@ -2,8 +2,17 @@
     <div class="cocktails-container">
         <div v-if="loading" class="cocktails-grid">
             <div v-for="n in 8" :key="n" class="skeleton-item">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-text"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-info">
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-image-container">
+                        <div class="skeleton-image"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div v-else-if="error">{{ error }}</div>
@@ -212,24 +221,73 @@ watch(cocktailCode, fetchData);
 
 .skeleton-item {
     width: 100%;
-    max-width: 250px;
-    padding: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skeleton-content {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.skeleton-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.skeleton-image-container {
+    width: 300px;
+    flex-shrink: 0;
 }
 
 .skeleton-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     background-color: #e0e0e0;
     border-radius: 8px;
     animation: pulse 1.5s infinite;
 }
 
 .skeleton-text {
-    width: 80%;
     height: 20px;
-    margin: 10px auto 0;
     background-color: #e0e0e0;
     border-radius: 4px;
     animation: pulse 1.5s infinite;
+}
+
+.skeleton-text:nth-child(1) {
+    width: 70%;
+}
+
+.skeleton-text:nth-child(2) {
+    width: 60%;
+}
+
+.skeleton-text:nth-child(3) {
+    width: 80%;
+}
+
+.skeleton-text:nth-child(4) {
+    width: 65%;
+}
+
+@media (max-width: 768px) {
+    .skeleton-content {
+        flex-direction: column-reverse;
+    }
+
+    .skeleton-image-container {
+        width: 100%;
+    }
+
+    .skeleton-image {
+        height: 200px;
+    }
 }
 </style> 
