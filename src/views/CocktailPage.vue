@@ -1,44 +1,51 @@
 <template>
-    <div v-if="loading">Loading...</div>
-    <div v-else-if="error">{{ error }}</div>
-    <div v-else class="cocktails-grid">
-        <div v-for="cocktail in cocktailsList" :key="cocktail.idDrink" class="cocktail-card">
-            <div class="cocktail-content">
-                <div class="image-container">
-                    <img 
-                        :src="cocktail.strDrinkThumb" 
-                        :alt="cocktail.strDrink"
-                        loading="lazy"
-                        class="cocktail-image"
-                    />
-                </div>
-                
-                <article class="cocktail-info">
-                    <h2 class="cocktail-name">{{ cocktail.strDrink }}</h2>
+    <div class="cocktails-container">
+        <div v-if="loading" class="cocktails-grid">
+            <div v-for="n in 8" :key="n" class="skeleton-item">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-text"></div>
+            </div>
+        </div>
+        <div v-else-if="error">{{ error }}</div>
+        <div v-else class="cocktails-grid">
+            <div v-for="cocktail in cocktailsList" :key="cocktail.idDrink" class="cocktail-card">
+                <div class="cocktail-content">
+                    <div class="image-container">
+                        <img 
+                            :src="cocktail.strDrinkThumb" 
+                            :alt="cocktail.strDrink"
+                            loading="lazy"
+                            class="cocktail-image"
+                        />
+                    </div>
                     
-                    <div class="cocktail-details">
-                        <p><strong>Category:</strong> {{ cocktail.strCategory }}</p>
-                        <p><strong>Alcoholic:</strong> {{ cocktail.strAlcoholic }}</p>
-                        <p><strong>Glass:</strong> {{ cocktail.strGlass }}</p>
-                    </div>
+                    <article class="cocktail-info">
+                        <h2 class="cocktail-name">{{ cocktail.strDrink }}</h2>
+                        
+                        <div class="cocktail-details">
+                            <p><strong>Category:</strong> {{ cocktail.strCategory }}</p>
+                            <p><strong>Alcoholic:</strong> {{ cocktail.strAlcoholic }}</p>
+                            <p><strong>Glass:</strong> {{ cocktail.strGlass }}</p>
+                        </div>
 
-                    <div class="cocktail-instructions">
-                        <h3>Instructions:</h3>
-                        <p class="instructions">{{ cocktail.strInstructions }}</p>
-                    </div>
+                        <div class="cocktail-instructions">
+                            <h3>Instructions:</h3>
+                            <p class="instructions">{{ cocktail.strInstructions }}</p>
+                        </div>
 
-                    <div class="cocktail-ingredients">
-                        <h3>List of ingredients:</h3>
-                        <div class="ingredients-list">
-                            <div v-for="i in 15" :key="i" class="ingredient-item">
-                                <template v-if="cocktail[`strIngredient${i}`]">
-                                    <span class="measure">{{ cocktail[`strMeasure${i}`] }}</span>
-                                    <span class="ingredient">{{ cocktail[`strIngredient${i}`] }}</span>
-                                </template>
+                        <div class="cocktail-ingredients">
+                            <h3>List of ingredients:</h3>
+                            <div class="ingredients-list">
+                                <div v-for="i in 15" :key="i" class="ingredient-item">
+                                    <template v-if="cocktail[`strIngredient${i}`]">
+                                        <span class="measure">{{ cocktail[`strMeasure${i}`] }}</span>
+                                        <span class="ingredient">{{ cocktail[`strIngredient${i}`] }}</span>
+                                    </template>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
             </div>
         </div>
     </div>
@@ -195,5 +202,34 @@ watch(cocktailCode, fetchData);
     .image-container {
         width: 100px;
     }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.skeleton-item {
+    width: 100%;
+    max-width: 250px;
+    padding: 10px;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 200px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-text {
+    width: 80%;
+    height: 20px;
+    margin: 10px auto 0;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
 }
 </style> 
