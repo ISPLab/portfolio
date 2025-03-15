@@ -74,10 +74,12 @@ watch(cocktailCode, fetchData);
     max-width: 1024px;
     margin: 0 auto;
     overflow-x: hidden;
+    justify-items: center;
+    justify-content: center;
 }
 
 .cocktail-card {
-    padding: 20px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: white;
