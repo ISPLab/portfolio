@@ -242,13 +242,13 @@ watch(cocktailCode, fetchData);
 }
 
 .skeleton-image-container {
-    width: 300px;
+    width: 150px;
     flex-shrink: 0;
 }
 
 .skeleton-image {
     width: 100%;
-    height: 300px;
+    height: 150px;
     background-color: #e0e0e0;
     border-radius: 8px;
     animation: pulse 1.5s infinite;
