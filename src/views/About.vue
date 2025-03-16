@@ -1,54 +1,54 @@
 <template>
     <div class="about-container">
         <section class="hero">
-            <h1>Universal Web Architecture</h1>
-            <p class="subtitle">Framework-Agnostic Development Approach</p>
+            <h1>{{ t.title }}</h1>
+            <p class="subtitle">{{ t.subtitle }}</p>
         </section>
 
         <section class="tech-section">
-            <h2>Core Technologies</h2>
+            <h2>{{ t.coreTech }}</h2>
             <div class="tech-grid">
                 <div class="tech-card">
-                    <h3>Frontend Architecture</h3>
+                    <h3>{{ t.frontendArch.title }}</h3>
                     <ul>
-                        <li>Component-Based Structure
-                            <p>Modular design pattern applicable to React, Vue, Angular, or any modern framework</p>
+                        <li>{{ t.frontendArch.component.title }}
+                            <p>{{ t.frontendArch.component.desc }}</p>
                         </li>
-                        <li>State Management
-                            <p>Universal patterns working with any state manager (Vuex/Pinia, Redux, MobX, etc.)</p>
+                        <li>{{ t.frontendArch.state.title }}
+                            <p>{{ t.frontendArch.state.desc }}</p>
                         </li>
-                        <li>Routing System
-                            <p>Framework-agnostic routing principles for single-page applications</p>
+                        <li>{{ t.frontendArch.routing.title }}
+                            <p>{{ t.frontendArch.routing.desc }}</p>
                         </li>
                     </ul>
                 </div>
 
                 <div class="tech-card">
-                    <h3>API Integration</h3>
+                    <h3>{{ t.apiIntegration.title }}</h3>
                     <ul>
-                        <li>RESTful Architecture
-                            <p>Standard HTTP methods and endpoints compatible with any backend</p>
+                        <li>{{ t.apiIntegration.rest.title }}
+                            <p>{{ t.apiIntegration.rest.desc }}</p>
                         </li>
-                        <li>Data Fetching
-                            <p>Universal async patterns working with any HTTP client</p>
+                        <li>{{ t.apiIntegration.data.title }}
+                            <p>{{ t.apiIntegration.data.desc }}</p>
                         </li>
-                        <li>Error Handling
-                            <p>Consistent error management applicable across frameworks</p>
+                        <li>{{ t.apiIntegration.error.title }}
+                            <p>{{ t.apiIntegration.error.desc }}</p>
                         </li>
                     </ul>
                 </div>
 
                 <div class="tech-card">
-                    <h3>Best Practices</h3>
+                    <h3>{{ t.bestPractices.title }}</h3>
                     <ul>
-                        <li>TypeScript Integration
-                            <p>Type safety and enhanced development experience for any JS framework</p>
+                        <li>{{ t.bestPractices.typescript.title }}
+                            <p>{{ t.bestPractices.typescript.desc }}</p>
                         </li>
-                        <li>Responsive Design
-                            <p>Framework-independent CSS architecture and mobile-first approach</p>
+                        <li>{{ t.bestPractices.responsive.title }}
+                            <p>{{ t.bestPractices.responsive.desc }}</p>
                         </li>
-                        <li>Performance Optimization
-                            <p>Universal techniques for caching, lazy loading, and code splitting</p>
+                        <li>{{ t.bestPractices.performance.title }}
+                            <p>{{ t.bestPractices.performance.desc }}</p>
                         </li>
                     </ul>
                 </div>
@@ -56,16 +56,146 @@
         </section>
 
         <section class="implementation">
-            <h2>Current Implementation</h2>
-            <p>While this site is built with Vue.js, the architecture can be easily adapted to other frameworks:</p>
+            <h2>{{ t.implementation.title }}</h2>
+            <p>{{ t.implementation.description }}</p>
             <ul class="framework-list">
-                <li><strong>React:</strong> Using hooks and context instead of Vue composition API</li>
-                <li><strong>Angular:</strong> Using services and dependency injection</li>
-                <li><strong>Svelte:</strong> Using stores and reactive statements</li>
+                <li v-for="framework in t.implementation.frameworks" :key="framework.name">
+                    <strong>{{ framework.name }}:</strong> {{ framework.desc }}
+                </li>
             </ul>
         </section>
     </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
+
+const { currentLanguage } = useCurrentLanguage();
+
+const translations = {
+    en: {
+        title: 'Universal Web Architecture',
+        subtitle: 'Framework-Agnostic Development Approach',
+        coreTech: 'Core Technologies',
+        frontendArch: {
+            title: 'Frontend Architecture',
+            component: {
+                title: 'Component-Based Structure',
+                desc: 'Modular design pattern applicable to React, Vue, Angular, or any modern framework'
+            },
+            state: {
+                title: 'State Management',
+                desc: 'Universal patterns working with any state manager (Vuex/Pinia, Redux, MobX, etc.)'
+            },
+            routing: {
+                title: 'Routing System',
+                desc: 'Framework-agnostic routing principles for single-page applications'
+            }
+        },
+        apiIntegration: {
+            title: 'API Integration',
+            rest: {
+                title: 'RESTful Architecture',
+                desc: 'Standard HTTP methods and endpoints compatible with any backend'
+            },
+            data: {
+                title: 'Data Fetching',
+                desc: 'Universal async patterns working with any HTTP client'
+            },
+            error: {
+                title: 'Error Handling',
+                desc: 'Consistent error management applicable across frameworks'
+            }
+        },
+        bestPractices: {
+            title: 'Best Practices',
+            typescript: {
+                title: 'TypeScript Integration',
+                desc: 'Type safety and enhanced development experience for any JS framework'
+            },
+            responsive: {
+                title: 'Responsive Design',
+                desc: 'Framework-independent CSS architecture and mobile-first approach'
+            },
+            performance: {
+                title: 'Performance Optimization',
+                desc: 'Universal techniques for caching, lazy loading, and code splitting'
+            }
+        },
+        implementation: {
+            title: 'Current Implementation',
+            description: 'While this site is built with Vue.js, the architecture can be easily adapted to other frameworks:',
+            frameworks: [
+                { name: 'React', desc: 'Using hooks and context instead of Vue composition API' },
+                { name: 'Angular', desc: 'Using services and dependency injection' },
+                { name: 'Svelte', desc: 'Using stores and reactive statements' }
+            ]
+        }
+    },
+    ru: {
+        title: 'Универсальная Веб-Архитектура',
+        subtitle: 'Независимый от фреймворков подход к разработке',
+        coreTech: 'Основные технологии',
+        frontendArch: {
+            title: 'Фронтенд архитектура',
+            component: {
+                title: 'Компонентная структура',
+                desc: 'Модульный паттерн проектирования, применимый к React, Vue, Angular или любому современному фреймворку'
+            },
+            state: {
+                title: 'Управление состоянием',
+                desc: 'Универсальные паттерны, работающие с любым менеджером состояний (Vuex/Pinia, Redux, MobX и др.)'
+            },
+            routing: {
+                title: 'Система маршрутизации',
+                desc: 'Независимые от фреймворка принципы маршрутизации для одностраничных приложений'
+            }
+        },
+        apiIntegration: {
+            title: 'API Интеграция',
+            rest: {
+                title: 'RESTful Архитектура',
+                desc: 'Стандартные HTTP методы и эндпоинты, совместимые с любым бэкендом'
+            },
+            data: {
+                title: 'Получение данных',
+                desc: 'Универсальные асинхронные паттерны, работающие с любым HTTP клиентом'
+            },
+            error: {
+                title: 'Обработка ошибок',
+                desc: 'Согласованное управление ошибками, применимое во всех фреймворках'
+            }
+        },
+        bestPractices: {
+            title: 'Лучшие практики',
+            typescript: {
+                title: 'Интеграция TypeScript',
+                desc: 'Типобезопасность и улучшенный опыт разработки для любого JS фреймворка'
+            },
+            responsive: {
+                title: 'Адаптивный дизайн',
+                desc: 'Независимая от фреймворка CSS архитектура и подход mobile-first'
+            },
+            performance: {
+                title: 'Оптимизация производительности',
+                desc: 'Универсальные техники кэширования, ленивой загрузки и разделения кода'
+            }
+        },
+        implementation: {
+            title: 'Текущая реализация',
+            description: 'Хотя этот сайт построен на Vue.js, архитектура может быть легко адаптирована к другим фреймворкам:',
+            frameworks: [
+                { name: 'React', desc: 'Использование хуков и контекста вместо Vue composition API' },
+                { name: 'Angular', desc: 'Использование сервисов и внедрения зависимостей' },
+                { name: 'Svelte', desc: 'Использование хранилищ и реактивных выражений' }
+            ]
+        }
+    }
+};
+
+const t = computed(() => translations[currentLanguage.value]);
+</script>
 
 <style scoped>
 .about-container {
