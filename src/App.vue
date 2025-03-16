@@ -47,6 +47,7 @@
 import { ref, computed } from 'vue';
 import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
 import { useRoute } from 'vue-router';
+import type { NavigationTranslations } from '@/types/navigation';
 
 // Импортируем изображения флагов
 import ukFlag from '@/assets/uk-flag.svg';
@@ -54,7 +55,7 @@ import ruFlag from '@/assets/ru-flag.svg';
 
 const { currentLanguage } = useCurrentLanguage();
 
-const translations = {
+const translations: NavigationTranslations = {
     en: {
         portfolio: 'Portfolio',
         projects: 'Projects',
