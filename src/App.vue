@@ -182,7 +182,8 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* Отключаем горизонтальный скролл */
+    overflow-x: hidden;
+    background-color: #f5f5f5; /* Добавляем светло-серый фон */
 }
 
 .app-container {
@@ -190,11 +191,12 @@ html, body {
     max-width: 1024px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 60px; /* Уменьшаем отступ на десктопе */
+    padding-top: 60px;
     display: flex;
     gap: 30px;
     overflow-x: hidden;
     flex-direction: column;
+    background-color: #f5f5f5; /* Добавляем тот же цвет для контейнера */
 }
 
 .navigation {
@@ -460,5 +462,19 @@ html, body {
     .app-container {
         padding-top: 240px; /* Максимальный отступ для самых маленьких экранов */
     }
+}
+
+/* Обновляем стили для карточек, чтобы они лучше выделялись на сером фоне */
+.feature-card {
+    background: white; /* Делаем карточки белыми для контраста */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Усиливаем тень */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Усиливаем тень при наведении */
 }
 </style> 

@@ -9,7 +9,9 @@
                     <img src="@/assets/images/porfolio/photo.jpeg" alt="Profile Photo" class="pulse-image">
                 </div>
                 <h1>{{ t.title }}</h1>
-                <p class="subtitle">{{ t.subtitle }}</p>
+                <div class="subtitle-container">
+                    <p class="subtitle typewriter">{{ t.subtitle }}</p>
+                </div>
             </div>
         </section>
 
@@ -57,7 +59,7 @@
                         GitHub
                     </a>
                     <a href="https://t.me/for_orlov" target="_blank" class="social-link">
-                        <img src="data:image/jpeg;base64,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"
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAPEhAQDxISEREQEBAQFQ8QDQ8QDxUVFREWFhURGBUZHSggGBolGxUTITEhJSkrLi4uFx8zODYtNygtLisBCgoKDg0OGxAQGy0lHyUtLS0tLS0tLS0tLS0vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAQYEBQcDAv/EAEAQAAICAAIGBwUGBAUFAQAAAAABAgMEEQUGEiExQRNRYXGBkaEiMlKxwQdCYnKS0SNTsuEUM0Sio0NjgoPSJP/EABoBAQACAwEAAAAAAAAAAAAAAAAEBQECAwb/xAAsEQEAAgIBBAAFAwUBAQAAAAAAAQIDEQQFEiExEzJBUWEiQnEUI1KBkTOx/9oADAMBAAIRAxEAPwDuIAAAAAAAAAAAgwIckuJn2xMxDEu0rh4e/dVHvtgn5Zm0Y7z6iXOc+OPdoY0tY8Gv+vX4PP5HT+ny/wCMuc8zDH7oQtZcH/Oh6r6D+my/4sRzME/ue1em8LL3b6n2dLFP1ZrOHJH0lvHJxT+6GbVdGW+LT7mmaTEw6xes+pfeZhskAAAAAAAAAAAAAAAAAAAAEAed+IjBOU5KMVxcpJIzETPpra8VjcyrukNc6IZqmLufWvYh5tb/AARLx8LJbzPhX5upYqeK+VexmtWKsz2ZRqT5Qim/1Mm04OOvmfKuydRzX9eIam/E2Wf5lk5/mnJ+hIripX1CJbNkt7mXiorqOjkkAAyAmuTjvi3F9cZOL9DWaVn3DeuS0epbPC6wYurha5L4bEprze/1OF+Jit9EnHzs1PrtvcBrstyvqy/HW9pfpe/1ZEvwLe6ysMXVa+rws2j9J04hZ1TjLrSeUl3p70Qb47Un9ULLFnpkjdZZeZo6pAAAAAAAAAAAAAAAAfMppJttJLe29yQ9sTMR5lVNMa4RhnDDJWS4dJLPo13fF8idh4Vreb+FZyOpVp4x+ZVDG42297Vs3N8k37K7o8EWePFSnywpsufJkn9UvA6OIAzAZgMwGYDMBmAzAZgTCbi1KLcZLhKLakvFGLVi0amG1bzWdx4WXRGt9leUcQukj8cV/EXeuEvQr83BifNP+LTj9TtHjIumBxtd8VOqSlHrT4djXJlbek0nVlzjyVvG6yyTV0AAAAAAAAAAABAGHpPSVeHg52SyXBLjKT+FLmzamO151VyzZq4q7tLn2m9PW4ptP2KuVafHtk+fyLnj8SuONz5l57k82+adR4hqSUhBnQDQDQDQDQDQDQDQDQDQDQyMBjbKJbdUtl81xjJdUlzRyy4aZI1aHXDnvindZX/V/WKvFLZllC1LfBvc+txfNfIps/Htin8PQ8XmVzRr1P2bxEdNSAAAAAAAAAgDX6Z0tXhYOc974Rgvek+pfudMWK2Se2HDkZ64a7lzbSWkLMTN2WvfyivdiupL68y8xYa4q6h5nPnvmt3WYp1cQyAAAAAAAAAAAAAABgDImE3FqUW1JPNSTyafWmazETGpZraazuF91X1jV+VVrSuS3PlNLmuqXWin5XFnFO49PQcLmxl/Tb3/APVlzIaySAAAAAAABiaSx0MPXKyx5KK5cW+UV2s2x0m9u2HLLlrjrNrOYaU0hPE2OyzujHlGPKK/cvsGGuKuoeY5Ge2a/dLEOzgAAAAAAAAAAAAAAAAAAABMZNNNNpp5pp5NNc0YmInxLNZms7h0XVbTqxMNie66C9pbkpLlNfXqKPk8f4VvxL0nD5cZq6n3DfojJwAAAAAESe4EzpzTWnTLxVmzF/wa21Hqk+c/ouzvLricf4de6fcvNc/lTltqvqGlJiCAAAAAAAAAAAAAAAAAAAAAGB74LFTpnG2t5Sg811Pri+xrcaZccZK9sumHLOK8Wq6lorHxxFULYcJLes96a4xfcygyY5pbtl6rDljFSKwzTR1AAAAAAwtKaPhia5VWLOMlx5p8pLtRvjvOO0WhyzYq5azWzkumNF2YWx1WLtjLLdKPKS/bkegwZoy13DzHIwWw21LBOzgAAAAAAAAAAAAAAAAAAAB9Qg5NRim22kklm2+pGLWisblmsTadQ6hqjq9/hIbdmTumvafwr4E/myh5XJ+Nbx6h6PhcT4Ndz7lYkRU9IAAAAAAIA1mndD14utws3Nb4zS9qL619UdcOa2K26o/I49c1dWcr0toy3C2Ou1ZPipL3ZL4ky+w565a7h5rPgtht22YR2cQAAAAAAAAAAAAAAAAAmuDk1GKcpSaSlm23yRra0V8yzWs2nUOk6o6rrDpXXLO58Fuca11L8XaUvK5XxJ7a+noOFwoxR3X+ZaiEskgAAAAAAAAIYGFpXRdWKg67Y7S4p8JRfxJ8mb48lsc7hyy4aZa6tDmWsGrV2De1k7Knwtinu7Jr7r9C74/LrkjU+Jed5PCvh8x5hpSWhgAAAAAAAAAAAAAAGVo7R1uJmq6YuT5v7sV1yfJHLLlrjruzrhw3yzqsOlatasV4RbT9u5rfZyXZFcl28Sk5HKtmn7Q9BxeFTDG/crARk5IAAAAAAAAAAAAfM4KSakk09zTWaY9MTETGpU3Tuo8LM54VquX8p/5b7vh+RPwc+1fF/MKrkdNrb9WPxKj4/R92Hls3QlB8s8tl9zW5ltjzUyR+mVPkw3xzq8aYp0cgAAAAAAABmAzA+qoSm1GKcpPhGKbb8Ea2tFfMs1ra06rC2aE1HtsyniX0UOPRrJ2PvfCPz7ivz8+I8U8rTj9Mtbzk8fhfsBo+rDxUKYKEV1Le31t82VV72vO7SuseKmONVhk5GrokAAAAAAAAAAAAAACAPLEYaFkXGyMZxfGMkmvIzEzWdw1tSto1MKvpLUTD2ZyplKmXwr26/J714Mm4+fkr83lXZemY7eaeFZx2peMqz2YxtXXXL2v0yy+pNpz8VvfhXZOnZq/LG2jxOEtqeVlc4P8dco/NEquWlvUolsV6+4l4ZnRzSAAgD6rg5PKKcn1Ri5PyRra1Y9y2rS1vUNvgtV8ZdllS4J/etfRr13+hHvzMVfqk4+Dmv9P+rHo77P1ueItz/BVuXdtNZ+iIWTqMz4pCfi6Vr55W3RuiaMMsqa4w62lnJ98nvZBvlvef1Ss8eCmONVhmpHN2SAAAAAAAAAAAAAAAAAAAACMgIlBPc1n2MfwxMRPth36Iw1nv01S76o/sbxlvHqXO2DHb3WGHPVbAv/AE9fhtL5M6Ryc0fucp4eGf2w+Y6qYFf6eHi5v5sf1Wb/ACY/osP+MMmnQOEh7uHqX/ri/maznyT7tLpXjYq+qwz66Yx3RiorqjFL5HOZmfbrFYj1D7yNWyTIAAAAAAAAAAAAAAAAAAAAAAACAAGYEGQRiWISIZDIgMQkMgAAAAAAAAAAA//Z"
                             alt="Telegram" class="social-icon">
                         Telegram</a>
                     <a href="mailto:for_orlov@mail.ru" class="social-link">
@@ -167,7 +169,7 @@ onUnmounted(() => {
 const translations: Translations = {
     en: {
         title: 'Transforming ideas into reality !',
-        subtitle: 'Full Stack Developer & Hardwear Engineer',
+        subtitle: 'Andrey Orlov. Full Stack Developer & Hardwear Engineer.',
         featuredProjects: 'Featured Projects',
         works: 'Works',
         worksList: [
@@ -196,7 +198,7 @@ const translations: Translations = {
     },
     ru: {
         title: 'Воплощаем идеи в реальность !',
-        subtitle: 'Разработчик АСУ и вычислительной техники',
+        subtitle: 'Андрей Орлов. Разработчик АСУ и вычислительной техники',
         featuredProjects: 'Избранные проекты',
         works: 'Работы',
         worksList: [
@@ -406,10 +408,54 @@ const t = computed(() => translations[currentLanguage.value]);
     margin-bottom: 10px;
 }
 
+.subtitle-container {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    border-right: 2px solid transparent;
+}
+
+.typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: 
+        typing 24s steps(40, end) infinite,
+        blink-caret .75s step-end infinite,
+        delete 16s steps(40, end) infinite;
+    animation-delay: 0s, 0s, 16s;
+}
+
+@keyframes typing {
+    0%, 50%, 100% { 
+        width: 0 
+    }
+    20%, 80% { 
+        width: 100% 
+    }
+}
+
+@keyframes delete {
+    0%, 50%, 100% { 
+        width: 100% 
+    }
+    20%, 80% { 
+        width: 0 
+    }
+}
+
+@keyframes blink-caret {
+    from, to { border-right: 2px solid transparent }
+    50% { border-right: 2px solid #fff }
+}
+
 .subtitle {
     font-size: 1.2em;
     opacity: 0.9;
     margin: 0;
+    display: inline-block;
 }
 
 .features {
@@ -539,6 +585,16 @@ const t = computed(() => translations[currentLanguage.value]);
     .profile-photo {
         width: 150px;
         height: 150px;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .subtitle {
+        font-size: 0.9em;
     }
 }
 </style>
