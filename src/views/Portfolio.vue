@@ -240,10 +240,9 @@ const t = computed(() => translations[currentLanguage.value]);
     text-align: center;
     margin-bottom: 60px;
     padding: 40px 20px;
-    background: linear-gradient(135deg, #DEFFFF 0%, #AAE2FF 0%, #BAD178 100%);
+    background: linear-gradient(135deg, #42b983 0%, #2c3e50 100%);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
-    border-radius: 8px;
     color: white;
     overflow: hidden;
 }
@@ -252,7 +251,6 @@ const t = computed(() => translations[currentLanguage.value]);
     position: relative;
     z-index: 2;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
     padding: 20px;
 }
 

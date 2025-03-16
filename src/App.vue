@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <nav class="navigation">
+        <nav class="navigation" :class="{ 'no-animation': isPortfolioRoute }">
             <div class="nav-links">
                 <router-link to="/portfolio" class="nav-item">{{ t.portfolio }}</router-link>
             
@@ -124,6 +124,9 @@ const closeDropdown = () => {
     isDropdownOpen.value = false;
 };
 
+// Проверяем, находимся ли мы на странице portfolio
+const isPortfolioRoute = computed(() => route.path === '/portfolio');
+
 // Директива для закрытия dropdown при клике вне его
 const vClickOutside = {
     mounted(el: HTMLElement, binding: any) {
@@ -166,12 +169,18 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #f6f8f9 0%, #AAE2FF 0%, #1c5a8c 100%);
+    background: linear-gradient(135deg, #42b983 0%, #2c3e50 100%);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     border-radius: 8px;
+}
+
+/* Добавляем класс для отключения анимации */
+.navigation.no-animation {
+    animation: none;
+    background-position: 0% 50%;
 }
 
 .nav-links {
