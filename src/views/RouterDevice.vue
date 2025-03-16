@@ -9,7 +9,7 @@
 
             <div class="project-screenshot">
                 <img 
-                    src="https://raw.githubusercontent.com/ISPLab/maxbitsol/main/screenshots/route-device.jpeg" 
+                    src="https://github.com/ISPLab/portfolio/blob/aee41f530ad5828e437727e816dfd3a5609179ff/src/assets/images/projects/route-device.jpeg" 
                     alt="Router Device"
                     loading="lazy"
                 />

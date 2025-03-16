@@ -7,21 +7,21 @@
                 <div class="dropdown">
                     <button class="nav-item dropdown-toggle">Projects</button>
                     <div class="dropdown-content">
-                        <router-link to="/cocktails" class="dropdown-item">Cocktail Page</router-link>
-                        <router-link to="/social-media" class="dropdown-item">Social Media</router-link>
-                        <router-link to="/website-chat" class="dropdown-item">Website chat</router-link>
                         <router-link to="/ai-pianist" class="dropdown-item">AI Pianist</router-link>
+                        <router-link to="/social-media" class="dropdown-item">Social Media</router-link>
+                        <router-link to="/website-chat" class="dropdown-item">Website Chat</router-link>                  
                         <router-link to="/city-quests" class="dropdown-item">City Quests</router-link>
                         <router-link to="/lumeira-wellness" class="dropdown-item">Lumeira Wellness</router-link>
                         <router-link to="/butler-system" class="dropdown-item">Butler System</router-link>
-                        <router-link to="/nuana-data" class="dropdown-item">Nuana data center</router-link>
-                        <router-link to="/aurora-media" class="dropdown-item">Aurora media park</router-link>
-                        <router-link to="/property-sales" class="dropdown-item">Property sales</router-link>
+                        <router-link to="/nuana-data" class="dropdown-item">Nuana Data Center</router-link>
+                        <router-link to="/aurora-media" class="dropdown-item">Aurora Media Park</router-link>
+                        <router-link to="/property-sales" class="dropdown-item">Property Sales</router-link>
+                        <router-link to="/cocktails" class="dropdown-item">Cocktail Page</router-link>
                         <router-link to="/router-device" class="dropdown-item">Router Device</router-link>
                     </div>
                 </div>
                 <router-link to="/cv" class="nav-item">CV</router-link>
-                <router-link to="/about" class="nav-item">about</router-link>
+                <router-link to="/about" class="nav-item">About</router-link>
             </div>
             <div class="language-selector">
                 <select v-model="currentLanguage" class="language-select">
