@@ -1,6 +1,12 @@
 <template>
     <div class="app-container">
-        <nav class="navigation" :class="{ 'no-animation': isPortfolioRoute }">
+        <nav class="navigation" 
+             :class="{ 
+                'no-animation': isPortfolioRoute,
+                'nav-hidden': isScrollingDown,
+                'nav-visible': !isScrollingDown 
+             }"
+        >
             <div class="nav-links">
                 <router-link to="/portfolio" class="nav-item">{{ t.portfolio }}</router-link>
             
@@ -44,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
 import { useRoute } from 'vue-router';
 import type { NavigationTranslations } from '@/types/navigation';
@@ -141,6 +147,33 @@ const vClickOutside = {
         document.removeEventListener('click', el.clickOutsideEvent);
     }
 };
+
+// Добавляем состояние для отслеживания прокрутки
+const isScrollingDown = ref(false);
+let lastScrollY = 0;
+
+// Функция для обработки прокрутки
+const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    
+    // Проверяем направление прокрутки и показываем/скрываем навигацию
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        isScrollingDown.value = true;
+    } else {
+        isScrollingDown.value = false;
+    }
+    
+    lastScrollY = currentScrollY;
+};
+
+// Добавляем и удаляем слушатель события прокрутки
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <style>
@@ -157,9 +190,10 @@ html, body {
     max-width: 1024px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 60px; /* Уменьшаем отступ на десктопе */
     display: flex;
     gap: 30px;
-    overflow-x: hidden; /* Дополнительная защита от скролла */
+    overflow-x: hidden;
     flex-direction: column;
 }
 
@@ -173,16 +207,36 @@ html, body {
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    border-radius: 8px;
-    position: relative;
-    z-index: 1;
+    position: fixed;
+    top: 0; /* Располагаем навигацию в самом верху */
+    left: 0; /* Растягиваем на всю ширину */
+    right: 0;
+    transform: translateY(0); /* Убираем смещение по X */
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border-radius: 0; /* Убираем скругление углов */
+    margin: 0; /* Убираем отступы */
 }
 
-/* Добавляем класс для отключения анимации */
-.navigation.no-animation {
-    animation: none;
-    background-position: 0% 50%;
+/* Стили для скрытой навигации */
+.nav-hidden {
+    transform: translateY(-100%); /* Меняем направление трансформации */
+    opacity: 0;
+}
+
+/* Стили для видимой навигации */
+.nav-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.nav-inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav-links {
@@ -246,7 +300,7 @@ html, body {
 
 .main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0;  
 }
 
 .dropdown {
@@ -320,6 +374,10 @@ html, body {
 
 /* Медиа-запросы для мобильных устройств */
 @media (max-width: 768px) {
+    .app-container {
+        padding-top: 140px; /* Увеличиваем отступ для мобильных устройств */
+    }
+
     .navigation {
         flex-direction: column;
         padding: 10px;
@@ -357,6 +415,12 @@ html, body {
 
 /* Для очень маленьких экранов */
 @media (max-width: 480px) {
+    .app-container {
+        padding-top: 200px; /* Еще больше отступ для маленьких экранов */
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .nav-links {
         flex-direction: column;
         align-items: stretch;
@@ -388,6 +452,13 @@ html, body {
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+}
+
+/* Добавляем стили для очень маленьких экранов */
+@media (max-width: 320px) {
+    .app-container {
+        padding-top: 240px; /* Максимальный отступ для самых маленьких экранов */
     }
 }
 </style> 
