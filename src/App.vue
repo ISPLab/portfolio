@@ -28,6 +28,7 @@
                     @click="currentLanguage = currentLanguage === 'en' ? 'ru' : 'en'"
                     class="language-option"
                 >
+                    <img :src="currentFlag" class="flag-icon" :alt="currentLanguage === 'en' ? 'English' : 'Русский'">
                     {{ currentLanguage === 'en' ? 'Eng' : 'Рус' }}
                 </span>
             </div>
@@ -40,8 +41,13 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
 
-const currentLanguage = ref('en');
+// Импортируем изображения флагов
+import ukFlag from '@/assets/uk-flag.svg';
+import ruFlag from '@/assets/ru-flag.svg';
+
+const { currentLanguage } = useCurrentLanguage();
 
 const translations = {
     en: {
@@ -81,6 +87,7 @@ const translations = {
 };
 
 const t = computed(() => translations[currentLanguage.value]);
+const currentFlag = computed(() => currentLanguage.value === 'en' ? ukFlag : ruFlag);
 </script>
 
 <style>
@@ -144,10 +151,20 @@ html, body {
     border-radius: 4px;
     transition: all 0.3s ease;
     color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .language-option:hover {
     color: #42b983;
+}
+
+.flag-icon {
+    width: 20px;
+    height: 15px;
+    object-fit: cover;
+    border-radius: 2px;
 }
 
 .main-content {

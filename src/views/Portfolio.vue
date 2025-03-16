@@ -6,51 +6,41 @@
                 <div class="photo-glow"></div>
                 <img src="@/assets/images/porfolio/photo.jpeg" alt="Profile Photo" class="pulse-image">
             </div>
-            <h1>Transforming ideas into reality !</h1>
-            <p class="subtitle">Full Stack Developer & Software Engineer</p>
+            <h1>{{ t.title }}</h1>
+            <p class="subtitle">{{ t.subtitle }}</p>
         </section>
 
         <section class="features">
-            <h2>Featured Projects</h2>
+            <h2>{{ t.featuredProjects }}</h2>
 
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>Works</h3>
+                    <h3>{{ t.works }}</h3>
                     <ul>
-                        <li>Adaptive UI design for seamless experience across devices</li>
-                        <li>Real-time search and filtering for efficient data handling</li>
-                        <li>Optimized image gallery for fast load times</li>
-                        <li>API integration with high-performance scalability</li>
+                        <li v-for="item in t.worksList" :key="item">{{ item }}</li>
                     </ul>
                 </div>
 
                 <div class="feature-card">
-                    <h3>Development Skills</h3>
+                    <h3>{{ t.devSkills }}</h3>
                     <ul>
-                        <li>Frontend: Vue.js, Angular, React</li>
-                        <li>Backend: Nest.js, .Net, Node.js</li>
-                        <li>Data Bases: PostgreSQL, MsSQL, MySQL, MongoDB</li>
-                        <li>DevOps: Docker, CI/CD, Kubernetes</li>
-                        <li>Testing & Documentation</li>
+                        <li v-for="item in t.skillsList" :key="item">{{ item }}</li>
                     </ul>
                 </div>
 
                 <div class="feature-card">
-                    <h3>Current Projects</h3>
+                    <h3>{{ t.currentProjects }}</h3>
                     <ul>
-                        <li>AI-powered applications</li>
-                        <li>Real estate platforms</li>
-                        <li>Social media integration</li>
-                        <li>Data visualization tools</li>
+                        <li v-for="item in t.projectsList" :key="item">{{ item }}</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section class="contact">
-            <h2>Let's Connect</h2>
+            <h2>{{ t.connect }}</h2>
             <div class="contact-info">
-                <p>Looking for a developer who can bring your ideas to life? Let's talk!</p>
+                <p>{{ t.connectText }}</p>
                 <div class="social-links">
                     <a href="https://hh.ru/resume/5f7a7e21ff07e863f30039ed1f4d4830754c58" target="_blank"
                         class="social-link">
@@ -76,6 +66,76 @@
         </section>
     </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
+
+const { currentLanguage } = useCurrentLanguage();
+
+const translations = {
+    en: {
+        title: 'Transforming ideas into reality !',
+        subtitle: 'Full Stack Developer & Software Engineer',
+        featuredProjects: 'Featured Projects',
+        works: 'Works',
+        worksList: [
+            'Adaptive UI design for seamless experience across devices',
+            'Real-time search and filtering for efficient data handling',
+            'Optimized image gallery for fast load times',
+            'API integration with high-performance scalability'
+        ],
+        devSkills: 'Development Skills',
+        skillsList: [
+            'Frontend: Vue.js, Angular, React',
+            'Backend: Nest.js, .Net, Node.js',
+            'Data Bases: PostgreSQL, MsSQL, MySQL, MongoDB',
+            'DevOps: Docker, CI/CD, Kubernetes',
+            'Testing & Documentation'
+        ],
+        currentProjects: 'Current Projects',
+        projectsList: [
+            'AI-powered applications',
+            'Real estate platforms',
+            'Social media integration',
+            'Data visualization tools'
+        ],
+        connect: "Let's Connect",
+        connectText: "Looking for a developer who can bring your ideas to life? Let's talk!"
+    },
+    ru: {
+        title: 'Воплощаем идеи в реальность !',
+        subtitle: 'Full Stack Разработчик & Программист',
+        featuredProjects: 'Избранные проекты',
+        works: 'Работы',
+        worksList: [
+            'Адаптивный UI дизайн для всех устройств',
+            'Поиск и фильтрация данных в реальном времени',
+            'Оптимизированная галерея изображений',
+            'API интеграция с высокой масштабируемостью'
+        ],
+        devSkills: 'Навыки разработки',
+        skillsList: [
+            'Фронтенд: Vue.js, Angular, React',
+            'Бэкенд: Nest.js, .Net, Node.js',
+            'Базы данных: PostgreSQL, MsSQL, MySQL, MongoDB',
+            'DevOps: Docker, CI/CD, Kubernetes',
+            'Тестирование и документация'
+        ],
+        currentProjects: 'Текущие проекты',
+        projectsList: [
+            'Приложения с использованием ИИ',
+            'Платформы недвижимости',
+            'Интеграция соцсетей',
+            'Инструменты визуализации данных'
+        ],
+        connect: 'Связаться',
+        connectText: 'Ищете разработчика, который воплотит ваши идеи в жизнь? Давайте обсудим!'
+    }
+};
+
+const t = computed(() => translations[currentLanguage.value]);
+</script>
 
 <style scoped>
 .portfolio-container {
