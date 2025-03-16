@@ -2,26 +2,26 @@
     <div class="app-container">
         <nav class="navigation">
             <div class="nav-links">
-                <router-link to="/portfolio" class="nav-item">Portfolio</router-link>
+                <router-link to="/portfolio" class="nav-item">{{ t.portfolio }}</router-link>
             
                 <div class="dropdown">
-                    <button class="nav-item dropdown-toggle">Projects</button>
+                    <button class="nav-item dropdown-toggle">{{ t.projects }}</button>
                     <div class="dropdown-content">
-                        <router-link to="/ai-pianist" class="dropdown-item">AI Pianist</router-link>
-                        <router-link to="/social-media" class="dropdown-item">Social Media</router-link>
-                        <router-link to="/website-chat" class="dropdown-item">Website Chat</router-link>                  
-                        <router-link to="/city-quests" class="dropdown-item">City Quests</router-link>
-                        <router-link to="/lumeira-wellness" class="dropdown-item">Lumeira Wellness</router-link>
-                        <router-link to="/butler-system" class="dropdown-item">Butler System</router-link>
-                        <router-link to="/nuana-data" class="dropdown-item">Nuana Data Center</router-link>
-                        <router-link to="/aurora-media" class="dropdown-item">Aurora Media Park</router-link>
-                        <router-link to="/property-sales" class="dropdown-item">Property Sales</router-link>
-                        <router-link to="/cocktails" class="dropdown-item">Cocktail Page</router-link>
-                        <router-link to="/router-device" class="dropdown-item">Router Device</router-link>
+                        <router-link to="/ai-pianist" class="dropdown-item">{{ t.aiPianist }}</router-link>
+                        <router-link to="/social-media" class="dropdown-item">{{ t.socialMedia }}</router-link>
+                        <router-link to="/website-chat" class="dropdown-item">{{ t.websiteChat }}</router-link>                  
+                        <router-link to="/city-quests" class="dropdown-item">{{ t.cityQuests }}</router-link>
+                        <router-link to="/lumeira-wellness" class="dropdown-item">{{ t.lumeiraWellness }}</router-link>
+                        <router-link to="/butler-system" class="dropdown-item">{{ t.butlerSystem }}</router-link>
+                        <router-link to="/nuana-data" class="dropdown-item">{{ t.nuanaData }}</router-link>
+                        <router-link to="/aurora-media" class="dropdown-item">{{ t.auroraMedia }}</router-link>
+                        <router-link to="/property-sales" class="dropdown-item">{{ t.propertySales }}</router-link>
+                        <router-link to="/cocktails" class="dropdown-item">{{ t.cocktails }}</router-link>
+                        <router-link to="/router-device" class="dropdown-item">{{ t.routerDevice }}</router-link>
                     </div>
                 </div>
-                <router-link to="/cv" class="nav-item">CV</router-link>
-                <router-link to="/about" class="nav-item">About</router-link>
+                <router-link to="/cv" class="nav-item">{{ t.cv }}</router-link>
+                <router-link to="/about" class="nav-item">{{ t.about }}</router-link>
             </div>
             <div class="language-selector">
                 <span 
@@ -39,9 +39,48 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const currentLanguage = ref('en');
+
+const translations = {
+    en: {
+        portfolio: 'Portfolio',
+        projects: 'Projects',
+        cv: 'CV',
+        about: 'About',
+        aiPianist: 'AI Pianist',
+        socialMedia: 'Social Media',
+        websiteChat: 'Website Chat',
+        cityQuests: 'City Quests',
+        lumeiraWellness: 'Lumeira Wellness',
+        butlerSystem: 'Butler System',
+        nuanaData: 'Nuana Data Center',
+        auroraMedia: 'Aurora Media Park',
+        propertySales: 'Property Sales',
+        cocktails: 'Cocktail Page',
+        routerDevice: 'Router Device'
+    },
+    ru: {
+        portfolio: 'Портфолио',
+        projects: 'Проекты',
+        cv: 'Резюме',
+        about: 'О сайте',
+        aiPianist: 'ИИ Пианист',
+        socialMedia: 'Соцсети',
+        websiteChat: 'Чат для сайта',
+        cityQuests: 'Городские квесты',
+        lumeiraWellness: 'Lumeira Wellness',
+        butlerSystem: 'Система Батлер',
+        nuanaData: 'Дата-центр Nuana',
+        auroraMedia: 'Медиапарк Аврора',
+        propertySales: 'Продажа недвижимости',
+        cocktails: 'Страница коктейлей',
+        routerDevice: 'Роутер'
+    }
+};
+
+const t = computed(() => translations[currentLanguage.value]);
 </script>
 
 <style>
