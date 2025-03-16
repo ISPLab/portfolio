@@ -119,20 +119,40 @@ html, body {
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    border-radius: 8px;
 }
 
 .nav-links {
     display: flex;
     flex-direction: row;
     gap: 30px;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-start;
+    margin-left: 20px;
 }
 
 .nav-item {
     text-decoration: none;
     color: #2c3e50;
+    padding: 8px 15px;
+    border-radius: 4px;
     font-size: 18px;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Добавляем стили для активной ссылки */
+.nav-item.router-link-active {
+    color: #42b983;
+    background-color: rgba(66, 185, 131, 0.1);
+}
+
+/* Стили для активного пункта в выпадающем меню */
+.dropdown-item.router-link-active {
+    color: #42b983;
+    background-color: rgba(66, 185, 131, 0.1);
 }
 
 .nav-item:hover {
@@ -142,7 +162,8 @@ html, body {
 .language-selector {
     display: flex;
     justify-content: flex-end;
-    margin-right: 50px; 
+    margin-right: 20px;
+    flex: 0 0 auto;
 }
 
 .language-option {
