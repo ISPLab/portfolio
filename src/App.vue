@@ -165,7 +165,7 @@ html, body {
 
 .navigation {
     width: 100%;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -175,6 +175,8 @@ html, body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     border-radius: 8px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Добавляем класс для отключения анимации */
@@ -186,19 +188,19 @@ html, body {
 .nav-links {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 15px;
     align-items: center;
     flex: 1;
     justify-content: flex-start;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .nav-item {
     text-decoration: none;
     color: white;
-    padding: 8px 15px;
+    padding: 6px 10px;
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     transition: color 0.3s ease, background-color 0.3s ease;
     white-space: nowrap;
@@ -250,6 +252,7 @@ html, body {
 .dropdown {
     position: relative;
     display: inline-block;
+    z-index: 2;
 }
 
 .dropdown-toggle {
@@ -269,7 +272,7 @@ html, body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: linear-gradient(135deg, #f6f8f9 0%, #AAE2FF 0%, #1c5a8c 100%);
+    background: linear-gradient(135deg, #42b983 0%, #2c3e50 100%);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     min-width: 200px;
@@ -277,6 +280,8 @@ html, body {
     border-radius: 4px;
     padding: 8px 0;
     z-index: 1000;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .dropdown:hover .dropdown-content {
@@ -288,7 +293,7 @@ html, body {
     padding: 8px 16px;
     text-decoration: none;
     color: white;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .dropdown-item:hover {
@@ -313,39 +318,76 @@ html, body {
     }
 }
 
+/* Медиа-запросы для мобильных устройств */
 @media (max-width: 768px) {
-    .app-container {
-        padding: 15px;
-        width: 100%;
-        min-width: 0;
-        gap: 15px;
+    .navigation {
         flex-direction: column;
+        padding: 10px;
+        gap: 10px;
     }
 
-    .main-content {
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0;
+        gap: 8px;
+    }
+
+    .language-selector {
+        margin: 5px 0;
+    }
+
+    .nav-item {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    .dropdown-content {
+        position: absolute;
+        width: 160px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .dropdown-item {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: stretch;
         width: 100%;
+    }
+
+    .nav-item {
+        text-align: center;
+    }
+
+    .dropdown {
+        width: 100%;
+        position: static;
+    }
+
+    .dropdown-toggle {
+        width: 100%;
+        text-align: center;
     }
 
     .dropdown-content {
         position: static;
-        display: none;
-        box-shadow: none;
-        padding-left: 20px;
+        width: 100%;
+        transform: none;
+        -webkit-transform: none;
     }
 
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown-item {
-        padding: 8px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .app-container {
-        padding: 10px;
-        gap: 10px;
+    .language-selector {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 }
 </style> 
