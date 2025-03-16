@@ -4,20 +4,24 @@
             <div class="nav-links">
                 <router-link to="/portfolio" class="nav-item">{{ t.portfolio }}</router-link>
             
-                <div class="dropdown">
-                    <button class="nav-item dropdown-toggle">{{ t.projects }}</button>
-                    <div class="dropdown-content">
-                        <router-link to="/ai-pianist" class="dropdown-item">{{ t.aiPianist }}</router-link>
-                        <router-link to="/social-media" class="dropdown-item">{{ t.socialMedia }}</router-link>
-                        <router-link to="/website-chat" class="dropdown-item">{{ t.websiteChat }}</router-link>                  
-                        <router-link to="/city-quests" class="dropdown-item">{{ t.cityQuests }}</router-link>
-                        <router-link to="/lumeira-wellness" class="dropdown-item">{{ t.lumeiraWellness }}</router-link>
-                        <router-link to="/butler-system" class="dropdown-item">{{ t.butlerSystem }}</router-link>
-                        <router-link to="/nuana-data" class="dropdown-item">{{ t.nuanaData }}</router-link>
-                        <router-link to="/aurora-media" class="dropdown-item">{{ t.auroraMedia }}</router-link>
-                        <router-link to="/property-sales" class="dropdown-item">{{ t.propertySales }}</router-link>
-                        <router-link to="/cocktails" class="dropdown-item">{{ t.cocktails }}</router-link>
-                        <router-link to="/router-device" class="dropdown-item">{{ t.routerDevice }}</router-link>
+                <div class="dropdown" v-click-outside="closeDropdown">
+                    <button 
+                        class="nav-item dropdown-toggle" 
+                        :class="{ 'router-link-active': isProjectRoute }"
+                        @click="toggleDropdown"
+                    >
+                        {{ t.projects }}
+                    </button>
+                    <div class="dropdown-content" v-show="isDropdownOpen">
+                        <router-link 
+                            v-for="route in projectRoutes" 
+                            :key="route.path"
+                            :to="route.path" 
+                            class="dropdown-item"
+                            @click="closeDropdown"
+                        >
+                            {{ route.title }}
+                        </router-link>
                     </div>
                 </div>
                 <router-link to="/cv" class="nav-item">{{ t.cv }}</router-link>
@@ -42,6 +46,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
+import { useRoute } from 'vue-router';
 
 // Импортируем изображения флагов
 import ukFlag from '@/assets/uk-flag.svg';
@@ -88,6 +93,50 @@ const translations = {
 
 const t = computed(() => translations[currentLanguage.value]);
 const currentFlag = computed(() => currentLanguage.value === 'en' ? ukFlag : ruFlag);
+
+const isDropdownOpen = ref(false);
+const route = useRoute();
+
+const projectRoutes = computed(() => [
+    { path: '/ai-pianist', title: t.value.aiPianist },
+    { path: '/social-media', title: t.value.socialMedia },
+    { path: '/website-chat', title: t.value.websiteChat },
+    { path: '/city-quests', title: t.value.cityQuests },
+    { path: '/lumeira-wellness', title: t.value.lumeiraWellness },
+    { path: '/butler-system', title: t.value.butlerSystem },
+    { path: '/nuana-data', title: t.value.nuanaData },
+    { path: '/aurora-media', title: t.value.auroraMedia },
+    { path: '/property-sales', title: t.value.propertySales },
+    { path: '/cocktails', title: t.value.cocktails },
+    { path: '/router-device', title: t.value.routerDevice }
+]);
+
+const isProjectRoute = computed(() => {
+    return projectRoutes.value.some(r => r.path === route.path);
+});
+
+const toggleDropdown = () => {
+    isDropdownOpen.value = !isDropdownOpen.value;
+};
+
+const closeDropdown = () => {
+    isDropdownOpen.value = false;
+};
+
+// Директива для закрытия dropdown при клике вне его
+const vClickOutside = {
+    mounted(el: HTMLElement, binding: any) {
+        el.clickOutsideEvent = (event: Event) => {
+            if (!(el === event.target || el.contains(event.target as Node))) {
+                binding.value();
+            }
+        };
+        document.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el: HTMLElement) {
+        document.removeEventListener('click', el.clickOutsideEvent);
+    }
+};
 </script>
 
 <style>
@@ -116,7 +165,9 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background: linear-gradient(135deg, #f6f8f9 0%, #AAE2FF 0%, #1c5a8c 100%);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     border-radius: 8px;
@@ -134,7 +185,7 @@ html, body {
 
 .nav-item {
     text-decoration: none;
-    color: #2c3e50;
+    color: white;
     padding: 8px 15px;
     border-radius: 4px;
     font-size: 18px;
@@ -143,20 +194,13 @@ html, body {
     white-space: nowrap;
 }
 
-/* Добавляем стили для активной ссылки */
-.nav-item.router-link-active {
-    color: #42b983;
-    background-color: rgba(66, 185, 131, 0.1);
-}
-
-/* Стили для активного пункта в выпадающем меню */
-.dropdown-item.router-link-active {
-    color: #42b983;
-    background-color: rgba(66, 185, 131, 0.1);
-}
-
 .nav-item:hover {
-    color: #42b983;
+    color: #AAE2FF;
+}
+
+.nav-item.router-link-active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .language-selector {
@@ -171,14 +215,14 @@ html, body {
     padding: 5px 10px;
     border-radius: 4px;
     transition: all 0.3s ease;
-    color: #2c3e50;
+    color: white;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
 .language-option:hover {
-    color: #42b983;
+    color: #AAE2FF;
 }
 
 .flag-icon {
@@ -204,15 +248,20 @@ html, body {
     cursor: pointer;
     font-size: 18px;
     font-weight: 500;
-    padding: 0;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    white-space: nowrap;
 }
 
 .dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: white;
+    background: linear-gradient(135deg, #f6f8f9 0%, #AAE2FF 0%, #1c5a8c 100%);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
     min-width: 200px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border-radius: 4px;
@@ -228,13 +277,30 @@ html, body {
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    color: #2c3e50;
+    color: white;
     transition: background-color 0.3s ease;
 }
 
 .dropdown-item:hover {
-    background-color: #f5f5f5;
-    color: #42b983;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #AAE2FF;
+}
+
+.dropdown-item.router-link-active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @media (max-width: 768px) {

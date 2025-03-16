@@ -76,7 +76,7 @@ const { currentLanguage } = useCurrentLanguage();
 const translations = {
     en: {
         title: 'Transforming ideas into reality !',
-        subtitle: 'Full Stack Developer & Software Engineer',
+        subtitle: 'Full Stack Developer & Hardwear Engineer',
         featuredProjects: 'Featured Projects',
         works: 'Works',
         worksList: [
@@ -105,7 +105,7 @@ const translations = {
     },
     ru: {
         title: 'Воплощаем идеи в реальность !',
-        subtitle: 'Full Stack Разработчик & Программист',
+        subtitle: 'Разработчик АСУ и вычислительной техники',
         featuredProjects: 'Избранные проекты',
         works: 'Работы',
         worksList: [
@@ -148,7 +148,7 @@ const t = computed(() => translations[currentLanguage.value]);
     text-align: center;
     margin-bottom: 60px;
     padding: 40px 20px;
-    background: linear-gradient(135deg, #f6f8f9 0%, #AAE2FF 0%, #1c5a8c 100%);
+    background: linear-gradient(135deg, #DEFFFF 0%, #AAE2FF 0%, #BAD178 100%);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     border-radius: 8px;
