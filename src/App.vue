@@ -24,10 +24,12 @@
                 <router-link to="/about" class="nav-item">About</router-link>
             </div>
             <div class="language-selector">
-                <select v-model="currentLanguage" class="language-select">
-                    <option value="en">English</option>
-                    <option value="ru">Русский</option>
-                </select>
+                <span 
+                    @click="currentLanguage = currentLanguage === 'en' ? 'ru' : 'en'"
+                    class="language-option"
+                >
+                    {{ currentLanguage === 'en' ? 'Eng' : 'Рус' }}
+                </span>
             </div>
         </nav>
         <main class="main-content">
@@ -75,6 +77,7 @@ html, body {
 
 .nav-links {
     display: flex;
+    flex-direction: row;
     gap: 30px;
 }
 
@@ -90,18 +93,22 @@ html, body {
     color: #42b983;
 }
 
-.language-select {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-    font-size: 16px;
-    color: #2c3e50;
-    cursor: pointer;
+.language-selector {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px; 
 }
 
-.language-select:hover {
-    border-color: #42b983;
+.language-option {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    color: #2c3e50;
+}
+
+.language-option:hover {
+    color: #42b983;
 }
 
 .main-content {
@@ -162,17 +169,6 @@ html, body {
         flex-direction: column;
     }
 
-    .navigation {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
     .main-content {
         width: 100%;
     }
@@ -197,18 +193,6 @@ html, body {
     .app-container {
         padding: 10px;
         gap: 10px;
-    }
-
-    .navigation {
-        margin: 0 -10px;
-        width: calc(100% + 20px);
-        padding: 8px;
-        gap: 8px;
-    }
-
-    .nav-item {
-        padding: 5px 8px;
-        font-size: 13px;
     }
 }
 </style> 
