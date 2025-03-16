@@ -65,12 +65,17 @@ import { computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCocktailStore } from '../store/cocktails';
 import { storeToRefs } from 'pinia';
+import { COCKTAIL_CODES } from '../router';
 
 const route = useRoute();
 const store = useCocktailStore();
 const { cocktails, loading, error } = storeToRefs(store);
 
-const cocktailCode = computed(() => route.params.cocktail as string);
+const cocktailCode = computed(() => {
+    // Если параметр cocktail не указан, используем первый код из списка
+    return (route.params.cocktail as string) || COCKTAIL_CODES[0];
+});
+
 const cocktailsList = computed(() => cocktails.value[cocktailCode.value] || []);
 
 const fetchData = () => {

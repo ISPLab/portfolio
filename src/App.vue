@@ -2,7 +2,8 @@
     <div class="app-container">
         <nav class="navigation">
             <div class="nav-links">
-                <router-link to="/investments" class="nav-item">Investments</router-link>
+                <router-link to="/portfolio" class="nav-item">Portfolio</router-link>
+            
                 <div class="dropdown">
                     <button class="nav-item dropdown-toggle">Projects</button>
                     <div class="dropdown-content">
@@ -18,7 +19,8 @@
                         <router-link to="/property-sales" class="dropdown-item">Property sales</router-link>
                     </div>
                 </div>
-                <router-link to="/about" class="nav-item">About</router-link>
+                <router-link to="/cv" class="nav-item">CV</router-link>
+                <router-link to="/about" class="nav-item">about</router-link>
             </div>
             <div class="language-selector">
                 <select v-model="currentLanguage" class="language-select">
