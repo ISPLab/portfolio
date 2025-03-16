@@ -17,6 +17,7 @@
                         <router-link to="/nuana-data" class="dropdown-item">Nuana data center</router-link>
                         <router-link to="/aurora-media" class="dropdown-item">Aurora media park</router-link>
                         <router-link to="/property-sales" class="dropdown-item">Property sales</router-link>
+                        <router-link to="/router-device" class="dropdown-item">Router Device</router-link>
                     </div>
                 </div>
                 <router-link to="/cv" class="nav-item">CV</router-link>
