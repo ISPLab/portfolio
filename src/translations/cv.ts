@@ -34,6 +34,9 @@ export interface Translations {
         title: string;
         items: string[];
       };
+      buttons: {
+        savePDF: string;
+      };
     };
   };
 }
@@ -148,6 +151,9 @@ export const translations: Translations = {
           'Водительские права: категории A, B',
           'Знание языков: Русский (родной), Английский (B2), Японский (A1)'
         ]
+      },
+      buttons: {
+        savePDF: 'Сохранить PDF'
       }
     }
   },
@@ -260,6 +266,9 @@ export const translations: Translations = {
           'Driver\'s License: Categories A, B',
           'Languages: Russian (Native), English (B2), Japanese (A1)'
         ]
+      },
+      buttons: {
+        savePDF: 'Save PDF'
       }
     }
   }

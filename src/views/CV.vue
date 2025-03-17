@@ -1,74 +1,83 @@
 <template>
     <div class="cv-container">
-        <section class="cv-header">
-            <h1>{{ translations[currentLanguage].fullName }}</h1>
-            <p class="position">{{ translations[currentLanguage].position }}</p>
-        </section>
+        <div class="save-button-container">
+            <button class="save-pdf-button" @click="savePDF">
+                <i class="fas fa-download"></i>
+                {{ translations[currentLanguage].sections.buttons.savePDF }}
+            </button>
+        </div>
 
-        <section class="cv-section">
-            <h2>{{ translations[currentLanguage].sections.contacts.title }}</h2>
-            <div class="contact-info">
-                <div class="contact-details">
-                    <p><i class="fas fa-phone"></i> +7 (958) 827-00-64</p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:for_orlov@mail.ru">for_orlov@mail.ru</a></p>
-                    <p><i class="fas fa-globe"></i> <a href="https://andreyorlov.vercel.app/" target="_blank">andreyorlov.vercel.app</a></p>
-                </div>
-                <div class="qr-code">
-                    <img 
-                        src="@/assets/images/portfolio/portfolio_qr_code.png" 
-                        alt="Portfolio QR Code"
-                        class="qr-image"
-                    />
-                    <p class="qr-caption">{{ translations[currentLanguage].sections.contacts.scanQR }}</p>
-                </div>
-            </div>
-        </section>
+        <div id="cv-content">
+            <section class="cv-header">
+                <h1>{{ translations[currentLanguage].fullName }}</h1>
+                <p class="position">{{ translations[currentLanguage].position }}</p>
+            </section>
 
-        <section class="cv-section">
-            <h2>{{ translations[currentLanguage].sections.skills.title }}</h2>
-            <div class="skills-grid">
-                <div v-for="(skillGroup, index) in translations[currentLanguage].sections.skills.items" 
-                     :key="index" 
-                     class="skill-category">
-                    <p>{{ skillGroup }}</p>
+            <section class="cv-section">
+                <h2>{{ translations[currentLanguage].sections.contacts.title }}</h2>
+                <div class="contact-info">
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> +7 (958) 827-00-64</p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:for_orlov@mail.ru">for_orlov@mail.ru</a></p>
+                        <p><i class="fas fa-globe"></i> <a href="https://andreyorlov.vercel.app/" target="_blank">andreyorlov.vercel.app</a></p>
+                    </div>
+                    <div class="qr-code">
+                        <img 
+                            src="@/assets/images/portfolio/portfolio_qr_code.png" 
+                            alt="Portfolio QR Code"
+                            class="qr-image"
+                        />
+                        <p class="qr-caption">{{ translations[currentLanguage].sections.contacts.scanQR }}</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="cv-section experience">
-            <h2>{{ translations[currentLanguage].sections.experience.title }}</h2>
-            <div class="job" v-for="(job, index) in translations[currentLanguage].sections.experience.jobs" :key="index">
-                <h3>{{ job.title }}</h3>
-                <p class="location">{{ job.location }}</p>
-                <ul>
-                    <li v-for="(responsibility, idx) in job.responsibilities" 
-                        :key="idx">{{ responsibility }}</li>
-                </ul>
-                <div class="tech-stack" v-if="job.technologies">
-                    <p><strong>{{ translations[currentLanguage].sections.experience.techStack }}:</strong></p>
-                    <p class="technologies">{{ job.technologies.join(', ') }}</p>
+            <section class="cv-section">
+                <h2>{{ translations[currentLanguage].sections.skills.title }}</h2>
+                <div class="skills-grid">
+                    <div v-for="(skillGroup, index) in translations[currentLanguage].sections.skills.items" 
+                         :key="index" 
+                         class="skill-category">
+                        <p>{{ skillGroup }}</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="cv-section">
-            <h2>{{ translations[currentLanguage].sections.education.title }}</h2>
-            <div class="education-list">
-                <div v-for="(edu, index) in translations[currentLanguage].sections.education.items" 
-                     :key="index" 
-                     class="education-item">
-                    <p>{{ edu }}</p>
+            <section class="cv-section experience">
+                <h2>{{ translations[currentLanguage].sections.experience.title }}</h2>
+                <div class="job" v-for="(job, index) in translations[currentLanguage].sections.experience.jobs" :key="index">
+                    <h3>{{ job.title }}</h3>
+                    <p class="location">{{ job.location }}</p>
+                    <ul>
+                        <li v-for="(responsibility, idx) in job.responsibilities" 
+                            :key="idx">{{ responsibility }}</li>
+                    </ul>
+                    <div class="tech-stack" v-if="job.technologies">
+                        <p><strong>{{ translations[currentLanguage].sections.experience.techStack }}:</strong></p>
+                        <p class="technologies">{{ job.technologies.join(', ') }}</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="cv-section">
-            <h2>{{ translations[currentLanguage].sections.additional.title }}</h2>
-            <div class="additional-info">
-                <p v-for="(info, index) in translations[currentLanguage].sections.additional.items"
-                   :key="index">{{ info }}</p>
-            </div>
-        </section>
+            <section class="cv-section">
+                <h2>{{ translations[currentLanguage].sections.education.title }}</h2>
+                <div class="education-list">
+                    <div v-for="(edu, index) in translations[currentLanguage].sections.education.items" 
+                         :key="index" 
+                         class="education-item">
+                        <p>{{ edu }}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cv-section">
+                <h2>{{ translations[currentLanguage].sections.additional.title }}</h2>
+                <div class="additional-info">
+                    <p v-for="(info, index) in translations[currentLanguage].sections.additional.items"
+                       :key="index">{{ info }}</p>
+                </div>
+            </section>
+        </div>
     </div>
 </template>
 
@@ -78,16 +87,57 @@ import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
 import QRCode from '@/assets/images/portfolio/portfolio_qr_code.png';
 
+declare module 'html2pdf.js' {
+    const html2pdf: any;
+    export default html2pdf;
+}
+import html2pdf from 'html2pdf.js';
+
 export default {
     name: "CV",
     setup() {
         const languageStore = useLanguageStore();
         const { currentLanguage } = storeToRefs(languageStore);
 
+        const savePDF = async () => {
+            try {
+                const element = document.getElementById('cv-content');
+                if (!element) {
+                    console.error('CV content element not found');
+                    return;
+                }
+
+                const opt = {
+                    margin: [10, 10],
+                    filename: `CV_Andrey_Orlov_${new Date().toISOString().split('T')[0]}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { 
+                        scale: 2,
+                        useCORS: true,
+                        logging: true
+                    },
+                    jsPDF: { 
+                        unit: 'mm', 
+                        format: 'a4', 
+                        orientation: 'portrait'
+                    }
+                };
+
+                await html2pdf()
+                    .from(element)
+                    .set(opt)
+                    .save();
+
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+            }
+        };
+
         return {
             currentLanguage,
             translations,
-            QRCode
+            QRCode,
+            savePDF
         };
     }
 };
@@ -233,6 +283,34 @@ export default {
     line-height: 1.4;
 }
 
+.save-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.save-pdf-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #42b983;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.save-pdf-button:hover {
+    background-color: #3aa876;
+}
+
+.save-pdf-button i {
+    font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
     .cv-container {
         padding: 15px;
@@ -262,6 +340,22 @@ export default {
     .qr-code {
         width: 100%;
         max-width: 200px;
+    }
+}
+
+#cv-content {
+    background: white;
+    padding: 20px;
+    width: 100%;
+    max-width: 210mm;
+    margin: 0 auto;
+}
+
+@media print {
+    #cv-content {
+        width: 210mm;
+        height: 297mm;
+        padding: 20mm;
     }
 }
 </style> 
