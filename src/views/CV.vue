@@ -1,9 +1,5 @@
 <template>
     <div class="cv-container">
-        <div class="language-switch">
-            <button @click="toggleLanguage">{{ translations[currentLanguage].switchButton }}</button>
-        </div>
-
         <section class="cv-header">
             <h1>{{ translations[currentLanguage].fullName }}</h1>
             <p class="position">{{ translations[currentLanguage].position }}</p>
@@ -68,19 +64,19 @@
 
 <script lang="ts">
 import { translations } from '@/translations/cv';
+import { useLanguageStore } from '@/stores/language';
+import { storeToRefs } from 'pinia';
 
 export default {
     name: "CV",
-    data() {
+    setup() {
+        const languageStore = useLanguageStore();
+        const { currentLanguage } = storeToRefs(languageStore);
+
         return {
-            currentLanguage: 'ru',
+            currentLanguage,
             translations
-        }
-    },
-    methods: {
-        toggleLanguage() {
-            this.currentLanguage = this.currentLanguage === 'ru' ? 'en' : 'ru';
-        }
+        };
     }
 };
 </script>
@@ -93,25 +89,6 @@ export default {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.language-switch {
-    text-align: right;
-    margin-bottom: 20px;
-}
-
-.language-switch button {
-    padding: 8px 16px;
-    background-color: #42b983;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.language-switch button:hover {
-    background-color: #3aa876;
 }
 
 .cv-header {

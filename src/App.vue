@@ -35,7 +35,7 @@
             </div>
             <div class="language-selector">
                 <span 
-                    @click="currentLanguage = currentLanguage === 'en' ? 'ru' : 'en'"
+                    @click="languageStore.toggleLanguage"
                     class="language-option"
                 >
                     <img :src="currentFlag" class="flag-icon" :alt="currentLanguage === 'en' ? 'English' : 'Русский'">
@@ -54,12 +54,16 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
 import { useRoute } from 'vue-router';
 import type { NavigationTranslations } from '@/types/navigation';
+import { useLanguageStore } from '@/stores/language';
+import { storeToRefs } from 'pinia';
 
 // Импортируем изображения флагов
 import ukFlag from '@/assets/uk-flag.svg';
 import ruFlag from '@/assets/ru-flag.svg';
 
 const { currentLanguage } = useCurrentLanguage();
+const languageStore = useLanguageStore();
+const { currentLanguage: storeCurrentLanguage } = storeToRefs(languageStore);
 
 const translations: NavigationTranslations = {
     en: {
@@ -76,7 +80,7 @@ const translations: NavigationTranslations = {
         nuanaData: 'Nuana Data Center',
         auroraMedia: 'Aurora Media Park',
         propertySales: 'Property Sales',
-        cocktails: 'Cocktail Page',
+        cocktails: 'Cocktail Menu',
         routerDevice: 'Router Device'
     },
     ru: {
@@ -93,13 +97,13 @@ const translations: NavigationTranslations = {
         nuanaData: 'Дата-центр Nuana',
         auroraMedia: 'Медиапарк Аврора',
         propertySales: 'Продажа недвижимости',
-        cocktails: 'Страница коктейлей',
+        cocktails: 'Барная карта',
         routerDevice: 'Роутер'
     }
 };
 
-const t = computed(() => translations[currentLanguage.value]);
-const currentFlag = computed(() => currentLanguage.value === 'en' ? ukFlag : ruFlag);
+const t = computed(() => translations[storeCurrentLanguage.value]);
+const currentFlag = computed(() => storeCurrentLanguage.value === 'en' ? ukFlag : ruFlag);
 
 const isDropdownOpen = ref(false);
 const route = useRoute();
