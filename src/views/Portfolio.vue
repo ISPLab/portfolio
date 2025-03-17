@@ -74,10 +74,12 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, onUnmounted } from 'vue';
-import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
+import { useLanguageStore } from '@/stores/language';
+import { storeToRefs } from 'pinia';
 import type { Translations } from '@/types/translations';
 
-const { currentLanguage } = useCurrentLanguage();
+const languageStore = useLanguageStore();
+const { currentLanguage } = storeToRefs(languageStore);
 const matrixContainer = ref<HTMLDivElement | null>(null);
 let animationInterval: number;
 
@@ -168,8 +170,10 @@ onUnmounted(() => {
 
 const translations: Translations = {
     en: {
-        title: 'Transforming ideas into reality !',
-        subtitle: 'Andrey Orlov. Full Stack Developer & Hardwear Engineer.',
+        title: 'Portfolio',     
+        subtitle: 'Hello! I\'m Andrey Orlov, a fullstack developer and hardwear engineer.',
+        contact: 'Contact Me',
+        email: 'Email',
         featuredProjects: 'Featured Projects',
         works: 'Works',
         worksList: [
@@ -193,12 +197,14 @@ const translations: Translations = {
             'Social media integration',
             'Data visualization tools'
         ],
-        connect: "Let's Connect",
-        connectText: "Looking for a developer who can bring your ideas to life? Let's talk!"
+        connect: 'Contact',
+        connectText: 'Looking for a developer who can bring your ideas to life? Let\'s talk!'
     },
     ru: {
-        title: 'Воплощаем идеи в реальность !',
-        subtitle: 'Андрей Орлов. Разработчик АСУ и вычислительной техники',
+        title: 'Портфолио',
+        subtitle: 'Андрей Орлов, fullstack разработчик и инженер вычислительной техники.',      
+        contact: 'Связаться со мной',
+        email: 'Почта',
         featuredProjects: 'Избранные проекты',
         works: 'Работы',
         worksList: [
@@ -242,9 +248,9 @@ const t = computed(() => translations[currentLanguage.value]);
     text-align: center;
     margin-bottom: 60px;
     padding: 40px 20px;
-    background: linear-gradient(135deg, #42b983 0%, #2c3e50 100%);
+    background: linear-gradient(135deg, #030b07 0%, #2c3e50 100%);
     background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
+    /* animation: gradientAnimation 15s ease infinite; */
     color: white;
     overflow: hidden;
 }
@@ -435,32 +441,18 @@ const t = computed(() => translations[currentLanguage.value]);
     letter-spacing: .15em;
     direction: ltr;
     text-align: left;
+    width: 0;
     animation: 
-        typing 24s steps(40, end) infinite,
-        blink-caret .75s step-end infinite,
-        delete 16s steps(40, end) infinite;
-    animation-delay: 0s, 0s, 16s;
+        typing 4s steps(40, end) forwards,
+        blink-caret .75s step-end 4s infinite;
 }
 
 @keyframes typing {
-    0%, 50%, 100% { 
+    from { 
         width: 0;
-        margin-left: 100%;
     }
-    20%, 80% { 
+    to { 
         width: 100%;
-        margin-left: 0;
-    }
-}
-
-@keyframes delete {
-    0%, 50%, 100% { 
-        width: 100%;
-        margin-left: 0;
-    }
-    20%, 80% { 
-        width: 0;
-        margin-left: 100%;
     }
 }
 

@@ -141,8 +141,9 @@ export const translations: Translations = {
       education: {
         title: 'Образование',
         items: [
+          'Авиационный институт (2005) -  эргономика технических систем и инженерная психология',
           'МГТУ "Станкин" (2012) - Инженер-программист',
-          'ТГУ Систем управления и радиоэлектроники (2008) - Радиотехника'
+          'Томский Государсвенным институт Систем управления и радиоэлектроники (2008) - Радиотехника',        
         ]
       },
       additional: {
@@ -256,8 +257,9 @@ export const translations: Translations = {
       education: {
         title: 'Education',
         items: [
+          'Aviation Institute (2005) - Ergonomics of Technical Systems and Engineering Psychology',
           'MSTU "Stankin" (2012) - Software Engineer',
-          'TUSUR - Tomsk State University of Control Systems and Radioelectronics (2008) - Radio Engineering'
+          'TUSUR - Tomsk State University of Control Systems and Radioelectronics (2008) - Radio Engineering',       
         ]
       },
       additional: {
