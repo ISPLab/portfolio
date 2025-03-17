@@ -205,7 +205,10 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #42b983 0%, #2c3e50 100%);
+    background: linear-gradient(135deg, 
+        rgba(66, 185, 131, 0.7) 0%, 
+        rgba(44, 62, 80, 0.7) 100%
+    );
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -218,6 +221,8 @@ html, body {
     z-index: 1000;
     border-radius: 0; /* Убираем скругление углов */
     margin: 0; /* Убираем отступы */
+    backdrop-filter: blur(5px); /* Добавляем размытие фона */
+    -webkit-backdrop-filter: blur(5px); /* Для Safari */
 }
 
 /* Стили для скрытой навигации */
@@ -328,9 +333,12 @@ html, body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: linear-gradient(135deg, #42b983 0%, #2c3e50 100%);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
+    background: linear-gradient(135deg, 
+        rgba(66, 185, 131, 0.7) 0%, 
+        rgba(44, 62, 80, 0.7) 100%
+    );
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     min-width: 200px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border-radius: 4px;

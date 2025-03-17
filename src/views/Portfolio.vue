@@ -264,6 +264,17 @@ const t = computed(() => translations[currentLanguage.value]);
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    opacity: 1;
+    mask-image: linear-gradient(
+        to bottom,
+        black 50%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 50%,
+        transparent 100%
+    );
 }
 
 .matrix-symbol {
@@ -413,6 +424,7 @@ const t = computed(() => translations[currentLanguage.value]);
     white-space: nowrap;
     margin: 0 auto;
     border-right: 2px solid transparent;
+    direction: rtl;
 }
 
 .typewriter {
@@ -421,6 +433,8 @@ const t = computed(() => translations[currentLanguage.value]);
     white-space: nowrap;
     margin: 0 auto;
     letter-spacing: .15em;
+    direction: ltr;
+    text-align: left;
     animation: 
         typing 24s steps(40, end) infinite,
         blink-caret .75s step-end infinite,
@@ -430,19 +444,23 @@ const t = computed(() => translations[currentLanguage.value]);
 
 @keyframes typing {
     0%, 50%, 100% { 
-        width: 0 
+        width: 0;
+        margin-left: 100%;
     }
     20%, 80% { 
-        width: 100% 
+        width: 100%;
+        margin-left: 0;
     }
 }
 
 @keyframes delete {
     0%, 50%, 100% { 
-        width: 100% 
+        width: 100%;
+        margin-left: 0;
     }
     20%, 80% { 
-        width: 0 
+        width: 0;
+        margin-left: 100%;
     }
 }
 
