@@ -9,8 +9,19 @@
 
         <div id="cv-content">
             <section class="cv-header">
-                <h1>{{ translations[currentLanguage].fullName }}</h1>
-                <p class="position">{{ translations[currentLanguage].position }}</p>
+                <div class="profile-section">
+                    <div class="profile-photo">
+                        <img 
+                            :src="'/src/assets/images/portfolio/I_am.png'" 
+                            alt="Andrey Orlov"
+                            class="profile-image"
+                        />
+                    </div>
+                    <div class="profile-info">
+                        <h1>{{ translations[currentLanguage].fullName }}</h1>
+                        <p class="position">{{ translations[currentLanguage].position }}</p>
+                    </div>
+                </div>
             </section>
 
             <section class="cv-section">
@@ -23,7 +34,7 @@
                     </div>
                     <div class="qr-code">
                         <img 
-                            src="@/assets/images/portfolio/portfolio_qr_code.png" 
+                            :src="'/src/assets/images/portfolio/portfolio_qr_code.png'" 
                             alt="Portfolio QR Code"
                             class="qr-image"
                         />
@@ -85,7 +96,6 @@
 import { translations } from '@/translations/cv';
 import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
-import QRCode from '@/assets/images/portfolio/portfolio_qr_code.png';
 
 declare module 'html2pdf.js' {
     const html2pdf: any;
@@ -136,7 +146,6 @@ export default {
         return {
             currentLanguage,
             translations,
-            QRCode,
             savePDF
         };
     }
@@ -154,7 +163,6 @@ export default {
 }
 
 .cv-header {
-    text-align: center;
     margin-bottom: 40px;
 }
 
@@ -311,6 +319,32 @@ export default {
     font-size: 1.1rem;
 }
 
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-photo {
+    flex: 0 0 auto;
+    width: 150px;
+    height: 150px;
+
+    overflow: hidden;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    flex: 1;
+    text-align: left;
+}
+
 @media (max-width: 768px) {
     .cv-container {
         padding: 15px;
@@ -340,6 +374,21 @@ export default {
     .qr-code {
         width: 100%;
         max-width: 200px;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .profile-info {
+        text-align: center;
+    }
+
+    .profile-photo {
+        width: 120px;
+        height: 120px;
     }
 }
 
