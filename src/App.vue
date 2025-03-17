@@ -187,7 +187,7 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
-    background-color: #f5f5f5; /* Добавляем светло-серый фон */
+    background-color: #191919; /* Добавляем светло-серый фон */
 }
 
 .app-container {

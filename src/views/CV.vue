@@ -20,7 +20,7 @@
                 <div class="profile-section">
                     <div class="profile-photo">
                         <img 
-                            :src="'/src/assets/images/portfolio/I_am.png'" 
+                            src="@/assets/images/portfolio/I_am.png" 
                             alt="Andrey Orlov"
                             class="profile-image"
                         />
@@ -42,7 +42,7 @@
                     </div>
                     <div class="qr-code">
                         <img 
-                            :src="'/src/assets/images/portfolio/portfolio_qr_code.png'" 
+                            src="@/assets/images/portfolio/portfolio_qr_code.png" 
                             alt="Portfolio QR Code"
                             class="qr-image"
                         />
@@ -308,9 +308,10 @@ export default {
 }
 
 .save-button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 100;
 }
 
 .save-pdf-button {
@@ -324,6 +325,7 @@ export default {
     cursor: pointer;
     font-size: 1rem;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button-content {
@@ -423,6 +425,11 @@ export default {
     .profile-photo {
         width: 120px;
         height: 120px;
+    }
+
+    .save-button-container {
+        top: 60px;
+        right: 10px;
     }
 }
 
