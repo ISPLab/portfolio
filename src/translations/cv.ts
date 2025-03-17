@@ -153,7 +153,7 @@ export const translations: Translations = {
         ]
       },
       buttons: {
-        savePDF: 'Сохранить PDF'
+        savePDF: 'PDF'
       }
     }
   },
@@ -268,7 +268,7 @@ export const translations: Translations = {
         ]
       },
       buttons: {
-        savePDF: 'Save PDF'
+        savePDF: 'PDF'
       }
     }
   }

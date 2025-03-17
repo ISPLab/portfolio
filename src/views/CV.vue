@@ -1,9 +1,17 @@
 <template>
     <div class="cv-container">
         <div class="save-button-container">
-            <button class="save-pdf-button" @click="savePDF">
-                <i class="fas fa-download"></i>
-                {{ translations[currentLanguage].sections.buttons.savePDF }}
+            <button class="save-pdf-button" @click="savePDF" :disabled="isLoading">
+                <div class="button-content">
+                    <img 
+                        v-if="!isLoading" 
+                        src="@/assets/images/portfolio/download.svg" 
+                        alt="download"
+                        class="button-icon"
+                    />
+                    <i v-else class="fas fa-spinner fa-spin"></i>
+                    <span>{{ translations[currentLanguage].sections.buttons.savePDF }}</span>
+                </div>
             </button>
         </div>
 
@@ -93,6 +101,7 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue';
 import { translations } from '@/translations/cv';
 import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
@@ -108,9 +117,13 @@ export default {
     setup() {
         const languageStore = useLanguageStore();
         const { currentLanguage } = storeToRefs(languageStore);
+        const isLoading = ref(false);
 
         const savePDF = async () => {
+            if (isLoading.value) return;
+            
             try {
+                isLoading.value = true;
                 const element = document.getElementById('cv-content');
                 if (!element) {
                     console.error('CV content element not found');
@@ -140,13 +153,16 @@ export default {
 
             } catch (error) {
                 console.error('Error generating PDF:', error);
+            } finally {
+                isLoading.value = false;
             }
         };
 
         return {
             currentLanguage,
             translations,
-            savePDF
+            savePDF,
+            isLoading
         };
     }
 };
@@ -300,23 +316,41 @@ export default {
 .save-pdf-button {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
+    padding: 8px 16px;
     background-color: #42b983;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.save-pdf-button:hover {
+.button-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.button-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.fa-spinner {
+    font-size: 32px;
+}
+
+.save-pdf-button:disabled {
+    background-color: #8bc7aa;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.save-pdf-button:not(:disabled):hover {
     background-color: #3aa876;
-}
-
-.save-pdf-button i {
-    font-size: 1.1rem;
+    transform: translateY(-1px);
 }
 
 .profile-section {
@@ -406,5 +440,14 @@ export default {
         height: 297mm;
         padding: 20mm;
     }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.fa-spin {
+    animation: spin 1s linear infinite;
 }
 </style> 
