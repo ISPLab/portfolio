@@ -8,9 +8,19 @@
         <section class="cv-section">
             <h2>{{ translations[currentLanguage].sections.contacts.title }}</h2>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> +7 (958) 827-00-64</p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:for_orlov@mail.ru">for_orlov@mail.ru</a></p>
-                <p><i class="fas fa-globe"></i> <a href="https://andreyorlov.vercel.app/" target="_blank">andreyorlov.vercel.app</a></p>
+                <div class="contact-details">
+                    <p><i class="fas fa-phone"></i> +7 (958) 827-00-64</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:for_orlov@mail.ru">for_orlov@mail.ru</a></p>
+                    <p><i class="fas fa-globe"></i> <a href="https://andreyorlov.vercel.app/" target="_blank">andreyorlov.vercel.app</a></p>
+                </div>
+                <div class="qr-code">
+                    <img 
+                        src="@/assets/images/portfolio/portfolio_qr_code.png" 
+                        alt="Portfolio QR Code"
+                        class="qr-image"
+                    />
+                    <p class="qr-caption">{{ translations[currentLanguage].sections.contacts.scanQR }}</p>
+                </div>
             </div>
         </section>
 
@@ -66,6 +76,7 @@
 import { translations } from '@/translations/cv';
 import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
+import QRCode from '@/assets/images/portfolio/portfolio_qr_code.png';
 
 export default {
     name: "CV",
@@ -75,7 +86,8 @@ export default {
 
         return {
             currentLanguage,
-            translations
+            translations,
+            QRCode
         };
     }
 };
@@ -121,8 +133,34 @@ export default {
 
 .contact-info {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.contact-details {
+    flex: 1;
+}
+
+.qr-code {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.qr-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.qr-caption {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #666;
 }
 
 .contact-info a {
@@ -210,6 +248,20 @@ export default {
 
     .job {
         padding: 15px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-details {
+        width: 100%;
+    }
+
+    .qr-code {
+        width: 100%;
+        max-width: 200px;
     }
 }
 </style> 

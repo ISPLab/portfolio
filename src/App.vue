@@ -68,7 +68,7 @@ const { currentLanguage: storeCurrentLanguage } = storeToRefs(languageStore);
 const translations: NavigationTranslations = {
     en: {
         portfolio: 'Portfolio',
-        projects: 'Projects',
+        projects: 'Projects (soon, adding...)',
         cv: 'CV',
         about: 'About',
         aiPianist: 'AI Pianist',
@@ -85,7 +85,7 @@ const translations: NavigationTranslations = {
     },
     ru: {
         portfolio: 'Портфолио',
-        projects: 'Проекты',
+        projects: 'Проекты (скоро, идет добавление)',
         cv: 'Резюме',
         about: 'О сайте',
         aiPianist: 'ИИ Пианист',

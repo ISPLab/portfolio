@@ -15,6 +15,7 @@ export interface Translations {
         title: string;
         phone: string;
         portfolio: string;
+        scanQR: string;
       };
       experience: {
         title: string;
@@ -46,7 +47,8 @@ export const translations: Translations = {
       contacts: {
         title: 'Контакты',
         phone: 'Телефон',
-        portfolio: 'Портфолио'
+        portfolio: 'Портфолио',
+        scanQR: 'Отсканируйте для перехода на сайт'
       },
       experience: {
         title: 'Опыт работы',
@@ -157,7 +159,8 @@ export const translations: Translations = {
       contacts: {
         title: 'Contacts',
         phone: 'Phone',
-        portfolio: 'Portfolio'
+        portfolio: 'Portfolio',
+        scanQR: 'Scan to visit website'
       },
       experience: {
         title: 'Work Experience',
