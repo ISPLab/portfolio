@@ -105,15 +105,15 @@ const isDropdownOpen = ref(false);
 const route = useRoute();
 
 const projectRoutes = computed(() => [
-    { path: '/ai-pianist', title: t.value.aiPianist },
-    { path: '/social-media', title: t.value.socialMedia },
-    { path: '/website-chat', title: t.value.websiteChat },
-    { path: '/city-quests', title: t.value.cityQuests },
-    { path: '/lumeira-wellness', title: t.value.lumeiraWellness },
-    { path: '/butler-system', title: t.value.butlerSystem },
-    { path: '/nuana-data', title: t.value.nuanaData },
-    { path: '/aurora-media', title: t.value.auroraMedia },
-    { path: '/property-sales', title: t.value.propertySales },
+    // { path: '/ai-pianist', title: t.value.aiPianist },
+    // { path: '/social-media', title: t.value.socialMedia },
+    // { path: '/website-chat', title: t.value.websiteChat },
+    // { path: '/city-quests', title: t.value.cityQuests },
+    // { path: '/lumeira-wellness', title: t.value.lumeiraWellness },
+    // { path: '/butler-system', title: t.value.butlerSystem },
+    // { path: '/nuana-data', title: t.value.nuanaData },
+    // { path: '/aurora-media', title: t.value.auroraMedia },
+    // { path: '/property-sales', title: t.value.propertySales },
     { path: '/cocktails', title: t.value.cocktails },
     { path: '/router-device', title: t.value.routerDevice }
 ]);
