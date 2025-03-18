@@ -148,8 +148,7 @@ export const translations: Translations = {
       },
       additional: {
         title: 'Дополнительная информация',
-        items: [
-          'Водительские права: категории A, B',
+        items: [        
           'Знание языков: Русский (родной), Английский (B2), Японский (A1)'
         ]
       },
@@ -264,8 +263,7 @@ export const translations: Translations = {
       },
       additional: {
         title: 'Additional Information',
-        items: [
-          'Driver\'s License: Categories A, B',
+        items: [       
           'Languages: Russian (Native), English (B2), Japanese (A1)'
         ]
       },

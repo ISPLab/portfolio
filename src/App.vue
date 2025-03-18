@@ -1,43 +1,43 @@
 <template>
     <div class="app-container">
-        <nav class="navigation" 
-             :class="{ 
-                'no-animation': isPortfolioRoute,
-                'nav-hidden': isScrollingDown,
-                'nav-visible': !isScrollingDown 
-             }"
-        >
-            <div class="nav-links">
-                <router-link to="/portfolio" class="nav-item">{{ t.portfolio }}</router-link>
-            
-                <div class="dropdown" v-click-outside="closeDropdown">
-                    <button 
-                        class="nav-item dropdown-toggle" 
-                        :class="{ 'router-link-active': isProjectRoute }"
-                        @click="toggleDropdown"
-                    >
-                        {{ t.projects }}
-                    </button>
-                    <div class="dropdown-content" v-show="isDropdownOpen">
-                        <router-link 
-                            v-for="route in projectRoutes" 
-                            :key="route.path"
-                            :to="route.path" 
-                            class="dropdown-item"
-                            @click="closeDropdown"
+        <nav class="navigation" :class="{ 'nav-hidden': isScrollingDown, 'nav-visible': !isScrollingDown }">
+            <div class="nav-inner">
+                <div class="nav-links">
+                    <!-- <router-link to="/portfolio" class="nav-item">{{ t.portfolio }}</router-link> -->
+                    <router-link to="/" class="portfolio-link">
+                        <svg width="48" height="48" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <path d="M50 50 L150 50" class="kanji-stroke kanji-stroke-1" />
+                            <path d="M100 50 L100 150" class="kanji-stroke kanji-stroke-2" />
+                            <path d="M50 100 L150 100" class="kanji-stroke kanji-stroke-3" />
+                            <path d="M75 150 L125 150" class="kanji-stroke kanji-stroke-4" />
+                        </svg>
+                    </router-link>
+                    <div class="dropdown" v-click-outside="closeDropdown">
+                        <button 
+                            class="nav-item dropdown-toggle" 
+                            :class="{ 'router-link-active': isProjectRoute }"
+                            @click="toggleDropdown"
                         >
-                            {{ route.title }}
-                        </router-link>
+                            {{ t.projects }}
+                        </button>
+                        <div class="dropdown-content" v-show="isDropdownOpen">
+                            <router-link 
+                                v-for="route in projectRoutes" 
+                                :key="route.path"
+                                :to="route.path" 
+                                class="dropdown-item"
+                                @click="closeDropdown"
+                            >
+                                {{ route.title }}
+                            </router-link>
+                        </div>
                     </div>
+                    <router-link to="/cv" class="nav-item">{{ t.cv }}</router-link>
+                    <router-link to="/about" class="nav-item">{{ t.about }}</router-link>
                 </div>
-                <router-link to="/cv" class="nav-item">{{ t.cv }}</router-link>
-                <router-link to="/about" class="nav-item">{{ t.about }}</router-link>
             </div>
             <div class="language-selector">
-                <span 
-                    @click="languageStore.toggleLanguage"
-                    class="language-option"
-                >
+                <span @click="languageStore.toggleLanguage" class="language-option">
                     <img :src="currentFlag" class="flag-icon" :alt="currentLanguage === 'en' ? 'English' : 'Русский'">
                     {{ currentLanguage === 'en' ? 'Eng' : 'Рус' }}
                 </span>
@@ -252,12 +252,9 @@ html, body {
 
 .nav-links {
     display: flex;
-    flex-direction: row;
     gap: 15px;
     align-items: center;
-    flex: 1;
-    justify-content: flex-start;
-    margin-left: 10px;
+    margin-left: 0;
 }
 
 .nav-item {
@@ -389,7 +386,7 @@ html, body {
 /* Медиа-запросы для мобильных устройств */
 @media (max-width: 768px) {
     .app-container {
-        padding-top: 140px; /* Увеличиваем отступ для мобильных устройств */
+        padding-top: 140px;
     }
 
     .navigation {
@@ -398,20 +395,49 @@ html, body {
         gap: 10px;
     }
 
+    .nav-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
     .nav-links {
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        margin: 0;
-        gap: 8px;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 10px;
     }
 
     .language-selector {
-        margin: 5px 0;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding-top: 160px;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
     }
 
     .nav-item {
-        font-size: 14px;
-        padding: 5px 8px;
+        width: auto;
+        text-align: center;
+    }
+
+    .dropdown {
+        width: auto;
+    }
+
+    .dropdown-toggle {
+        width: auto;
     }
 
     .dropdown-content {
@@ -419,53 +445,6 @@ html, body {
         width: 160px;
         left: 50%;
         transform: translateX(-50%);
-    }
-
-    .dropdown-item {
-        font-size: 14px;
-        padding: 6px 12px;
-    }
-}
-
-/* Для очень маленьких экранов */
-@media (max-width: 480px) {
-    .app-container {
-        padding-top: 200px; /* Еще больше отступ для маленьких экранов */
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-    }
-
-    .nav-item {
-        text-align: center;
-    }
-
-    .dropdown {
-        width: 100%;
-        position: static;
-    }
-
-    .dropdown-toggle {
-        width: 100%;
-        text-align: center;
-    }
-
-    .dropdown-content {
-        position: static;
-        width: 100%;
-        transform: none;
-        -webkit-transform: none;
-    }
-
-    .language-selector {
-        width: 100%;
-        display: flex;
-        justify-content: center;
     }
 }
 
@@ -488,5 +467,64 @@ html, body {
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Усиливаем тень при наведении */
+}
+
+.portfolio-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    margin-right: 0;
+}
+
+.portfolio-link svg {
+    width: 48px;
+    height: 48px;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-link:hover svg {
+    transform: scale(1.1);
+}
+
+.kanji-stroke {
+    stroke: #ffffff;
+    stroke-width: 6;
+    fill: none;
+    stroke-dasharray: 100 100;
+    stroke-dashoffset: 100;
+}
+
+.kanji-stroke-1 {
+    animation: drawStroke 2s linear forwards 0.2s;
+}
+
+.kanji-stroke-2 {
+    animation: drawStroke 2s linear forwards 0.5s;
+}
+
+.kanji-stroke-3 {
+    animation: drawStroke 2s linear forwards 0.8s;
+}
+
+.kanji-stroke-4 {
+    animation: drawStroke 2s linear forwards 1.2s;
+}
+
+@keyframes drawStroke {
+    0% { 
+        stroke-dashoffset: 100; 
+    }
+    100% { 
+        stroke-dashoffset: 0; 
+    }
+}
+
+.top-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
 }
 </style> 
