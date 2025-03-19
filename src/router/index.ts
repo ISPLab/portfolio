@@ -4,6 +4,9 @@ import CV from '../views/CV.vue';
 import Portfolio from '../views/Portfolio.vue';
 import About from '../views/About.vue';
 import RouterDevice from '../views/RouterDevice.vue';
+import CZCAProject from '@/views/CZCAProject.vue';
+import VisionMapProject from '@/views/VisionMapProject.vue';
+import SmartMerchProject from '@/views/SmartMerchProject.vue';
 
 export const COCKTAIL_CODES = ['margarita', 'mojito', 'martini'];
 
@@ -50,6 +53,21 @@ const routes = [
         component: RouterDevice
     },
     {
+        path: '/projects/czca',
+        name: 'czca',
+        component: CZCAProject
+    },
+    {
+        path: '/projects/vision-map',
+        name: 'vision-map',
+        component: VisionMapProject
+    },
+    {
+        path: '/projects/smart-merch',
+        name: 'smart-merch',
+        component: SmartMerchProject
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: () => import('../views/NotFound.vue')
@@ -57,7 +75,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes
 });
 

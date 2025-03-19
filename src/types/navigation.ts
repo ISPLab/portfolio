@@ -14,6 +14,9 @@ export interface NavigationTranslation {
     propertySales: string;
     cocktails: string;
     routerDevice: string;
+    czca: string;
+    visionMap: string;
+    smartMerch: string;
 }
 
 export interface NavigationTranslations {

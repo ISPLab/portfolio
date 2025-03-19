@@ -1,10 +1,22 @@
 <template>
     <div class="router-container">
         <section class="project-info">
-            <h1>Smart Router Device Project</h1>
+            <h1>{{ t.title }}</h1>
+            
+            <div class="intro-section">
+                <p class="intro-text problem">
+                    {{ t.intro.problem }}
+                </p>
+                <p class="intro-text solution">
+                    {{ t.intro.solution }}
+                </p>
+                <p class="intro-text benefits">
+                    {{ t.intro.benefits }}
+                </p>
+            </div>
+
             <p class="description">
-                An innovative IoT device that combines modern networking capabilities with smart home features. 
-                This project showcases hardware and software integration using cutting-edge technologies.
+                {{ t.description }}
             </p>
 
             <div class="project-screenshot">
@@ -17,38 +29,82 @@
 
             <div class="tech-features">
                 <div class="feature">
-                    <h3>Hardware Features</h3>
+                    <h3>{{ t.hardware.title }}</h3>
                     <ul>
-                        <li>High-performance networking chip</li>
-                        <li>Integrated IoT capabilities</li>
-                        <li>Energy-efficient design</li>
-                        <li>Compact form factor</li>
+                        <li v-for="feature in t.hardware.features" :key="feature">
+                            {{ feature }}
+                        </li>
                     </ul>
                 </div>
 
                 <div class="feature">
-                    <h3>Software Stack</h3>
+                    <h3>{{ t.software.title }}</h3>
                     <ul>
-                        <li>Custom firmware development</li>
-                        <li>Real-time monitoring system</li>
-                        <li>Web-based management interface</li>
-                        <li>Automated updates</li>
+                        <li v-for="feature in t.software.features" :key="feature">
+                            {{ feature }}
+                        </li>
                     </ul>
                 </div>
 
                 <div class="feature">
-                    <h3>Smart Features</h3>
+                    <h3>{{ t.smart.title }}</h3>
                     <ul>
-                        <li>Network traffic analysis</li>
-                        <li>Security threat detection</li>
-                        <li>Device management</li>
-                        <li>Performance optimization</li>
+                        <li v-for="feature in t.smart.features" :key="feature">
+                            {{ feature }}
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
+
+        <section class="feature-section energy">
+            <h2>{{ t.energy.title }}</h2>
+            <p class="subtitle">{{ t.energy.subtitle }}</p>
+            <ul class="feature-list">
+                <li v-for="feature in t.energy.features" :key="feature">
+                    {{ feature }}
+                </li>
+            </ul>
+        </section>
+
+        <section class="feature-section access">
+            <h2>{{ t.access.title }}</h2>
+            <p class="subtitle">{{ t.access.subtitle }}</p>
+            <ul class="feature-list">
+                <li v-for="feature in t.access.features" :key="feature">
+                    {{ feature }}
+                </li>
+            </ul>
+        </section>
+
+        <section class="feature-section remote">
+            <h2>{{ t.remote.title }}</h2>
+            <p class="subtitle">{{ t.remote.subtitle }}</p>
+            <ul class="feature-list">
+                <li v-for="feature in t.remote.features" :key="feature">
+                    {{ feature }}
+                </li>
+            </ul>
+        </section>
+
+        <section class="conclusion">
+            <h2>{{ t.conclusion.title }}</h2>
+            <p>{{ t.conclusion.text }}</p>
+        </section>
     </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useLanguageStore } from '@/stores/language';
+import { storeToRefs } from 'pinia';
+import { translations } from '@/translations/router-device';
+
+const languageStore = useLanguageStore();
+const { currentLanguage } = storeToRefs(languageStore);
+
+const t = computed(() => translations[currentLanguage.value]);
+</script>
 
 <style scoped>
 .router-container {
@@ -175,6 +231,94 @@
     height: 20px;
 }
 
+.feature-section {
+    margin: 40px 0;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feature-section h2 {
+    color: #42b983;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.feature-list li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+}
+
+.conclusion {
+    margin: 40px 0;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.conclusion h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.conclusion p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.intro-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: linear-gradient(135deg, #42b98311 0%, #2c3e5011 100%);
+    border-radius: 8px;
+    border-left: 4px solid #42b983;
+}
+
+.intro-text {
+    color: #2c3e50;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.intro-text:last-child {
+    margin-bottom: 0;
+}
+
+.intro-text.problem {
+    font-style: italic;
+    color: #666;
+}
+
+.intro-text.solution {
+    font-weight: 500;
+}
+
+.intro-text.benefits {
+    color: #42b983;
+    font-weight: 500;
+}
+
 @media (max-width: 768px) {
     .project-info {
         padding: 15px;
@@ -204,6 +348,35 @@
         justify-content: center;
         padding: 12px 25px;
         font-size: 1em;
+    }
+
+    .feature-section {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .feature-section h2 {
+        font-size: 1.5em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    .conclusion {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .intro-section {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .intro-text {
+        font-size: 1em;
+        line-height: 1.6;
+        margin-bottom: 15px;
     }
 }
 </style> 

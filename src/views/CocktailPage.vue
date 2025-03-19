@@ -1,13 +1,9 @@
 <template>
     <div class="cocktails-container">
         <section class="project-info">
-            <h1>Cocktail Database Project</h1>
+            <h1>{{ t.title }}</h1>
             <p class="description">
-                This project demonstrates modern web development practices and responsive design. 
-                Part of the portfolio at 
-                <a href="https://maxbitsol.vercel.app" target="_blank" rel="noopener noreferrer">
-                    maxbitsol.vercel.app
-                </a>
+                {{ t.description }}
             </p>
 
             <div class="project-screenshot">
@@ -20,17 +16,26 @@
 
             <div class="tech-features">
                 <div class="feature">
-                    <h3>Responsive Design</h3>
-                    <p>Fully adaptive layout that works perfectly on all devices from mobile to desktop</p>
+                    <h3>{{ t.features.responsive.title }}</h3>
+                    <p>{{ t.features.responsive.description }}</p>
                 </div>
                 <div class="feature">
-                    <h3>Modern Technologies</h3>
-                    <p>Built with Vue 3, TypeScript, and Pinia for robust state management</p>
+                    <h3>{{ t.features.tech.title }}</h3>
+                    <p>{{ t.features.tech.description }}</p>
                 </div>
                 <div class="feature">
-                    <h3>API Integration</h3>
-                    <p>Real-time data fetching with efficient error handling and loading states</p>
+                    <h3>{{ t.features.api.title }}</h3>
+                    <p>{{ t.features.api.description }}</p>
                 </div>
+            </div>
+
+            <div class="technical-features">
+                <h2>{{ t.technical.title }}</h2>
+                <ul class="feature-list">
+                    <li v-for="item in t.technical.items" :key="item">
+                        {{ item }}
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -50,7 +55,15 @@
 </template>
 
 <script setup lang="ts">
-// Минимальный скрипт без логики коктейлей
+import { computed } from 'vue';
+import { useLanguageStore } from '@/stores/language';
+import { storeToRefs } from 'pinia';
+import { translations } from '@/translations/cocktail-page';
+
+const languageStore = useLanguageStore();
+const { currentLanguage } = storeToRefs(languageStore);
+
+const t = computed(() => translations[currentLanguage.value]);
 </script>
 
 <style scoped>
@@ -185,6 +198,41 @@
     transform: scale(1.02);
 }
 
+.technical-features {
+    margin-top: 40px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.technical-features h2 {
+    color: #2c3e50;
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.feature-list li {
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.5;
+    color: #666;
+}
+
+.feature-list li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+}
+
 @media (max-width: 768px) {
     .project-info {
         margin-bottom: 30px;
@@ -216,6 +264,16 @@
     .project-screenshot {
         margin: 20px 0;
         border-radius: 6px;
+    }
+
+    .technical-features {
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 }
 </style> 

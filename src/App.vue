@@ -81,7 +81,10 @@ const translations: NavigationTranslations = {
         auroraMedia: 'Aurora Media Park',
         propertySales: 'Property Sales',
         cocktails: 'Cocktail Menu',
-        routerDevice: 'Router Device'
+        routerDevice: 'Router Device',
+        czca: 'Crowd Analysis',
+        visionMap: 'VisionMap Integrator',
+        smartMerch: 'SmartMerch'
     },
     ru: {
         portfolio: 'Портфолио',
@@ -98,7 +101,10 @@ const translations: NavigationTranslations = {
         auroraMedia: 'Медиапарк Аврора',
         propertySales: 'Продажа недвижимости',
         cocktails: 'Барная карта',
-        routerDevice: 'Роутер'
+        routerDevice: 'Роутер',
+        czca: 'Анализ Толпы',
+        visionMap: 'Интегратор VisionMap',
+        smartMerch: 'SmartMerch'
     }
 };
 
@@ -118,8 +124,12 @@ const projectRoutes = computed(() => [
     // { path: '/nuana-data', title: t.value.nuanaData },
     // { path: '/aurora-media', title: t.value.auroraMedia },
     // { path: '/property-sales', title: t.value.propertySales },
+    
     { path: '/cocktails', title: t.value.cocktails },
-    { path: '/router-device', title: t.value.routerDevice }
+    { path: '/router-device', title: t.value.routerDevice },
+    { path: '/projects/czca', title: t.value.czca },
+    { path: '/projects/vision-map', title: t.value.visionMap },
+    { path: '/projects/smart-merch', title: t.value.smartMerch }
 ]);
 
 const isProjectRoute = computed(() => {
