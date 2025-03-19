@@ -38,8 +38,8 @@
             </div>
             <div class="language-selector">
                 <span @click="languageStore.toggleLanguage" class="language-option">
-                    <img :src="currentFlag" class="flag-icon" :alt="currentLanguage === 'en' ? 'English' : 'Русский'">
-                    {{ currentLanguage === 'en' ? 'Eng' : 'Рус' }}
+                    <img :src="currentFlag" class="flag-icon" :alt="storeCurrentLanguage === 'en' ? 'English' : 'Русский'">
+                    {{ storeCurrentLanguage !== 'en' ? 'Eng' : 'Рус' }}
                 </span>
             </div>
         </nav>
@@ -103,7 +103,7 @@ const translations: NavigationTranslations = {
 };
 
 const t = computed(() => translations[storeCurrentLanguage.value]);
-const currentFlag = computed(() => storeCurrentLanguage.value === 'en' ? ukFlag : ruFlag);
+const currentFlag = computed(() => storeCurrentLanguage.value !== 'en' ? ukFlag : ruFlag);
 
 const isDropdownOpen = ref(false);
 const route = useRoute();
@@ -488,35 +488,41 @@ html, body {
 }
 
 .kanji-stroke {
-    stroke: #ffffff;
-    stroke-width: 6;
+    stroke: #efe8e6;
+    stroke-width: 17;
     fill: none;
-    stroke-dasharray: 100 100;
+    stroke-dasharray: 100;
     stroke-dashoffset: 100;
 }
 
 .kanji-stroke-1 {
-    animation: drawStroke 2s linear forwards 0.2s;
+    animation: drawStroke 12s linear infinite;  /* Increased to 12s total (2s animation + 10s pause) */
 }
 
 .kanji-stroke-2 {
-    animation: drawStroke 2s linear forwards 0.5s;
+    animation: drawStroke 12s linear infinite 0.3s;
 }
 
 .kanji-stroke-3 {
-    animation: drawStroke 2s linear forwards 0.8s;
+    animation: drawStroke 12s linear infinite 0.6s;
 }
 
 .kanji-stroke-4 {
-    animation: drawStroke 2s linear forwards 1.2s;
+    animation: drawStroke 12s linear infinite 0.9s;
 }
 
 @keyframes drawStroke {
-    0% { 
+    0%, 100% { 
         stroke-dashoffset: 100; 
     }
-    100% { 
+    8% { 
         stroke-dashoffset: 0; 
+    }
+    8%, 85% {  /* Extended pause period */
+        stroke-dashoffset: 0;  /* Keep the stroke visible during pause */
+    }
+    92% { 
+        stroke-dashoffset: -100; 
     }
 }
 

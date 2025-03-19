@@ -19,8 +19,8 @@
   <rect x="40" y="50" width="120" height="30" rx="8" ry="8" fill="#66BB6A" class="fade-in" style="animation-delay: 0.5s;" />
 
   <!-- Листы внутри папки -->
-  <rect x="60" y="65" width="80" height="50" rx="5" ry="5" fill="#FFF" stroke="#388E3C" stroke-width="2" class="slide-in" />
-  <line x1="70" y1="80" x2="130" y2="80" stroke="#388E3C" stroke-width="2" class="slide-in" style="animation-delay: 0.7s;" />
-  <line x1="70" y1="90" x2="130" y2="90" stroke="#388E3C" stroke-width="2" class="slide-in" style="animation-delay: 0.9s;" />
-  <line x1="70" y1="100" x2="130" y2="100" stroke="#388E3C" stroke-width="2" class="slide-in" style="animation-delay: 1.1s;" />
+  <rect x="60" y="65" width="80" height="50" rx="5" ry="5" fill="#FFF" stroke="#388E3C" stroke-width="4" class="slide-in" />
+  <line x1="70" y1="80" x2="130" y2="80" stroke="#388E3C" stroke-width="4" class="slide-in" style="animation-delay: 0.7s;" />
+  <line x1="70" y1="90" x2="130" y2="90" stroke="#388E3C" stroke-width="4" class="slide-in" style="animation-delay: 0.9s;" />
+  <line x1="70" y1="100" x2="130" y2="100" stroke="#388E3C" stroke-width="4" class="slide-in" style="animation-delay: 1.1s;" />
 </svg>
