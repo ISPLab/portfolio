@@ -14,7 +14,11 @@ async function bootstrap() {
 
     // Configure CORS
     app.enableCors({
-        origin: ['http://localhost:5173', 'http://localhost:3000'],
+        origin: [
+            'http://localhost:5173', 
+            'http://localhost:3000',
+            'https://portfolio-production-abb1.up.railway.app'
+        ],
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Accept'],
         credentials: false
