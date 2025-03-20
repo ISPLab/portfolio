@@ -29,3 +29,9 @@ jobs:
         run: |
           npm run build
           cd backend && npm run build
+
+      - name: Upload Frontend Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-dist
+          path: dist/
