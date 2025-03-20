@@ -7,6 +7,7 @@ import RouterDevice from '../views/RouterDevice.vue';
 import CZCAProject from '@/views/CZCAProject.vue';
 import VisionMapProject from '@/views/VisionMapProject.vue';
 import SmartMerchProject from '@/views/SmartMerchProject.vue';
+import Feedback from '@/views/Feedback.vue'
 
 export const COCKTAIL_CODES = ['margarita', 'mojito', 'martini'];
 
@@ -66,6 +67,11 @@ const routes = [
         path: '/projects/smart-merch',
         name: 'smart-merch',
         component: SmartMerchProject
+    },
+    {
+        path: '/feedback',
+        name: 'Feedback',
+        component: Feedback
     },
     {
         path: '/:pathMatch(.*)*',

@@ -34,6 +34,7 @@
                     </div>
                     <router-link to="/cv" class="nav-item">{{ t.cv }}</router-link>
                     <router-link to="/about" class="nav-item">{{ t.about }}</router-link>
+                    <router-link to="/feedback" class="nav-item">{{ t.feedback }}</router-link>
                 </div>
             </div>
             <div class="language-selector">
@@ -56,6 +57,19 @@ import { useRoute } from 'vue-router';
 import type { NavigationTranslations } from '@/types/navigation';
 import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
+
+// Add type declaration for clickOutsideEvent
+declare module '@vue/runtime-dom' {
+    interface HTMLElement {
+        clickOutsideEvent?: (event: Event) => void;
+    }
+}
+
+// Fix the SVG imports by creating type declarations
+declare module '*.svg' {
+    const content: string;
+    export default content;
+}
 
 // Импортируем изображения флагов
 import ukFlag from '@/assets/uk-flag.svg';
@@ -84,7 +98,8 @@ const translations: NavigationTranslations = {
         routerDevice: 'Router Device',
         czca: 'Crowd Analysis',
         visionMap: 'VisionMap Integrator',
-        smartMerch: 'SmartMerch'
+        smartMerch: 'SmartMerch',
+        feedback: 'Feedback'
     },
     ru: {
         portfolio: 'Портфолио',
@@ -104,7 +119,8 @@ const translations: NavigationTranslations = {
         routerDevice: 'Роутер',
         czca: 'Анализ Толпы',
         visionMap: 'Интегратор VisionMap',
-        smartMerch: 'SmartMerch'
+        smartMerch: 'SmartMerch',
+        feedback: 'Отзывы'
     }
 };
 
