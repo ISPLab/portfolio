@@ -6,6 +6,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     
+    // Set global prefix for production
+    app.setGlobalPrefix('api');
+
     // Global validation pipe
     app.useGlobalPipes(new ValidationPipe({
         whitelist: true,
@@ -15,10 +18,17 @@ async function bootstrap() {
     // Configure CORS
     app.enableCors({
         origin: [
-            'http://localhost:5173', 
+            // Development origins
+            'http://localhost:5173',
             'http://localhost:3000',
-            'https://portfolio-production-abb1.up.railway.app'
-        ],
+            // Docker origin
+            'http://frontend',
+            // Production origins
+            'https://portfolio-production-abb1.up.railway.app',
+            'https://portfolio-production-abb1.up.railway.app/',
+            // Dynamic origins from environment
+            process.env.CORS_ORIGIN
+        ].filter(Boolean),
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Accept'],
         credentials: false

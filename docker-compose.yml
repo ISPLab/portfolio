@@ -13,7 +13,7 @@ services:
       - backend
     environment:
       - NODE_ENV=production
-      - VITE_API_URL=/api
+      - DOCKER_ENV='true'
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:80"]
       interval: 30s
@@ -34,6 +34,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
+      - CORS_ORIGIN=${FRONTEND_URL:-http://frontend}
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:3001/health"]
       interval: 30s
