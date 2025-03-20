@@ -1,8 +1,7 @@
 import axios from 'axios';
+import { config } from '@/config/env';
 
-const API_URL = process.env.NODE_ENV === 'production' 
-    ? '/api/feedback'  // Vercel production path
-    : 'http://localhost:3000/feedback';  // Local development path
+const API_URL = `${config.apiUrl}/feedback`;
 
 const axiosInstance = axios.create({
     baseURL: API_URL,

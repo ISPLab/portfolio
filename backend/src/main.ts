@@ -12,8 +12,13 @@ async function bootstrap() {
         transform: true
     }));
 
-    // Enable CORS for all origins
-    app.enableCors();
+    // Configure CORS
+    app.enableCors({
+        origin: ['http://localhost:5173', 'http://localhost:3000'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Accept'],
+        credentials: false
+    });
 
     // Swagger setup
     const config = new DocumentBuilder()
