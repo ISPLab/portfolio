@@ -1,9 +1,14 @@
 import axios from 'axios';
 
-const API_URL = '/api/feedback';
+const API_URL = process.env.NODE_ENV === 'production' 
+    ? '/api/feedback'  // Vercel production path
+    : 'http://localhost:3000/feedback';  // Local development path
 
 const axiosInstance = axios.create({
-    baseURL: API_URL
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'application/json'
+    }
 });
 
 export interface Feedback {
@@ -26,12 +31,22 @@ export interface CreateFeedbackDto {
 
 export const FeedbackService = {
     async getAllFeedback(): Promise<Feedback[]> {
-        const response = await axiosInstance.get('');
-        return response.data;
+        try {
+            const response = await axiosInstance.get('');
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching feedback:', error);
+            throw error;
+        }
     },
 
     async createFeedback(feedback: CreateFeedbackDto): Promise<Feedback> {
-        const response = await axiosInstance.post('', feedback);
-        return response.data;
+        try {
+            const response = await axiosInstance.post('', feedback);
+            return response.data;
+        } catch (error) {
+            console.error('Error creating feedback:', error);
+            throw error;
+        }
     }
 }; 

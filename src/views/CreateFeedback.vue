@@ -114,7 +114,9 @@ const submitFeedback = async () => {
         router.push('/feedback');
     } catch (error) {
         console.error('Error submitting feedback:', error);
-        alert('Error submitting feedback. Please try again.');
+        const errorMessage = error.response?.data?.error?.message 
+            || 'Error submitting feedback. Please try again.';
+        alert(errorMessage);
     }
 };
 </script>
