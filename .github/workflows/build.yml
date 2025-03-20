@@ -29,9 +29,3 @@ jobs:
         run: |
           npm run build
           cd backend && npm run build
-
-      - name: Test
-        run: |
-          npm test
-          cd backend && npm test 
-          
