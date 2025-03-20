@@ -23,10 +23,17 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
+      - name: Login to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          echo "${RAILWAY_TOKEN}" | railway login --browserless
+
       - name: Link Railway Project
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: railway link --project portfolio-feedback
+        run: |
+          railway link --project portfolio-feedback --environment production
 
       - name: Install Dependencies
         run: |
@@ -41,4 +48,5 @@ jobs:
       - name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: railway up 
+        run: |
+          railway up --detach 
