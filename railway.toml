@@ -4,8 +4,7 @@ buildCommand = "cd backend && npm install && npm run build"
 
 [deploy]
 startCommand = "cd backend && npm run start:prod"
-healthcheckPath = "/api/health"
-healthcheckTimeout = 100
+healthcheckPath = "/health"
 
 [deploy.envs]
 NODE_ENV = "production"
