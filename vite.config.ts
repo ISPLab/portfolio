@@ -24,9 +24,10 @@ export default defineConfig({
                     return `/search.php?s=${searchCode || ''}`;
                 }
             },
-            '/feedback': {
+            '/api/feedback': {
                 target: 'http://localhost:3000',
                 changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, '')
             }
         }
     },
