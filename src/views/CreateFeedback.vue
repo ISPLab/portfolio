@@ -103,7 +103,13 @@ const formData = ref({
 
 const submitFeedback = async () => {
     try {
-        await FeedbackService.createFeedback(formData.value);
+        const currentDate = new Date().toISOString().split('T')[0];
+        const feedbackData = {
+            ...formData.value,
+            date: currentDate
+        };
+        
+        await FeedbackService.createFeedback(feedbackData);
         alert(t.value.successMessage);
         router.push('/feedback');
     } catch (error) {
