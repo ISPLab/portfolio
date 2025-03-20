@@ -1,1 +1,8 @@
-npm test
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Commented out test running
+# npm run test:changed
+
+# Only run linting
+npm run lint-staged

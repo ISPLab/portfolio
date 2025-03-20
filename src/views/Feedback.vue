@@ -25,9 +25,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
+import { FeedbackService } from '@/services/feedback.service';
 
 const languageStore = useLanguageStore();
 const { currentLanguage } = storeToRefs(languageStore);
@@ -55,31 +56,13 @@ const translations = {
 
 const t = computed(() => translations[currentLanguage.value]);
 
-const feedbacks = computed(() => {
-    if (currentLanguage.value === 'en') {
-        return [
-            {
-                id: 1,
-                clientName: 'Example Client',
-                projectName: 'Website Development',
-                content: 'Great work on our website project. The team was professional and delivered on time.',
-                rating: 5,
-                date: 'December 2023'
-            },
-            // Add more feedback items
-        ];
-    } else {
-        return [
-            {
-                id: 1,
-                clientName: 'Пример Клиента',
-                projectName: 'Разработка веб-сайта',
-                content: 'Отличная работа над нашим веб-сайтом. Команда работала профессионально и уложилась в сроки.',
-                rating: 5,
-                date: 'Декабрь 2023'
-            },
-            // Add more feedback items
-        ];
+const feedbacks = ref<Feedback[]>([]);
+
+onMounted(async () => {
+    try {
+        feedbacks.value = await FeedbackService.getAllFeedback();
+    } catch (error) {
+        console.error('Error fetching feedback:', error);
     }
 });
 </script>

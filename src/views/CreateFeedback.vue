@@ -58,6 +58,7 @@ import { ref, computed } from 'vue';
 import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { FeedbackService } from '@/services/feedback.service';
 
 const router = useRouter();
 const languageStore = useLanguageStore();
@@ -101,12 +102,14 @@ const formData = ref({
 });
 
 const submitFeedback = async () => {
-    // Here you would typically send the data to your backend
-    console.log('Submitting feedback:', formData.value);
-    
-    // For now, just show an alert and redirect
-    alert(t.value.successMessage);
-    router.push('/feedback');
+    try {
+        await FeedbackService.createFeedback(formData.value);
+        alert(t.value.successMessage);
+        router.push('/feedback');
+    } catch (error) {
+        console.error('Error submitting feedback:', error);
+        alert('Error submitting feedback. Please try again.');
+    }
 };
 </script>
 
