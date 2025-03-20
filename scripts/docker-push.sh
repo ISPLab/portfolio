@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-DOCKER_USERNAME="andreusimus@gmail.com"
+DOCKER_USERNAME="andreusimus3"
 IMAGE_NAME_FRONTEND="portfolio-frontend"
 IMAGE_NAME_BACKEND="portfolio-backend"
 VERSION=$(date +%Y%m%d_%H%M%S)

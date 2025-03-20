@@ -22,7 +22,7 @@ async function bootstrap() {
             'http://localhost:5173',
             'http://localhost:3000',
             // Docker origin
-            'http://frontend',
+            'http://portfolio-frontend',
             // Production origins
             'https://portfolio-production-abb1.up.railway.app',
             'https://portfolio-production-abb1.up.railway.app/',

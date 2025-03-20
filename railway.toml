@@ -5,7 +5,7 @@ name = "portfolio-frontend"
 [frontend.build]
 builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
-image = "andreusimus/portfolio-frontend:latest"
+image = "andreusimus3/portfolio-frontend:latest"
 
 [frontend.deploy]
 healthcheckPath = "/"
@@ -23,7 +23,7 @@ name = "portfolio-backend"
 [backend.build]
 builder = "DOCKERFILE"
 dockerfilePath = "backend/Dockerfile"
-image = "andreusimus/portfolio-backend:latest"
+image = "andreusimus3/portfolio-backend:latest"
 
 [backend.deploy]
 healthcheckPath = "/health"

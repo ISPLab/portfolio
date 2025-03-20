@@ -5,12 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - NODE_ENV=production
     ports:
       - "80:80"
     depends_on:
-      - backend
+      - portfolio-backend
     environment:
       - NODE_ENV=production
       - DOCKER_ENV='true'
@@ -23,12 +21,10 @@ services:
     networks:
       - portfolio-network
 
-  backend:
+  portfolio-backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-      args:
-        - NODE_ENV=production
     ports:
       - "3001:3001"
     environment:
