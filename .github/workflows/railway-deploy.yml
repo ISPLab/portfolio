@@ -23,6 +23,18 @@ jobs:
       - name: Install Railway
         run: npm install -g @railway/cli
 
+      - name: Login to Railway
+        run: |
+          railway login --browserless --token "$RAILWAY_TOKEN"
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Initialize Railway Project
+        run: |
+          railway init --name portfolio-feedback
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
       - name: Install Dependencies
         run: |
           npm ci
