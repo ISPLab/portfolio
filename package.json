@@ -8,6 +8,8 @@
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:backend\"",
     "install:all": "npm install && cd backend && npm install",
     "build": "vite build",
+    "start:frontend": "SERVICE_TYPE=frontend ./scripts/railway-start.sh",
+    "start:backend": "SERVICE_TYPE=backend ./scripts/railway-start.sh",
     "serve": "vite preview",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",

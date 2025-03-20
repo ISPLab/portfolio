@@ -1,13 +1,35 @@
-[build]
+# Frontend Service
+[frontend]
+name = "portfolio-frontend"
+
+[frontend.build]
+builder = "nixpacks"
+buildCommand = "npm install && npm run build"
+
+[frontend.deploy]
+startCommand = "npx serve dist"
+healthcheckPath = "/"
+healthcheckTimeout = 180
+healthcheckInterval = 15
+
+[frontend.envs]
+NODE_ENV = "production"
+PORT = "3000"
+
+# Backend Service
+[backend]
+name = "portfolio-backend"
+
+[backend.build]
 builder = "nixpacks"
 buildCommand = "cd backend && npm install && npm run build"
 
-[deploy]
+[backend.deploy]
 startCommand = "cd backend && npm run start:prod"
 healthcheckPath = "/health"
 healthcheckTimeout = 180
 healthcheckInterval = 15
 
-[deploy.envs]
+[backend.envs]
 NODE_ENV = "production"
-PORT = "3000" 
+PORT = "3001" 
