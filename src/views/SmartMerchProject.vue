@@ -97,5 +97,217 @@ const toggleVideo = () => {
 </script>
 
 <style scoped>
-/* Используем те же стили, что и в других проектах */
+.smart-merch-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-info {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-info h1 {
+    color: #2c3e50;
+    margin: 0 0 15px 0;
+    font-size: 2em;
+}
+
+.description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.tech-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 3px solid #42b983;
+}
+
+.feature h3 {
+    color: #42b983;
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+}
+
+.feature p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.technical-features, .capabilities-section {
+    margin-top: 40px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.technical-features h2, .capabilities-section h2 {
+    color: #2c3e50;
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.feature-list li {
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.5;
+    color: #666;
+}
+
+.feature-list li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+}
+
+.project-screenshot-wrapper {
+    position: relative;
+    margin: 30px 0;
+}
+
+.project-screenshot {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+.play-hint {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 1;
+    transition: transform 0.3s ease;
+}
+
+.play-icon {
+    font-size: 1.2em;
+}
+
+.project-screenshot:hover .play-hint {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.project-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.project-screenshot:hover img {
+    transform: scale(1.02);
+}
+
+.project-screenshot video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.view-project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background: #24292e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.view-project-btn:hover {
+    background: #2f363d;
+    transform: translateY(-2px);
+}
+
+.github-icon {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    .project-info {
+        padding: 15px;
+    }
+
+    .project-info h1 {
+        font-size: 1.8em;
+    }
+
+    .tech-features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .technical-features, .capabilities-section {
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .project-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .view-project-btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}
 </style> 

@@ -68,7 +68,7 @@ const { currentLanguage: storeCurrentLanguage } = storeToRefs(languageStore);
 const translations: NavigationTranslations = {
     en: {
         portfolio: 'Portfolio',
-        projects: 'Projects (soon, adding...)',
+        projects: 'Projects (adding...)',
         cv: 'CV',
         about: 'About',
         aiPianist: 'AI Pianist',
@@ -88,7 +88,7 @@ const translations: NavigationTranslations = {
     },
     ru: {
         portfolio: 'Портфолио',
-        projects: 'Проекты (скоро, идет добавление)',
+        projects: 'Проекты (идет добавление...)',
         cv: 'Резюме',
         about: 'О сайте',
         aiPianist: 'ИИ Пианист',
@@ -124,12 +124,11 @@ const projectRoutes = computed(() => [
     // { path: '/nuana-data', title: t.value.nuanaData },
     // { path: '/aurora-media', title: t.value.auroraMedia },
     // { path: '/property-sales', title: t.value.propertySales },
-    
-    { path: '/cocktails', title: t.value.cocktails },
     { path: '/router-device', title: t.value.routerDevice },
+    { path: '/cocktails', title: t.value.cocktails },
+    { path: '/projects/smart-merch', title: t.value.smartMerch }, 
+    { path: '/projects/vision-map', title: t.value.visionMap }, 
     { path: '/projects/czca', title: t.value.czca },
-    { path: '/projects/vision-map', title: t.value.visionMap },
-    { path: '/projects/smart-merch', title: t.value.smartMerch }
 ]);
 
 const isProjectRoute = computed(() => {
