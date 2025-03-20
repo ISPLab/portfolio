@@ -8,6 +8,7 @@ import CZCAProject from '@/views/CZCAProject.vue';
 import VisionMapProject from '@/views/VisionMapProject.vue';
 import SmartMerchProject from '@/views/SmartMerchProject.vue';
 import Feedback from '@/views/Feedback.vue'
+import CreateFeedback from '@/views/CreateFeedback.vue'
 
 export const COCKTAIL_CODES = ['margarita', 'mojito', 'martini'];
 
@@ -72,6 +73,11 @@ const routes = [
         path: '/feedback',
         name: 'Feedback',
         component: Feedback
+    },
+    {
+        path: '/feedback/create',
+        name: 'CreateFeedback',
+        component: CreateFeedback
     },
     {
         path: '/:pathMatch(.*)*',

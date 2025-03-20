@@ -1,6 +1,11 @@
 <template>
     <div class="feedback-container">
-        <h1>{{ t.title }}</h1>
+        <div class="feedback-header">
+            <h1>{{ t.title }}</h1>
+            <router-link to="/feedback/create" class="create-feedback-button">
+                {{ t.createFeedback }}
+            </router-link>
+        </div>
         <div class="feedback-grid">
             <div v-for="feedback in feedbacks" :key="feedback.id" class="feedback-card">
                 <div class="feedback-header">
@@ -40,9 +45,11 @@ interface Feedback {
 const translations = {
     en: {
         title: 'Client Feedback',
+        createFeedback: 'Leave Feedback'
     },
     ru: {
         title: 'Отзывы клиентов',
+        createFeedback: 'Оставить отзыв'
     }
 };
 
@@ -105,9 +112,9 @@ const feedbacks = computed(() => {
 
 .feedback-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .client-logo {
@@ -145,6 +152,19 @@ const feedbacks = computed(() => {
 .project-date {
     color: #999;
     font-size: 0.9em;
+}
+
+.create-feedback-button {
+    background: #42b983;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.create-feedback-button:hover {
+    background: #3aa876;
 }
 
 @media (max-width: 768px) {
