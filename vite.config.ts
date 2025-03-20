@@ -22,6 +22,11 @@ export default defineConfig({
                     const searchCode = url.searchParams.get('code');
                     return `/search.php?s=${searchCode || ''}`;
                 }
+            },
+            '/api/feedback': {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api\/feedback/, '/feedback')
             }
         }
     },

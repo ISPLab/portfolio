@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/feedback';
+const API_URL = '/api/feedback';
+
+const axiosInstance = axios.create({
+    baseURL: API_URL
+});
 
 export interface Feedback {
     id: number;
@@ -22,12 +26,12 @@ export interface CreateFeedbackDto {
 
 export const FeedbackService = {
     async getAllFeedback(): Promise<Feedback[]> {
-        const response = await axios.get(API_URL);
+        const response = await axiosInstance.get('');
         return response.data;
     },
 
     async createFeedback(feedback: CreateFeedbackDto): Promise<Feedback> {
-        const response = await axios.post(API_URL, feedback);
+        const response = await axiosInstance.post('', feedback);
         return response.data;
     }
 }; 
