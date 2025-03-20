@@ -12,6 +12,7 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f",
+    "docker:push": "chmod +x scripts/docker-push.sh && ./scripts/docker-push.sh",
     "start:frontend": "SERVICE_TYPE=frontend ./scripts/railway-start.sh",
     "start:backend": "SERVICE_TYPE=backend ./scripts/railway-start.sh",
     "serve": "vite preview",
