@@ -10,7 +10,7 @@
                 <div class="project-screenshot" @click="toggleVideo">
                     <img 
                         v-if="!isPlaying"
-                        src="@/assets/images/projects/czca-preview.png" 
+                        src="@/assets/projects/czca-preview.png" 
                         alt="CZCA System Preview"
                         loading="lazy"
                     />
@@ -21,7 +21,7 @@
                     <video 
                         v-else
                         ref="videoPlayer"
-                        src="@/assets/images/projects/czca.mp4"
+                        src="@/assets/projects/czca.mp4"
                         controls
                         autoplay
                         @ended="isPlaying = false"

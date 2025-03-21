@@ -10,7 +10,7 @@
                 <div class="project-screenshot" @click="toggleVideo">
                     <img 
                         v-if="!isPlaying"
-                        src="@/assets/images/projects/vision-map-preview.png" 
+                        src="@/assets/projects/vision-map-preview.png" 
                         alt="VisionMap Preview"
                         loading="lazy"
                     />
@@ -93,8 +93,8 @@ import { storeToRefs } from 'pinia';
 import { translations } from '@/translations/vision-map';
 
 // Импортируем видео файлы
-import video1 from '@/assets/images/projects/vision-map2.mov';
-import video2 from '@/assets/images/projects/vision-map.mp4';
+import video1 from '@/assets/projects/vision-map2.mov';
+import video2 from '@/assets/projects/vision-map.mp4';
 
 const languageStore = useLanguageStore();
 const { currentLanguage } = storeToRefs(languageStore);

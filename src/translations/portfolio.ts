@@ -6,7 +6,7 @@ export const translations = {
                 title: 'Controlled Zone Crowd Analysis',
                 description: 'Advanced computer vision system for crowd monitoring and analysis',
                 path: '/projects/czca',
-                image: '@/assets/images/projects/czca-preview.png'
+                image: '@/assets/projects/czca-preview.png'
             },
             // ... other projects
         ]
@@ -18,7 +18,7 @@ export const translations = {
                 title: 'Анализ Скопления Людей',
                 description: 'Продвинутая система компьютерного зрения для мониторинга и анализа толпы',
                 path: '/projects/czca',
-                image: '@/assets/images/projects/czca-preview.png'
+                image: '@/assets/projects/czca-preview.png'
             },
             // ... other projects
         ]

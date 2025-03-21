@@ -10,7 +10,7 @@
                 <div class="project-screenshot" @click="toggleVideo">
                     <img 
                         v-if="!isPlaying"
-                        src="@/assets/images/projects/smart-merch-preview.png" 
+                        src="@/assets/projects/smart-merch-preview.png" 
                         alt="SmartMerch Preview"
                         loading="lazy"
                     />
@@ -21,7 +21,7 @@
                     <video 
                         v-else
                         ref="videoPlayer"
-                        src="@/assets/images/projects/smart-merch.mov"
+                        src="@/assets/projects/smart-merch.mov"
                         controls
                         autoplay
                         @ended="isPlaying = false"

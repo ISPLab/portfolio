@@ -21,7 +21,7 @@
 
             <div class="project-screenshot">
                 <img 
-                    src="@/assets/images/projects/route-device.jpeg"
+                    src="@/assets/projects/route-device.jpeg"
                     alt="Router Device"
                     loading="lazy"
                 />
