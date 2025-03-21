@@ -49,7 +49,7 @@
         <div class="tech-stack-section">
             <h2>{{ t.technologies }}</h2>
             <div class="tech-stack">
-                <span class="tech-item">Vue.js 3</span>
+                <span class="tech-item">Angular</span>
                 <span class="tech-item">TypeScript</span>
                 <span class="tech-item">Mapbox GL</span>
                 <span class="tech-item">Socket.IO</span>
