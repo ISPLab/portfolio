@@ -9,6 +9,7 @@ import VisionMapProject from '@/views/VisionMapProject.vue';
 import SmartMerchProject from '@/views/SmartMerchProject.vue';
 import Feedback from '@/views/Feedback.vue'
 import CreateFeedback from '@/views/CreateFeedback.vue'
+import TrackFleet from '@/views/projects/TrackFleet.vue';
 
 export const COCKTAIL_CODES = ['margarita', 'mojito', 'martini'];
 
@@ -68,6 +69,11 @@ const routes = [
         path: '/projects/smart-merch',
         name: 'smart-merch',
         component: SmartMerchProject
+    },
+    {
+        path: '/projects/trackfleet',
+        name: 'trackfleet',
+        component: TrackFleet
     },
     {
         path: '/feedback',

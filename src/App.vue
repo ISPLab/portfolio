@@ -18,7 +18,7 @@
                             :class="{ 'router-link-active': isProjectRoute }"
                             @click="toggleDropdown"
                         >
-                            {{ t.projects }}
+                            {{ t.projects.title }}
                         </button>
                         <div class="dropdown-content" v-show="isDropdownOpen">
                             <router-link 
@@ -28,7 +28,7 @@
                                 class="dropdown-item"
                                 @click="closeDropdown"
                             >
-                                {{ route.title }}
+                                {{ t.projects.items[route.name] }}
                             </router-link>
                         </div>
                     </div>
@@ -82,7 +82,17 @@ const { currentLanguage: storeCurrentLanguage } = storeToRefs(languageStore);
 const translations: NavigationTranslations = {
     en: {
         portfolio: 'Portfolio',
-        projects: 'Projects (adding...)',
+        projects: {
+            title: 'Projects',
+            items: {
+                cocktails: 'Cocktail Menu',
+                router: 'Router Device',
+                czca: 'Crowd Analysis',
+                visionMap: 'VisionMap Integrator',
+                smartMerch: 'SmartMerch',
+                trackfleet: 'Trackfleet'
+            }
+        },
         cv: 'CV',
         about: 'About',
         aiPianist: 'AI Pianist',
@@ -103,7 +113,17 @@ const translations: NavigationTranslations = {
     },
     ru: {
         portfolio: 'Портфолио',
-        projects: 'Проекты (идет добавление...)',
+        projects: {
+            title: 'Проекты',
+            items: {
+                cocktails: 'Барная карта',
+                router: 'Роутер',
+                czca: 'Анализ Толпы',
+                visionMap: 'Интегратор VisionMap',
+                smartMerch: 'SmartMerch',
+                trackfleet: 'Trackfleet'
+            }
+        },
         cv: 'Резюме',
         about: 'О сайте',
         aiPianist: 'ИИ Пианист',
@@ -131,21 +151,22 @@ const isDropdownOpen = ref(false);
 const route = useRoute();
 
 const projectRoutes = computed(() => [
-    // { path: '/ai-pianist', title: t.value.aiPianist },
-    // { path: '/social-media', title: t.value.socialMedia },
-    // { path: '/website-chat', title: t.value.websiteChat },
-    // { path: '/city-quests', title: t.value.cityQuests },
-    // { path: '/lumeira-wellness', title: t.value.lumeiraWellness },
-    // { path: '/butler-system', title: t.value.butlerSystem },
-    // { path: '/nuana-data', title: t.value.nuanaData },
-    // { path: '/aurora-media', title: t.value.auroraMedia },
-    // { path: '/property-sales', title: t.value.propertySales },
-    { path: '/router-device', title: t.value.routerDevice },
-    { path: '/cocktails', title: t.value.cocktails },
-    { path: '/projects/smart-merch', title: t.value.smartMerch }, 
-    { path: '/projects/vision-map', title: t.value.visionMap }, 
-    { path: '/projects/czca', title: t.value.czca },
-]);
+    { name: 'cocktails', path: '/cocktails' },
+    { name: 'router', path: '/router-device' },
+    { name: 'czca', path: '/projects/czca' },
+    { name: 'visionMap', path: '/projects/vision-map' },
+    { name: 'smartMerch', path: '/projects/smart-merch' },
+    { name: 'trackfleet', path: '/projects/trackfleet' },
+    { name: 'aiPianist', path: '/ai-pianist' },
+    { name: 'socialMedia', path: '/social-media' },
+    { name: 'websiteChat', path: '/website-chat' },
+    { name: 'cityQuests', path: '/city-quests' },
+    { name: 'lumeiraWellness', path: '/lumeira-wellness' },
+    { name: 'butlerSystem', path: '/butler-system' },
+    { name: 'nuanaData', path: '/nuana-data' },
+    { name: 'auroraMedia', path: '/aurora-media' },
+    { name: 'propertySales', path: '/property-sales' }
+] as const);
 
 const isProjectRoute = computed(() => {
     return projectRoutes.value.some(r => r.path === route.path);
@@ -203,6 +224,14 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll);
 });
+
+// Update the interface to include all routes
+interface ProjectRoute {
+    name: 'cocktails' | 'router' | 'czca' | 'visionMap' | 'smartMerch' | 'trackfleet' |
+          'aiPianist' | 'socialMedia' | 'websiteChat' | 'cityQuests' | 'lumeiraWellness' |
+          'butlerSystem' | 'nuanaData' | 'auroraMedia' | 'propertySales';
+    path: string;
+}
 </script>
 
 <style>
