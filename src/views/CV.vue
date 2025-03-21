@@ -38,7 +38,7 @@
                     <div class="contact-details">
                         <p><i class="fas fa-phone"></i> +7 (958) 827-00-64</p>
                         <p><i class="fas fa-envelope"></i> <a href="mailto:for_orlov@mail.ru">for_orlov@mail.ru</a></p>
-                        <p><i class="fas fa-globe"></i> <a href="https://andreyorlov.vercel.app/" target="_blank">andreyorlov.vercel.app</a></p>
+                        <p><i class="fas fa-globe"></i> <a href="https://aorlov.up.railway.app/" target="_blank">https://aorlov.up.railway.app/</a></p>
                     </div>
                     <div class="qr-code">
                         <img 
