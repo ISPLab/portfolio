@@ -151,21 +151,13 @@ const isDropdownOpen = ref(false);
 const route = useRoute();
 
 const projectRoutes = computed(() => [
+    { name: 'trackfleet', path: '/projects/trackfleet' },
     { name: 'cocktails', path: '/cocktails' },
     { name: 'router', path: '/router-device' },
     { name: 'czca', path: '/projects/czca' },
     { name: 'visionMap', path: '/projects/vision-map' },
-    { name: 'smartMerch', path: '/projects/smart-merch' },
-    { name: 'trackfleet', path: '/projects/trackfleet' },
-    { name: 'aiPianist', path: '/ai-pianist' },
-    { name: 'socialMedia', path: '/social-media' },
-    { name: 'websiteChat', path: '/website-chat' },
-    { name: 'cityQuests', path: '/city-quests' },
-    { name: 'lumeiraWellness', path: '/lumeira-wellness' },
-    { name: 'butlerSystem', path: '/butler-system' },
-    { name: 'nuanaData', path: '/nuana-data' },
-    { name: 'auroraMedia', path: '/aurora-media' },
-    { name: 'propertySales', path: '/property-sales' }
+    { name: 'smartMerch', path: '/projects/smart-merch' }, 
+
 ] as const);
 
 const isProjectRoute = computed(() => {
@@ -379,7 +371,7 @@ html, body {
     font-weight: 500;
     padding: 8px 15px;
     border-radius: 4px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    /* transition: color 0.3s ease, background-color 0.3s ease; */
     white-space: nowrap;
 }
 

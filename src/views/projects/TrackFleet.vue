@@ -1,26 +1,50 @@
 <template>
     <div class="project-container cocktails-container">
-        <section class="project-info">
-            <div class="project-title">
-                <h1>{{ t.title }}</h1>
-            </div>
-            <p class="description">{{ t.description }}</p>
-            
-            <div class="project-screenshot">
-                <img 
-                    src="@/assets/projects/trackfleet/vehicle-list.png" 
-                    alt="TrackFleet vehicle list interface"
-                    loading="lazy"
-                />
-            </div>
-            
-            <div class="tech-features">
-                <div v-for="(feature, index) in t.featuresList" :key="index" class="feature">
-                    <h3>{{ feature.icon }}</h3>
-                    <p>{{ feature.text }}</p>
+        <div class="vehicles-grid">
+            <div class="vehicle-card">
+                <div class="vehicle-content">
+                    <div class="image-container">
+                        <transition name="fade" mode="out-in">
+                            <img 
+                                :src="currentImage" 
+                                :alt="currentImageCaption"
+                                loading="lazy"
+                                class="vehicle-image"
+                            />
+                        </transition>
+                        <div class="image-overlay">
+                            <div class="image-caption">
+                                {{ currentImageCaption }}
+                            </div>
+                            <div class="image-navigation">
+                                <div class="nav-label">{{ t.imageNavLabel }}</div>
+                                <button class="nav-button prev" @click.stop="prevImage">←</button>
+                                <span class="image-counter">{{ currentImageIndex + 1 }}/{{ images.length }}</span>
+                                <button class="nav-button next" @click.stop="nextImage">→</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <article class="vehicle-info">
+                        <h2 class="vehicle-name">{{ t.title }}</h2>
+                        <p class="description">{{ t.description }}</p>
+                        
+                        <div class="vehicle-features">
+                            <h3>{{ t.features }}</h3>
+                            <div class="features-list">
+                                <div v-for="(feature, index) in t.featuresList" 
+                                     :key="index" 
+                                     class="feature-item"
+                                >
+                                    <span class="feature-icon">{{ feature.icon }}</span>
+                                    <span class="feature-text">{{ feature.text }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </section>
+        </div>
 
         <div class="tech-stack-section">
             <h2>{{ t.technologies }}</h2>
@@ -50,10 +74,51 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useCurrentLanguage } from '@/composables/useCurrentLanguage';
 
 const { currentLanguage } = useCurrentLanguage();
+const currentImageIndex = ref(0);
+
+const images = [
+    {
+        src: '/src/assets/projects/trackfleet/vehicle-list.png',
+        captionEn: 'Vehicle list and real-time tracking',
+        captionRu: 'Список транспорта и отслеживание в реальном времени'
+    },
+    {
+        src: '/src/assets/projects/trackfleet/vehicle-settings.png',
+        captionEn: 'Vehicle settings and data configuration',
+        captionRu: 'Настройки и конфигурация данных транспорта'
+    },
+    {
+        src: '/src/assets/projects/trackfleet/vehicle-tracking.png',
+        captionEn: 'Real-time vehicle tracking on map',
+        captionRu: 'Отслеживание транспорта на карте в реальном времени'
+    },
+    {
+        src: '/src/assets/projects/trackfleet/vehicle-sensors.png',
+        captionEn: 'Vehicle sensors and telemetry data',
+        captionRu: 'Датчики транспорта и телеметрические данные'
+    }
+];
+
+const currentImage = computed(() => images[currentImageIndex.value].src);
+const currentImageCaption = computed(() => 
+    currentLanguage.value === 'en' 
+        ? images[currentImageIndex.value].captionEn 
+        : images[currentImageIndex.value].captionRu
+);
+
+const nextImage = () => {
+    currentImageIndex.value = (currentImageIndex.value + 1) % images.length;
+};
+
+const prevImage = () => {
+    currentImageIndex.value = currentImageIndex.value === 0 
+        ? images.length - 1 
+        : currentImageIndex.value - 1;
+};
 
 const translations = {
     en: {
@@ -75,7 +140,8 @@ const translations = {
         viewDemo: 'Live Demo',
         viewGithub: 'View on GitHub',
         demoLink: 'https://trackfleet-demo.vercel.app',
-        githubLink: 'https://github.com/yourusername/trackfleet'
+        githubLink: 'https://github.com/yourusername/trackfleet',
+        imageNavLabel: 'Click arrows to view more screenshots'
     },
     ru: {
         title: 'ТрэкФлит',
@@ -96,7 +162,8 @@ const translations = {
         viewDemo: 'Демо версия',
         viewGithub: 'Открыть GitHub',
         demoLink: 'https://trackfleet-demo.vercel.app',
-        githubLink: 'https://github.com/yourusername/trackfleet'
+        githubLink: 'https://github.com/yourusername/trackfleet',
+        imageNavLabel: 'Нажмите стрелки для просмотра скриншотов'
     }
 };
 
@@ -104,25 +171,154 @@ const t = computed(() => translations[currentLanguage.value]);
 </script>
 
 <style scoped lang="scss">
-.cocktails-container {
-    max-width: 1000px;
+.project-container {
+    padding-top: 80px;
+}
+
+.vehicles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    width: 90%;
+    max-width: 1024px;
     margin: 0 auto;
-    padding: 20px;
+    overflow-x: hidden;
+    justify-items: center;
+    justify-content: center;
 }
 
-.project-info {
-    max-width: 800px;
-    margin: 0 auto 40px;
-    padding: 20px;
-    background: var(--color-background-soft);
+.vehicle-card {
+    padding: 5px;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
+    background-color: var(--color-background-soft);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.project-info h1 {
+.vehicle-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.image-container {
+    float: right;
+    width: 300px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+    
+    &:hover .image-overlay {
+        opacity: 1;
+    }
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: default;
+}
+
+.image-caption {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    border-radius: 0 0 8px 8px;
+}
+
+.image-navigation {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.nav-label {
+    color: white;
+    font-size: 0.85rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+
+.nav-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    &.prev {
+        padding-right: 20px;
+    }
+
+    &.next {
+        padding-left: 20px;
+    }
+}
+
+.image-counter {
+    color: white;
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.vehicle-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.vehicle-info {
+    width: 100%;
+    display: block;
+}
+
+.vehicle-name {
+    margin: 0;
+    font-size: 24px;
     color: var(--color-heading);
-    margin: 0 0 15px 0;
-    font-size: 2em;
 }
 
 .description {
@@ -131,26 +327,92 @@ const t = computed(() => translations[currentLanguage.value]);
     margin-bottom: 30px;
 }
 
-.project-screenshot {
-    margin: 2rem 0;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: var(--color-background-soft);
+.vehicle-features {
+    margin-top: 30px;
+}
 
-    .screenshot {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 12px 12px 0 0;
+.features-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.feature-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--color-background-mute);
+    border-radius: 8px;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: translateX(10px);
+    }
+}
+
+.feature-icon {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.feature-text {
+    color: var(--color-text);
+}
+
+@media (max-width: 1200px) {
+    .image-container {
+        width: 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    .image-container {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-container {
+        padding-top: 100px;
     }
 
-    .screenshot-caption {
-        padding: 1rem;
-        text-align: center;
-        font-size: 0.9rem;
-        color: var(--color-text-light);
-        background-color: var(--color-background-mute);
+    .image-container {
+        width: 150px;
+    }
+    
+    .vehicle-content {
+        flex-direction: column;
+    }
+
+    .feature-item {
+        grid-template-columns: 30px 1fr;
+    }
+
+    .image-navigation {
+        bottom: 30px;
+    }
+    
+    .nav-label {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+    
+    .nav-button {
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-container {
+        padding-top: 120px;
+    }
+
+    .image-container {
+        float: none;
+        width: 100%;
+        margin: 0 0 20px 0;
     }
 }
 
@@ -216,14 +478,19 @@ const t = computed(() => translations[currentLanguage.value]);
     margin-left: 10px;
 }
 
-@media (max-width: 768px) {
-    .project-screenshot {
-        margin: 1.5rem -1rem;
-        border-radius: 0;
+// Fade transition
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
 
-        .screenshot {
-            border-radius: 0;
-        }
-    }
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
 }
 </style> 
