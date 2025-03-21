@@ -40,7 +40,7 @@
         </section>
 
         <div class="project-links">
-            <a href="https://maxbitsol.vercel.app" target="_blank" rel="noopener noreferrer" class="view-project-btn">
+            <a href="https://aorlov.up.railway.app" target="_blank" rel="noopener noreferrer" class="view-project-btn">
                 Live Demo
                 <span class="arrow">→</span>
             </a>
