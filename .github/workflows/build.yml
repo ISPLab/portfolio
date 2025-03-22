@@ -23,19 +23,29 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Combined Image
+      - name: Build and push Frontend
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: Dockerfile.combined
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-frontend:latest
+
+      - name: Build and push Nginx
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.nginx
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-nginx:latest
 
   deploy:
     needs: build-and-deploy
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
@@ -43,7 +53,10 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway redeploy -s portfolio -y
+          # Redeploy services
+          railway redeploy -s portfolio-backend -y
+          railway redeploy -s portfolio-frontend -y
+          railway redeploy -s portfolio-nginx -y
 
 
 

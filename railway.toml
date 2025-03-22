@@ -32,4 +32,18 @@ healthcheckInterval = 15
 
 [backend.envs]
 NODE_ENV = "production"
-PORT = "3000" 
+PORT = "3000"
+
+# Nginx Service
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile.nginx"
+
+[deploy]
+startCommand = "nginx -g 'daemon off;'"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[[services]]
+name = "nginx"
+internal_port = 80 
