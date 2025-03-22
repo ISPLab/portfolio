@@ -31,7 +31,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-frontend:latest
 
       - name: Deploy to Railway
-        uses: railwayapp/deploy-action@v1
+    
         with:
           service: portfolio-frontend
           project: ${{ secrets.RAILWAY_PROJECT_ID }}
