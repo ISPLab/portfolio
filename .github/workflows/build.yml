@@ -29,6 +29,9 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-frontend:latest
+          build-args: |
+            NODE_ENV=production
+            VITE_API_URL=${{ secrets.VITE_API_URL }}
 
       - name: Build and push Nginx
         uses: docker/build-push-action@v5
@@ -37,6 +40,10 @@ jobs:
           file: Dockerfile.nginx
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-nginx:latest
+          build-args: |
+            FRONTEND_URL=${{ secrets.FRONTEND_URL }}
+            BACKEND_URL=${{ secrets.BACKEND_URL }}
+            DOMAIN=${{ secrets.DOMAIN }}
 
   deploy:
     needs: build-and-deploy
@@ -53,6 +60,12 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
+          # Set environment variables for services
+          railway variables set FRONTEND_URL=${{ secrets.FRONTEND_URL }} -s portfolio-nginx
+          railway variables set BACKEND_URL=${{ secrets.BACKEND_URL }} -s portfolio-nginx
+          railway variables set DOMAIN=${{ secrets.DOMAIN }} -s portfolio-nginx
+          railway variables set NODE_ENV=production -s portfolio-frontend
+          
           # Redeploy services
           railway redeploy -s portfolio-backend -y
           railway redeploy -s portfolio-frontend -y
