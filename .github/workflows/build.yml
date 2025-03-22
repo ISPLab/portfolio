@@ -31,7 +31,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-frontend:latest
 
   deploy:
-    needs: build-and-deploy
+    needs: build-and-push
     runs-on: ubuntu-latest 
     
     steps:
