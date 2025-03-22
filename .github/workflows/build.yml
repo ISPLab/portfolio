@@ -33,6 +33,7 @@ jobs:
   deploy:
     needs: build-and-deploy
     runs-on: ubuntu-latest
+    container: ghcr.io/railwayapp/cli:latest
     
     steps:
       - name: Checkout code
