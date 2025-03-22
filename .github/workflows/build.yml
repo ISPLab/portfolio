@@ -46,7 +46,7 @@ jobs:
         run: |
           
           # Link and deploy after login
-          railway login --token ${{ secrets.RAILWAY_TOKEN }}
+          railway login --browserless
           railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-backend
           railway redeploy
           railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-frontend
