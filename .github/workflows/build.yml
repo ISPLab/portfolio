@@ -44,10 +44,10 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          # Verify we're authenticated
-          railway whoami
+          # Configure Railway token directly
+          railway login --token ${{ secrets.RAILWAY_TOKEN }}
           
-          # Link and deploy
+          # Link and deploy after login
           railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
           railway up -s portfolio-backend
           railway up -s portfolio-frontend
