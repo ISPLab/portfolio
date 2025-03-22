@@ -30,22 +30,26 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-frontend:latest
 
-      - name: Deploy to Railway
+  deploy:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
     
-        with:
-          service: portfolio-frontend
-          project: ${{ secrets.RAILWAY_PROJECT_ID }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           # Deploy backend
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }}  railway up --service=86571dba-42da-4006-8201-bf7080d1d103
-          # RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway project --project ${{ secrets.RAILWAY_PROJECT_ID }}
-          # # RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway service --service portfolio-backend
-          # # RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway up
+          railway up -s portfolio-backend
           
-          # # # Deploy frontend
-          # # RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway project --project ${{ secrets.RAILWAY_PROJECT_ID }}
-          # # RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway service --service portfolio-frontend
-          # # RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway up
+          # Deploy frontend
+          railway up -s portfolio-frontend
 
 
 
