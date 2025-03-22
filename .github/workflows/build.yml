@@ -44,8 +44,6 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          # Configure Railway token directly
-          railway login --token ${{ secrets.RAILWAY_TOKEN }}
           
           # Link and deploy after login
           railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
