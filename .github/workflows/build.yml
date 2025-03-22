@@ -46,10 +46,10 @@ jobs:
         run: |
           
           # Link and deploy after login
-          railway login --browserless
-          railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-backend
-          railway redeploy
-          railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-frontend
-          railway redeploy
+
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-backend
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }} railway redeploy
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-frontend
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }} railway redeploy
           
           
