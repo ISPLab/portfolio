@@ -43,7 +43,14 @@ interface Feedback {
     date: string;
 }
 
-const translations = {
+interface Translations {
+    [key: string]: {
+        title: string;
+        createFeedback: string;
+    }
+}
+
+const translations: Translations = {
     en: {
         title: 'Client Feedback',
         createFeedback: 'Leave Feedback'

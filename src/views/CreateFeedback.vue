@@ -64,7 +64,22 @@ const router = useRouter();
 const languageStore = useLanguageStore();
 const { currentLanguage } = storeToRefs(languageStore);
 
-const translations = {
+interface Translations {
+    [key: string]: {
+        title: string;
+        clientName: string;
+        clientNamePlaceholder: string;
+        projectName: string;
+        projectNamePlaceholder: string;
+        feedback: string;
+        feedbackPlaceholder: string;
+        rating: string;
+        submit: string;
+        successMessage: string;
+    }
+}
+
+const translations: Translations = {
     en: {
         title: 'Leave Feedback',
         clientName: 'Your Name',
@@ -112,9 +127,10 @@ const submitFeedback = async () => {
         await FeedbackService.createFeedback(feedbackData);
         alert(t.value.successMessage);
         router.push('/feedback');
-    } catch (error) {
+    } catch (error: unknown) {
         console.error('Error submitting feedback:', error);
-        const errorMessage = error.response?.data?.error?.message 
+        const err = error as { response?: { data?: { error?: { message?: string } } } };
+        const errorMessage = err.response?.data?.error?.message 
             || 'Error submitting feedback. Please try again.';
         alert(errorMessage);
     }

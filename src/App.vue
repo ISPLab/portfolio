@@ -65,12 +65,6 @@ declare module '@vue/runtime-dom' {
     }
 }
 
-// Fix the SVG imports by creating type declarations
-declare module '*.svg' {
-    const content: string;
-    export default content;
-}
-
 // Импортируем изображения флагов
 import ukFlag from '@/assets/uk-flag.svg';
 import ruFlag from '@/assets/ru-flag.svg';
@@ -175,9 +169,13 @@ const closeDropdown = () => {
 // Проверяем, находимся ли мы на странице portfolio
 const isPortfolioRoute = computed(() => route.path === '/portfolio');
 
-// Директива для закрытия dropdown при клике вне его
+// Add interface for HTML element with clickOutsideEvent
+interface CustomHTMLElement extends HTMLElement {
+    clickOutsideEvent?: (event: Event) => void;
+}
+
 const vClickOutside = {
-    mounted(el: HTMLElement, binding: any) {
+    mounted(el: CustomHTMLElement, binding: DirectiveBinding) {
         el.clickOutsideEvent = (event: Event) => {
             if (!(el === event.target || el.contains(event.target as Node))) {
                 binding.value();
@@ -185,8 +183,10 @@ const vClickOutside = {
         };
         document.addEventListener('click', el.clickOutsideEvent);
     },
-    unmounted(el: HTMLElement) {
-        document.removeEventListener('click', el.clickOutsideEvent);
+    unmounted(el: CustomHTMLElement) {
+        if (el.clickOutsideEvent) {
+            document.removeEventListener('click', el.clickOutsideEvent);
+        }
     }
 };
 

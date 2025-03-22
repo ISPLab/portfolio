@@ -18,6 +18,11 @@ RUN npm run build
 # Production stage
 FROM nginx:alpine
 
+# Create start script
+RUN echo '#!/bin/sh\n\
+nginx -g "daemon off;"\n\
+' > /start.sh && chmod +x /start.sh
+
 # Copy built assets from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
@@ -27,4 +32,4 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Expose port
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"] 
+CMD ["/start.sh"] 
