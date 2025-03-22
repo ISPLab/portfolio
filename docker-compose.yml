@@ -1,7 +1,7 @@
 services:
   portfolio-frontend:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
       no_cache: true
     image: portfolio-frontend
