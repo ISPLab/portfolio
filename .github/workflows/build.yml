@@ -45,8 +45,8 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           
-          # Link and deploy after login
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway login
+          # Link and deploy after login 
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway login --browserless
           RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-backend
           RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway redeploy
           RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-frontend
