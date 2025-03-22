@@ -58,6 +58,7 @@ services:
       - portfolio-frontend
     networks:
       - portfolio-network
+    restart: unless-stopped
 
 networks:
   portfolio-network:
