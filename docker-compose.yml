@@ -30,7 +30,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
-      - CORS_ORIGIN=${FRONTEND_URL:-http://frontend}
+      - CORS_ORIGIN=${FRONTEND_URL:-http://portfolio-frontend}
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:3000/health"]
       interval: 30s
