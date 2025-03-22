@@ -17,9 +17,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    restart: unless-stopped
+    restart: always
     networks:
       - portfolio-network
+    expose:
+      - "80"
 
   portfolio-backend:
     build:
@@ -38,9 +40,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    restart: unless-stopped
+    restart: always
     networks:
       - portfolio-network
+    expose:
+      - "3000"
 
   nginx:
     build:
@@ -53,16 +57,22 @@ services:
     environment:
       - API_URL=${API_URL:-http://portfolio-backend:3000}
       - CLIENT_URL=${CLIENT_URL:-http://portfolio-frontend:5173}
+      - NGINX_HOST=portfolio-nginx-production.up.railway.app
+      - NGINX_PORT=80
     depends_on:
       - portfolio-backend
       - portfolio-frontend
     networks:
       - portfolio-network
-    restart: unless-stopped
+    restart: always
 
 networks:
   portfolio-network:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
 
 volumes:
   backend_data: 
