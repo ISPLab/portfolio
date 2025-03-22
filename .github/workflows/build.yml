@@ -46,10 +46,10 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           # Deploy backend
-          railway up -s portfolio-backend
+          railway redeploy --service portfolio-backend
           
           # Deploy frontend
-          railway up -s portfolio-frontend
+          railway redeploy --service portfolio-frontend
 
 
 
