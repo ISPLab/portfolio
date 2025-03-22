@@ -61,10 +61,10 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           # Set environment variables for services
-          railway variables FRONTEND_URL=${{ secrets.FRONTEND_URL }} -s portfolio-nginx
-          railway variables BACKEND_URL=${{ secrets.BACKEND_URL }} -s portfolio-nginx
-          railway variables DOMAIN=${{ secrets.DOMAIN }} -s portfolio-nginx
-          railway variables NODE_ENV=production -s portfolio-frontend
+          railway add FRONTEND_URL=${{ secrets.FRONTEND_URL }} -s portfolio-nginx
+          railway add BACKEND_URL=${{ secrets.BACKEND_URL }} -s portfolio-nginx
+          railway add DOMAIN=${{ secrets.DOMAIN }} -s portfolio-nginx
+          railway add NODE_ENV=production -s portfolio-frontend
           
           # Redeploy services
           railway redeploy -s portfolio-backend -y
