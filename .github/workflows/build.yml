@@ -45,11 +45,11 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           # Deploy backend
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --service portfolio-backend --service portfolio-backend
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}  --service portfolio-backend
           RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway up
           
           # Deploy frontend
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --service portfolio-frontend --service portfolio-frontend
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --service portfolio-frontend
           RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway up
           
           
