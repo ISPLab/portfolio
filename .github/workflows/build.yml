@@ -44,12 +44,14 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
+          # Deploy backend
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway project --project ${{ secrets.RAILWAY_PROJECT_ID }}
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway service --service portfolio-backend
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway up
           
-          # Link and deploy after login 
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway login --browserless
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-backend
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway redeploy
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link --project ${{ secrets.RAILWAY_PROJECT_ID }} --environment production --service portfolio-frontend
-          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway redeploy
+          # Deploy frontend
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway project --project ${{ secrets.RAILWAY_PROJECT_ID }}
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway service --service portfolio-frontend
+          RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway up
           
           
