@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      no_cache: true
     image: portfolio-frontend
     ports:
       - "5173:80"
@@ -24,6 +25,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      no_cache: true
     image: portfolio-backend
     ports:
       - "3000:3000"
@@ -44,6 +46,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.nginx
+      no_cache: true
     image: portfolio-nginx
     ports:
       - "80:80"
