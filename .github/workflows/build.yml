@@ -46,3 +46,4 @@ jobs:
         run: |
           railway up --service portfolio-backend
           railway up --service portfolio-frontend
+          
