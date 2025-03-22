@@ -32,4 +32,4 @@ healthcheckInterval = 15
 
 [backend.envs]
 NODE_ENV = "production"
-PORT = "3001" 
+PORT = "3000" 

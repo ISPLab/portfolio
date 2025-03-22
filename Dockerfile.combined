@@ -35,7 +35,7 @@ COPY --from=build /app/backend/package*.json ./backend/
 RUN cd backend && npm install --omit=dev
 
 # Expose ports
-EXPOSE 80 3001
+EXPOSE 80 3000
 
 # Start both services
 CMD ["sh", "-c", "cd backend && npm run start:prod & npx serve -s dist -l 80"] 

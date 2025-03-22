@@ -28,6 +28,6 @@ COPY --from=build /app/dist ./dist
 RUN npm install --omit=dev
 
 # Expose port
-EXPOSE 3001
+EXPOSE 3000
 
 CMD ["npm", "run", "start:prod"] 
