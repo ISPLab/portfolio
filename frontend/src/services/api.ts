@@ -13,7 +13,14 @@ export interface FeedbackResponse {
     createdAt: Date;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const API_URL = (() => {
+  const url = import.meta.env.VITE_API_URL;
+  if (!url && process.env.NODE_ENV === 'production') {
+    // In production, if VITE_API_URL is not set, use the current origin
+    return `${window.location.origin}/api`;
+  }
+  return url || 'http://localhost:3000/api';
+})();
 
 export const feedbackApi = {
     async getAllFeedback(): Promise<FeedbackResponse[]> {
