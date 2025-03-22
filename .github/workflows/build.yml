@@ -44,8 +44,8 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway link ${{ secrets.RAILWAY_PROJECT_ID }} --environment production
+          railway link ce155fa0-157e-42f9-ab2f-c011a26c084d --environment production
           railway up -e production -s portfolio-backend
           railway up -e production -s portfolio-frontend
-          
+
           
