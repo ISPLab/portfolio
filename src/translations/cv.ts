@@ -173,7 +173,7 @@ export const translations: Translations = {
         techStack: 'Technologies',
         jobs: [
           {
-            title: 'Tech Lead, Itelma SP (June 2023 - Present)',
+            title: 'Tech Lead 2, Itelma SP (June 2023 - Present)',
             location: 'Moscow, itelma.ru',
             responsibilities: [
               'Leading and developing software for project implementation and business goals.',
