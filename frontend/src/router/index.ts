@@ -9,7 +9,7 @@ import VisionMapProject from '@/views/VisionMapProject.vue';
 import SmartMerchProject from '@/views/SmartMerchProject.vue';
 import Feedback from '@/views/Feedback.vue'
 import CreateFeedback from '@/views/CreateFeedback.vue'
-import TrackFleet from '@/views/projects/TrackFleet.vue';
+import TrackFleet from '@/views/TrackFleet.vue';
 
 export const COCKTAIL_CODES = ['margarita', 'mojito', 'martini'];
 

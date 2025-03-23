@@ -82,22 +82,22 @@ const currentImageIndex = ref(0);
 
 const images = [
     {
-        src: '@/assets/projects/trackfleet/vehicle-list.png',
+        src: 'https://raw.githubusercontent.com/isplab/portfolio/main/frontend/src/assets/projects/trackfleet/vehicle-list.png',
         captionEn: 'Vehicle list and real-time tracking',
         captionRu: 'Список транспорта и отслеживание в реальном времени'
     },
     {
-        src: '@/assets/projects/trackfleet/vehicle-settings.png',
+        src: 'https://raw.githubusercontent.com/isplab/portfolio/main/frontend/src/assets/projects/trackfleet/vehicle-settings.png',
         captionEn: 'Vehicle settings and data configuration',
         captionRu: 'Настройки и конфигурация данных транспорта'
     },
     {
-        src: '@/assets/projects/trackfleet/vehicle-tracking.png',
+        src: 'https://raw.githubusercontent.com/isplab/portfolio/main/frontend/src/assets/projects/trackfleet/vehicle-tracking.png', 
         captionEn: 'Real-time vehicle tracking on map',
         captionRu: 'Отслеживание транспорта на карте в реальном времени'
     },
     {
-        src: '@/assets/projects/trackfleet/vehicle-sensors.png',
+        src: 'https://raw.githubusercontent.com/isplab/portfolio/main/frontend/src/assets/projects/trackfleet/vehicle-sensors.png',
         captionEn: 'Vehicle sensors and telemetry data',
         captionRu: 'Датчики транспорта и телеметрические данные'
     }
@@ -120,7 +120,23 @@ const prevImage = () => {
         : currentImageIndex.value - 1;
 };
 
-const translations = {
+type Language = 'en' | 'ru';
+
+const translations: Record<Language, {
+    title: string;
+    description: string;
+    screenshotCaption: string;
+    features: string;
+    featuresList: Array<{icon: string; text: string}>;
+    target: string;
+    targetDescription: string;
+    technologies: string;
+    viewDemo: string;
+    viewGithub: string;
+    demoLink: string;
+    githubLink: string;
+    imageNavLabel: string;
+}> = {
     en: {
         title: 'TrackFleet',
         description: 'TrackFleet is an intelligent real-time cargo vehicle monitoring system.',
@@ -167,7 +183,7 @@ const translations = {
     }
 };
 
-const t = computed(() => translations[currentLanguage.value]);
+const t = computed(() => translations[currentLanguage.value as Language]);
 </script>
 
 <style scoped lang="scss">
