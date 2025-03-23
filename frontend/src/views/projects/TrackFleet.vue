@@ -82,22 +82,22 @@ const currentImageIndex = ref(0);
 
 const images = [
     {
-        src: '/src/assets/projects/trackfleet/vehicle-list.png',
+        src: '@/assets/projects/trackfleet/vehicle-list.png',
         captionEn: 'Vehicle list and real-time tracking',
         captionRu: 'Список транспорта и отслеживание в реальном времени'
     },
     {
-        src: '/src/assets/projects/trackfleet/vehicle-settings.png',
+        src: '@/assets/projects/trackfleet/vehicle-settings.png',
         captionEn: 'Vehicle settings and data configuration',
         captionRu: 'Настройки и конфигурация данных транспорта'
     },
     {
-        src: '/src/assets/projects/trackfleet/vehicle-tracking.png',
+        src: '@/assets/projects/trackfleet/vehicle-tracking.png',
         captionEn: 'Real-time vehicle tracking on map',
         captionRu: 'Отслеживание транспорта на карте в реальном времени'
     },
     {
-        src: '/src/assets/projects/trackfleet/vehicle-sensors.png',
+        src: '@/assets/projects/trackfleet/vehicle-sensors.png',
         captionEn: 'Vehicle sensors and telemetry data',
         captionRu: 'Датчики транспорта и телеметрические данные'
     }

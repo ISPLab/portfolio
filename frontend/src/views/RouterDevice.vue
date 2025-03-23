@@ -2,7 +2,13 @@
     <div class="router-container">
         <section class="project-info">
             <h1>{{ t.title }}</h1>
-            
+            <div class="project-screenshot">
+                <img 
+                    src="@/assets/projects/route-device.jpeg"
+                    alt="Router Device"
+                    loading="lazy"
+                />
+            </div>
             <div class="intro-section">
                 <p class="intro-text problem">
                     {{ t.intro.problem }}
@@ -19,13 +25,7 @@
                 {{ t.description }}
             </p>
 
-            <div class="project-screenshot">
-                <img 
-                    src="@/assets/projects/route-device.jpeg"
-                    alt="Router Device"
-                    loading="lazy"
-                />
-            </div>
+      
 
             <div class="tech-features">
                 <div class="feature">
