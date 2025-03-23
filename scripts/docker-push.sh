@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get version from package.json
-VERSION=$(node -p "require('./package.json').version")
+VERSION=$(node -p "require('./frontend/package.json').version")
 
 # Docker image names
 DOCKER_USERNAME="andreusimus3"

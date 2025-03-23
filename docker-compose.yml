@@ -48,8 +48,8 @@ services:
 
   nginx:
     build:
-      context: .
-      dockerfile: Dockerfile.nginx
+      context: ./nginx
+      dockerfile: Dockerfile
       no_cache: true
     image: portfolio-nginx
     ports:
