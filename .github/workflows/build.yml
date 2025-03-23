@@ -24,6 +24,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Make script executable and run
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         run: |
           chmod +x ./scripts/docker-build-push.sh
           ./scripts/docker-build-push.sh
