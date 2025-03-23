@@ -1,10 +1,6 @@
 services:
   portfolio-frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      no_cache: true
-    image: portfolio-frontend
+    image: andreusimus3/portfolio-frontend:latest
     ports:
       - "5173:80"
     depends_on:
@@ -24,11 +20,7 @@ services:
       - "80"
 
   portfolio-backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      no_cache: true
-    image: portfolio-backend
+    image: andreusimus3/portfolio-backend:latest
     ports:
       - "3000:3000"
     environment:
@@ -47,11 +39,7 @@ services:
       - "3000"
 
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-      no_cache: true
-    image: portfolio-nginx
+    image: andreusimus3/portfolio-nginx:latest
     ports:
       - "8080:80"
     environment:
