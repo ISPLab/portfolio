@@ -23,10 +23,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker images
+      - name: Make script executable and run
         run: |
-          chmod +x scripts/docker-push.sh
-          ./scripts/docker-push.sh
+          chmod +x ./scripts/docker-build-push.sh
+          ./scripts/docker-build-push.sh
 
   deploy:
     needs: build-and-push
@@ -43,7 +43,6 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          
           # Redeploy services
           railway redeploy -s portfolio-backend -y
           railway redeploy -s portfolio-frontend -y
