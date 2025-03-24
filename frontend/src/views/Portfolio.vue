@@ -6,7 +6,7 @@
                 <div class="profile-photo animate-in">
                     <div class="photo-border"></div>
                     <div class="photo-glow"></div>
-                    <img src="@/assets/images/porfolio/photo.jpeg" alt="Profile Photo" class="pulse-image">
+                    <img src="@/assets/images/portfolio/photo.jpeg" alt="Profile Photo" class="pulse-image">
                 </div>
                 <h1>{{ t.title }}</h1>
                 <div class="subtitle-container">
@@ -63,7 +63,7 @@
                             alt="Telegram" class="social-icon">
                         Telegram</a>
                     <a href="mailto:for_orlov@mail.ru" class="social-link">
-                        <img src="https://cdn.pixabay.com/photo/2016/06/13/17/30/mail-1454731_640.png" alt="Mail"
+                        <img src="@/assets/images/portfolio/mail.png" alt="Mail"
                             class="social-icon">
                         Email</a>
                 </div>

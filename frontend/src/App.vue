@@ -380,10 +380,7 @@ html, body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: linear-gradient(135deg, 
-        rgba(66, 185, 131, 0.7) 0%, 
-        rgba(44, 62, 80, 0.7) 100%
-    );
+    background:  rgb(110 137 135 / 80%) 0%;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     min-width: 200px;
