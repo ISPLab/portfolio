@@ -1,48 +1,24 @@
+# Portfolio & Fleet Tracking Application
 
-## 🎨 Customization
+## Overview
+This is a web application that combines a personal portfolio showcase with fleet tracking capabilities. Built with modern web technologies, it provides a professional presentation platform alongside practical fleet management features.
 
-### Modifying Content
-- Edit `src/views/Portfolio.vue` to update the main content
-- Replace `src/assets/images/portfolio/photo.jpeg` with your photo
-- Update social links in the contact section
+## Features
+- Professional Portfolio Display
+- Fleet Tracking System
+- Responsive Web Design
+- Docker Containerization
 
-### Styling
-- Main styles are in the `<style>` section of Portfolio.vue
-- Color scheme can be modified through CSS variables
-- Animations can be adjusted in the keyframes sections
+## Technical Stack
+- Frontend: Vue.js
+- Web Server: Nginx
+- Containerization: Docker
+- Backend: Nest.js
 
-## 📱 Responsive Design
+## Project Structure
+    frontend/
+    backend/
+    nginx/
+    docker-compose.yml
+    README.md
 
-The portfolio is fully responsive with breakpoints at:
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
-
-## 🚀 Deployment
-
-This site can be deployed to various platforms:
-
-- Vercel (recommended)
-- Netlify
-- GitHub Pages
-- Any static hosting service
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/yourusername/portfolio/issues).
-
-## 📬 Contact
-
-
-
-Email: for_orlov@mail.ru
-
-
-Project Link: [https://github.com/isplab/portfolio](https://github.com/isplab/portfolio)
-
----
-⭐️ From [isplab](https://github.com/isplab)
