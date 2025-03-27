@@ -58,15 +58,17 @@ export const translations: Translations = {
         techStack: 'Технологии',
         jobs: [
           {
-            title: 'Tech Lead, Itelma SP (Июнь 2023 - Настоящее время)',
+            title: 'Индивидуальная предпринимательская деятельность (Июнь 2023 - Настоящее время)',
             location: 'Москва, itelma.ru',
             responsibilities: [
-              'Руководство и разработка программного обеспечения для реализации проектов и бизнес-целей.',
-              'Взаимодействие с клиентами, анализ их потребностей и внедрение оптимальных решений.',
-              'Разработка и внедрение систем автоматизации производственных процессов, мониторинга и анализа данных.',
-              'Разработка алгоритмов и машинное обучение для автопилотов.',
-              'Тестирование и отладка алгоритмов, обеспечение стабильной работы.',
-              'Оптимизация backend (Next.js, NestJS, .NET Core) для работы с большими объемами данных.'
+              'Результаты выполненных проектов для компаний (same.com, Itelma.ru, pepsi.com, ms-rus.ru, constructor.ru, Наутико) представлены в портфолио https://aorlov.up.railway.app/portfolio',
+              'Визуализация зон покрытия сотовой связи в г. Самара для компании "Мегафон" на цифровой карте Cesium',
+              'Исправление ошибок и доработка "Цифрового двойника" города Москвы для администрации города',
+              'Разработка ПО для администрирования и наблюдения за камерами',
+              'Подключение AI-модулей для автоматизированной подстройки камер на цифровой карте',
+              'Анализ производственных процессов клиентов, выявление возможностей для автоматизации',
+              'Разработка алгоритмов и машинное обучение для автопилотов, управляющих транспортом клиентов',
+              'Оптимизация backend (Next.js, NestJS, .NET Core) для работы с большими объемами данных'
             ],
             technologies: [
               'Angular', 'Vue.js', 'React', 'JavaScript', 'TypeScript', 'Node.js', 'NestJS', 'Next.js', '.NET Core', 
@@ -173,15 +175,17 @@ export const translations: Translations = {
         techStack: 'Technologies',
         jobs: [
           {
-            title: 'Tech Lead 2, Itelma SP (June 2023 - Present)',
+            title: 'Individual Entrepreneurship (June 2023 - Present)',
             location: 'Moscow, itelma.ru',
             responsibilities: [
-              'Leading and developing software for project implementation and business goals.',
-              'Client interaction, needs analysis and implementation of optimal solutions.',
-              'Development and implementation of industrial process automation, monitoring and data analysis systems.',
-              'Development of algorithms and machine learning for autopilots.',
-              'Testing and debugging algorithms, ensuring stable operation.',
-              'Backend optimization (Next.js, NestJS, .NET Core) for handling large data volumes.'
+              'Project results for companies (same.com, Itelma.ru, pepsi.com, ms-rus.ru, constructor.ru, Nautico) are presented in portfolio https://aorlov.up.railway.app/portfolio',
+              'Visualization of cellular coverage areas in Samara for Megafon company using Cesium digital map',
+              'Bug fixing and enhancement of Moscow City "Digital Twin" for city administration',
+              'Development of software for camera administration and monitoring',
+              'Integration of AI modules for automated camera adjustment on digital map',
+              'Analysis of client production processes, identifying automation opportunities',
+              'Development of algorithms and machine learning for client transport autopilots',
+              'Backend optimization (Next.js, NestJS, .NET Core) for handling large data volumes'
             ],
             technologies: [
               'Angular', 'Vue.js', 'React', 'JavaScript', 'TypeScript', 'Node.js', 'NestJS', 'Next.js', '.NET Core', 
