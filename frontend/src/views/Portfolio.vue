@@ -16,8 +16,15 @@
         </section>
 
         <section class="greeting">
-            <div class="greeting-text">
-                {{ t.greeting }}
+            <div class="greeting-text" ref="greetingText">
+                <div v-for="(paragraph, index) in greetingParagraphs" 
+                     :key="index" 
+                     class="greeting-paragraph"
+                     :class="{ 'visible': visibleParagraphs[index] }"
+                     @mouseenter="highlightParagraph(index)"
+                     @mouseleave="unhighlightParagraph(index)">
+                    {{ paragraph }}
+                </div>
             </div>
         </section>
 
@@ -182,7 +189,7 @@ const translations: Translations = {
         email: 'Email',
         featuredProjects: 'Featured Projects',
         works: 'Works',
-        greeting: `Hello, my name is Andrey Orlov, and I am a full-stack developer with extensive experience in both frontend and backend development.
+        greeting: `
             I have worked on a wide variety of projects, ranging from city-level digital mapping solutions to backend optimization for high-traffic applications. Currently, I am working as an independent consultant, collaborating with companies such as Itelma, Pepsi, and Nautico on various projects. Some of my notable work includes visualizing cellular coverage areas for Megafon using Cesium, improving Moscow City's "Digital Twin," and integrating AI modules for camera administration. Before starting my own business, I held roles in several prominent companies, such as Urent, The NASDAQ Trimble Rus, NAVIS, and RNT, where I developed cross-platform applications, cloud solutions, and integrated advanced technologies into client production processes. I have extensive experience with modern frontend frameworks like Angular, React, and Vue.js, and I'm also proficient in backend technologies such as NestJS, Node.js, .NET Core, and more. I also specialize in optimizing systems to handle large data volumes, utilizing technologies like Kubernetes and Docker for scaling.
             One of my key strengths is understanding client needs and providing them with automated solutions that optimize processes and improve overall efficiency. I've worked on various systems for camera monitoring, transport autopilots, and secure client-server communications, as well as integrating IoT devices and machine learning.
             Throughout my career, I've developed a strong problem-solving mindset, always striving for the most efficient and scalable solutions while ensuring quality. My educational background in ergonomics and engineering psychology also gives me a unique perspective on user-centered design and system optimization, which I bring to every project I work on.
@@ -219,7 +226,7 @@ const translations: Translations = {
         email: 'Почта',
         featuredProjects: 'Избранные проекты',
         works: 'Работы',
-        greeting: `Здравствуйте, меня зовут Андрей Орлов, и я full-stack разработчик с обширным опытом как во frontend, так и в backend разработке.
+        greeting: `
             Я работал над множеством различных проектов: от решений по цифровому картографированию городского уровня до оптимизации backend для высоконагруженных приложений. В настоящее время я работаю как независимый консультант, сотрудничая с такими компаниями как Itelma, Pepsi и Nautico над различными проектами. Среди моих значимых работ - визуализация зон покрытия сотовой связи для Мегафона с использованием Cesium, улучшение "Цифрового двойника" Москвы и интеграция AI-модулей для администрирования камер. До начала собственного бизнеса я работал в нескольких крупных компаниях, таких как Urent, The NASDAQ Trimble Rus, NAVIS и RNT, где разрабатывал кроссплатформенные приложения, облачные решения и внедрял передовые технологии в производственные процессы клиентов. У меня большой опыт работы с современными frontend-фреймворками, такими как Angular, React и Vue.js, а также я владею backend-технологиями, включая NestJS, Node.js, .NET Core и другие. Я также специализируюсь на оптимизации систем для работы с большими объемами данных, используя технологии Kubernetes и Docker для масштабирования.
             Одна из моих ключевых сильных сторон - понимание потребностей клиентов и предоставление им автоматизированных решений, оптимизирующих процессы и повышающих общую эффективность. Я работал над различными системами мониторинга камер, автопилотами транспорта и защищенными клиент-серверными коммуникациями, а также интегрировал IoT-устройства и машинное обучение.
             На протяжении своей карьеры я выработал сильный подход к решению проблем, всегда стремясь к наиболее эффективным и масштабируемым решениям при обеспечении качества. Мое образование в области эргономики и инженерной психологии также дает мне уникальный взгляд на проектирование, ориентированное на пользователя, и оптимизацию систем, что я привношу в каждый свой проект.
@@ -252,6 +259,43 @@ const translations: Translations = {
 };
 
 const t = computed(() => translations[currentLanguage.value]);
+
+const greetingParagraphs = computed(() => t.value.greeting.split('\n').filter(p => p.trim()));
+const visibleParagraphs = ref<boolean[]>([]);
+const greetingText = ref<HTMLElement | null>(null);
+
+const highlightParagraph = (index: number) => {
+    const paragraphs = document.querySelectorAll('.greeting-paragraph');
+    paragraphs[index].classList.add('highlight');
+};
+
+const unhighlightParagraph = (index: number) => {
+    const paragraphs = document.querySelectorAll('.greeting-paragraph');
+    paragraphs[index].classList.remove('highlight');
+};
+
+onMounted(() => {
+    // Инициализируем массив видимости параграфов
+    visibleParagraphs.value = new Array(greetingParagraphs.value.length).fill(false);
+    
+    // Наблюдатель за появлением элементов
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const index = parseInt(entry.target.getAttribute('data-index') || '0');
+                setTimeout(() => {
+                    visibleParagraphs.value[index] = true;
+                }, index * 300); // Задержка для каждого параграфа
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Добавляем наблюдение за каждым параграфом
+    document.querySelectorAll('.greeting-paragraph').forEach((paragraph, index) => {
+        paragraph.setAttribute('data-index', index.toString());
+        observer.observe(paragraph);
+    });
+});
 </script>
 
 <style scoped>
@@ -490,14 +534,38 @@ const t = computed(() => translations[currentLanguage.value]);
     margin: 40px auto;
     padding: 20px;
     max-width: 800px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .greeting-text {
     line-height: 1.6;
     color: #2c3e50;
     text-align: justify;
-    white-space: pre-line;
     font-size: 1.1em;
+}
+
+.greeting-paragraph {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.greeting-paragraph.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.greeting-paragraph.highlight {
+    background: rgba(66, 185, 131, 0.1);
+    transform: scale(1.01);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .features {
@@ -635,10 +703,16 @@ const t = computed(() => translations[currentLanguage.value]);
 
     .greeting {
         padding: 15px;
+        margin: 20px auto;
     }
     
     .greeting-text {
         font-size: 1em;
+    }
+
+    .greeting-paragraph {
+        padding: 8px;
+        margin: 8px 0;
     }
 }
 
