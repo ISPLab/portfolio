@@ -15,6 +15,12 @@
             </div>
         </section>
 
+        <section class="greeting">
+            <div class="greeting-text">
+                {{ t.greeting }}
+            </div>
+        </section>
+
         <section class="features">
             <h2>{{ t.featuredProjects }}</h2>
 
@@ -176,6 +182,12 @@ const translations: Translations = {
         email: 'Email',
         featuredProjects: 'Featured Projects',
         works: 'Works',
+        greeting: `Hello, my name is Andrey Orlov, and I am a full-stack developer with extensive experience in both frontend and backend development.
+            I have worked on a wide variety of projects, ranging from city-level digital mapping solutions to backend optimization for high-traffic applications. Currently, I am working as an independent consultant, collaborating with companies such as Itelma, Pepsi, and Nautico on various projects. Some of my notable work includes visualizing cellular coverage areas for Megafon using Cesium, improving Moscow City's "Digital Twin," and integrating AI modules for camera administration. Before starting my own business, I held roles in several prominent companies, such as Urent, The NASDAQ Trimble Rus, NAVIS, and RNT, where I developed cross-platform applications, cloud solutions, and integrated advanced technologies into client production processes. I have extensive experience with modern frontend frameworks like Angular, React, and Vue.js, and I'm also proficient in backend technologies such as NestJS, Node.js, .NET Core, and more. I also specialize in optimizing systems to handle large data volumes, utilizing technologies like Kubernetes and Docker for scaling.
+            One of my key strengths is understanding client needs and providing them with automated solutions that optimize processes and improve overall efficiency. I've worked on various systems for camera monitoring, transport autopilots, and secure client-server communications, as well as integrating IoT devices and machine learning.
+            Throughout my career, I've developed a strong problem-solving mindset, always striving for the most efficient and scalable solutions while ensuring quality. My educational background in ergonomics and engineering psychology also gives me a unique perspective on user-centered design and system optimization, which I bring to every project I work on.
+            In addition to my technical expertise, I am passionate about continuous learning and growth. I am always looking for opportunities to improve my skills and stay up to date with emerging technologies.
+            I look forward to discussing how my experience and skills can contribute to your team and projects.`,
         worksList: [
             'Adaptive UI design for seamless experience across devices',
             'Real-time search and filtering for efficient data handling',
@@ -207,6 +219,12 @@ const translations: Translations = {
         email: 'Почта',
         featuredProjects: 'Избранные проекты',
         works: 'Работы',
+        greeting: `Здравствуйте, меня зовут Андрей Орлов, и я full-stack разработчик с обширным опытом как во frontend, так и в backend разработке.
+            Я работал над множеством различных проектов: от решений по цифровому картографированию городского уровня до оптимизации backend для высоконагруженных приложений. В настоящее время я работаю как независимый консультант, сотрудничая с такими компаниями как Itelma, Pepsi и Nautico над различными проектами. Среди моих значимых работ - визуализация зон покрытия сотовой связи для Мегафона с использованием Cesium, улучшение "Цифрового двойника" Москвы и интеграция AI-модулей для администрирования камер. До начала собственного бизнеса я работал в нескольких крупных компаниях, таких как Urent, The NASDAQ Trimble Rus, NAVIS и RNT, где разрабатывал кроссплатформенные приложения, облачные решения и внедрял передовые технологии в производственные процессы клиентов. У меня большой опыт работы с современными frontend-фреймворками, такими как Angular, React и Vue.js, а также я владею backend-технологиями, включая NestJS, Node.js, .NET Core и другие. Я также специализируюсь на оптимизации систем для работы с большими объемами данных, используя технологии Kubernetes и Docker для масштабирования.
+            Одна из моих ключевых сильных сторон - понимание потребностей клиентов и предоставление им автоматизированных решений, оптимизирующих процессы и повышающих общую эффективность. Я работал над различными системами мониторинга камер, автопилотами транспорта и защищенными клиент-серверными коммуникациями, а также интегрировал IoT-устройства и машинное обучение.
+            На протяжении своей карьеры я выработал сильный подход к решению проблем, всегда стремясь к наиболее эффективным и масштабируемым решениям при обеспечении качества. Мое образование в области эргономики и инженерной психологии также дает мне уникальный взгляд на проектирование, ориентированное на пользователя, и оптимизацию систем, что я привношу в каждый свой проект.
+            Помимо технической экспертизы, я увлечен постоянным обучением и развитием. Я всегда ищу возможности улучшить свои навыки и быть в курсе новых технологий.
+            Я с нетерпением жду возможности обсудить, как мой опыт и навыки могут принести пользу вашей команде и проектам.`,
         worksList: [
             'Адаптивный UI дизайн для всех устройств',
             'Поиск и фильтрация данных в реальном времени',
@@ -468,6 +486,20 @@ const t = computed(() => translations[currentLanguage.value]);
     display: inline-block;
 }
 
+.greeting {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.greeting-text {
+    line-height: 1.6;
+    color: #2c3e50;
+    text-align: justify;
+    white-space: pre-line;
+    font-size: 1.1em;
+}
+
 .features {
     margin-bottom: 60px;
 }
@@ -598,6 +630,14 @@ const t = computed(() => translations[currentLanguage.value]);
     }
 
     .subtitle {
+        font-size: 1em;
+    }
+
+    .greeting {
+        padding: 15px;
+    }
+    
+    .greeting-text {
         font-size: 1em;
     }
 }
