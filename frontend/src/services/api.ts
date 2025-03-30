@@ -14,12 +14,8 @@ export interface FeedbackResponse {
 }
 
 const API_URL = (() => {
-  const url = import.meta.env.VITE_API_URL;
-  if (!url && process.env.NODE_ENV === 'production') {
     // Fallback to current origin in production
-    return `${window.location.origin}/api`;
-  }
-  return url || 'http://localhost:3000/api';
+     return `${window.location.origin}/api`;
 })();
 
 export const feedbackApi = {
