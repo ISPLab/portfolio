@@ -7,12 +7,10 @@ VERSION=$(node -p "require('./frontend/package.json').version")
 DOCKER_USERNAME="andreusimus3"
 IMAGE_NAME_FRONTEND="portfolio-frontend"
 IMAGE_NAME_BACKEND="portfolio-backend"
-IMAGE_NAME_NGINX="portfolio-nginx"
 
 echo "Building version: $VERSION"
 echo "Frontend: $DOCKER_USERNAME/$IMAGE_NAME_FRONTEND:$VERSION"
 echo "Backend: $DOCKER_USERNAME/$IMAGE_NAME_BACKEND:$VERSION"
-echo "Nginx: $DOCKER_USERNAME/$IMAGE_NAME_NGINX:$VERSION"
 
 # Function to delete image if it exists
 delete_image() {
@@ -68,11 +66,6 @@ delete_image "$DOCKER_USERNAME/$IMAGE_NAME_BACKEND" "latest"
 delete_local_image "$DOCKER_USERNAME/$IMAGE_NAME_BACKEND" "$VERSION"
 delete_local_image "$DOCKER_USERNAME/$IMAGE_NAME_BACKEND" "latest"
 
-delete_image "$DOCKER_USERNAME/$IMAGE_NAME_NGINX" "$VERSION"
-delete_image "$DOCKER_USERNAME/$IMAGE_NAME_NGINX" "latest"
-delete_local_image "$DOCKER_USERNAME/$IMAGE_NAME_NGINX" "$VERSION"
-delete_local_image "$DOCKER_USERNAME/$IMAGE_NAME_NGINX" "latest"
-
 # Build and push frontend
 echo "Building and pushing frontend..."
 
@@ -93,15 +86,6 @@ docker push $DOCKER_USERNAME/$IMAGE_NAME_BACKEND:$VERSION && \
 docker push $DOCKER_USERNAME/$IMAGE_NAME_BACKEND:latest && \
 verify_image "$DOCKER_USERNAME/$IMAGE_NAME_BACKEND" "$VERSION" && \
 verify_image "$DOCKER_USERNAME/$IMAGE_NAME_BACKEND" "latest"
-
-# Build and push nginx
-echo "Building and pushing nginx..."
-docker build -t $DOCKER_USERNAME/$IMAGE_NAME_NGINX:$VERSION \
-             -t $DOCKER_USERNAME/$IMAGE_NAME_NGINX:latest ./nginx && \
-docker push $DOCKER_USERNAME/$IMAGE_NAME_NGINX:$VERSION && \
-docker push $DOCKER_USERNAME/$IMAGE_NAME_NGINX:latest && \
-verify_image "$DOCKER_USERNAME/$IMAGE_NAME_NGINX" "$VERSION" && \
-verify_image "$DOCKER_USERNAME/$IMAGE_NAME_NGINX" "latest"
 
 # Check if all operations were successful
 if [ $? -eq 0 ]; then
