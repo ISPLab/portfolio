@@ -15,8 +15,9 @@ export default defineConfig({
     server: {
         proxy: {
             '/api/feedback': {
-                target: 'http://portfolio-backend-production-c653.up.railway.app:3000',
+                target: 'https://portfolio-backend-production-c653.up.railway.app',
                 changeOrigin: true,
+                secure: true,
                 rewrite: (path) => path.replace(/^\/api/, '')
             }
         }
