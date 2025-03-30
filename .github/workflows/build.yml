@@ -47,8 +47,7 @@ jobs:
         run: |
           # Redeploy services
           railway redeploy -s portfolio-backend -y
-          railway redeploy -s portfolio-frontend -y
-          railway redeploy -s portfolio-nginx -y
+          railway redeploy -s portfolio-frontend -y       
 
 
 
