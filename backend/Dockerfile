@@ -30,6 +30,12 @@ EXPOSE 3000
 
 # Set NODE_ENV to production
 ENV NODE_ENV=production
+# Make sure PORT is set to 3000
+ENV PORT=3000
 
-# Start the application
-CMD ["node", "dist/main.js"] 
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
+
+# Start the application with additional debugging
+CMD ["node", "--trace-warnings", "dist/main.js"] 
