@@ -27,7 +27,7 @@ image = "andreusimus3/portfolio-backend:latest"
 
 [backend.deploy]
 healthcheckPath = "/health"
-healthcheckTimeout = 180
+healthcheckTimeout = 180Y
 healthcheckInterval = 15
 
 [backend.envs]
@@ -46,4 +46,11 @@ restartPolicyMaxRetries = 10
 
 [[services]]
 name = "nginx"
-internal_port = 80 
+internal_port = 80
+
+[service]
+memory = "512MB"
+cpu = "0.5"
+
+[http]
+force_https = true 
