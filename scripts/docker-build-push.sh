@@ -71,6 +71,7 @@ echo "Building and pushing frontend..."
 
 docker build --no-cache \
              --build-arg CACHEBUST="$(date +%s%N)" \
+             --build-arg API_URL="https://your-backend-url.railway.app" \
              -t $DOCKER_USERNAME/$IMAGE_NAME_FRONTEND:$VERSION \
              -t $DOCKER_USERNAME/$IMAGE_NAME_FRONTEND:latest ./frontend && \
 docker push $DOCKER_USERNAME/$IMAGE_NAME_FRONTEND:$VERSION && \

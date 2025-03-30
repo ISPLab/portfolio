@@ -53,4 +53,7 @@ memory = "512MB"
 cpu = "0.5"
 
 [http]
-force_https = true 
+force_https = true
+
+[deploy.envs]
+VITE_API_URL = "https://portfolio-backend-production-c653.up.railway.app/api" 

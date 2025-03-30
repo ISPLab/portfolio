@@ -14,18 +14,8 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '/api/cocktails': {
-                target: 'https://www.thecocktaildb.com/api/json/v1/1',
-                changeOrigin: true,
-                secure: false,
-                rewrite: (path) => {
-                    const url = new URL(path, 'http://dummy.com');
-                    const searchCode = url.searchParams.get('code');
-                    return `/search.php?s=${searchCode || ''}`;
-                }
-            },
             '/api/feedback': {
-                target: 'http://localhost:3000',
+                target: 'http://portfolio-backend-production-c653.up.railway.app:3000',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, '')
             }

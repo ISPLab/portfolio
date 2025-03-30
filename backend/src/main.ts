@@ -26,6 +26,8 @@ async function bootstrap() {
             // Production origins
             'https://portfolio-production-abb1.up.railway.app',
             'https://portfolio-production-abb1.up.railway.app/',
+            'https://portfolio-backend-production-c653.up.railway.app',
+            'https://portfolio-backend-production-c653.up.railway.app/',
             // Dynamic origins from environment
             process.env.CORS_ORIGIN
         ].filter(Boolean),
