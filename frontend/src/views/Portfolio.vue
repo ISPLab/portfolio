@@ -10,12 +10,12 @@
                 </div>
                 <h1>{{ t.title }}</h1>
                 <div class="subtitle-container">
-                    <p class="subtitle typewriter">{{ t.subtitle }}</p>
+                    <p class="subtitle typewriter" @animationend="onTypewriterComplete">{{ t.subtitle }}</p>
                 </div>
             </div>
         </section>
 
-        <section class="greeting">
+        <section class="greeting" v-if="shouldShowGreeting">
             <div class="greeting-text" ref="greetingText">
                 <div v-for="(paragraph, index) in greetingParagraphs" 
                      :key="index" 
@@ -86,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, onUnmounted } from 'vue';
+import { computed, onMounted, ref, onUnmounted, watch } from 'vue';
 import { useLanguageStore } from '@/stores/language';
 import { storeToRefs } from 'pinia';
 import type { Translations } from '@/types/translations';
@@ -95,6 +95,11 @@ const languageStore = useLanguageStore();
 const { currentLanguage } = storeToRefs(languageStore);
 const matrixContainer = ref<HTMLDivElement | null>(null);
 let animationInterval: number;
+
+// Определяем все ref переменные в начале
+const visibleParagraphs = ref<boolean[]>([]);
+const greetingText = ref<HTMLElement | null>(null);
+const shouldShowGreeting = ref(false);
 
 // Обновим массив с более длинными фрагментами кода
 const codeSnippets = [
@@ -162,6 +167,39 @@ const createSymbol = () => {
     requestAnimationFrame(animate);
 };
 
+const initializeObserver = () => {
+    // Даем время для рендеринга DOM
+    setTimeout(() => {
+        // Инициализируем массив видимости параграфов
+        visibleParagraphs.value = new Array(greetingParagraphs.value.length).fill(false);
+        
+        // Наблюдатель за появлением элементов
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const index = parseInt(entry.target.getAttribute('data-index') || '0');
+                    setTimeout(() => {
+                        visibleParagraphs.value[index] = true;
+                    }, index * 300); // Задержка для каждого параграфа
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Добавляем наблюдение за каждым параграфом
+        document.querySelectorAll('.greeting-paragraph').forEach((paragraph, index) => {
+            paragraph.setAttribute('data-index', index.toString());
+            observer.observe(paragraph);
+        });
+    }, 100);
+};
+
+// Следим за изменением shouldShowGreeting
+watch(shouldShowGreeting, (newValue) => {
+    if (newValue) {
+        initializeObserver();
+    }
+});
+
 onMounted(() => {
     // Создаем начальное количество символов
     for(let i = 0; i < 50; i++) {
@@ -169,10 +207,13 @@ onMounted(() => {
     }
     // Добавляем новые символы периодически
     animationInterval = window.setInterval(() => {
-        if (matrixContainer.value && matrixContainer.value.children.length < 200) { // Ограничиваем максимальное количество символов
+        if (matrixContainer.value && matrixContainer.value.children.length < 200) {
             createSymbol();
         }
     }, 200);
+
+    // Изначально greeting скрыт
+    shouldShowGreeting.value = false;
 });
 
 onUnmounted(() => {
@@ -189,12 +230,11 @@ const translations: Translations = {
         email: 'Email',
         featuredProjects: 'Featured Projects',
         works: 'Works',
-        greeting: `
-            I have worked on a wide variety of projects, ranging from city-level digital mapping solutions to backend optimization for high-traffic applications. Currently, I am working as an independent consultant, collaborating with companies such as Itelma, Pepsi, and Nautico on various projects. Some of my notable work includes visualizing cellular coverage areas for Megafon using Cesium, improving Moscow City's "Digital Twin," and integrating AI modules for camera administration. Before starting my own business, I held roles in several prominent companies, such as Urent, The NASDAQ Trimble Rus, NAVIS, and RNT, where I developed cross-platform applications, cloud solutions, and integrated advanced technologies into client production processes. I have extensive experience with modern frontend frameworks like Angular, React, and Vue.js, and I'm also proficient in backend technologies such as NestJS, Node.js, .NET Core, and more. I also specialize in optimizing systems to handle large data volumes, utilizing technologies like Kubernetes and Docker for scaling.
-            One of my key strengths is understanding client needs and providing them with automated solutions that optimize processes and improve overall efficiency. I've worked on various systems for camera monitoring, transport autopilots, and secure client-server communications, as well as integrating IoT devices and machine learning.
-            Throughout my career, I've developed a strong problem-solving mindset, always striving for the most efficient and scalable solutions while ensuring quality. My educational background in ergonomics and engineering psychology also gives me a unique perspective on user-centered design and system optimization, which I bring to every project I work on.
-            In addition to my technical expertise, I am passionate about continuous learning and growth. I am always looking for opportunities to improve my skills and stay up to date with emerging technologies.
-            I look forward to discussing how my experience and skills can contribute to your team and projects.`,
+        greeting: `I have worked on a wide variety of projects, ranging from city-level digital mapping solutions to backend optimization for high-traffic applications. Currently, I am working as an independent consultant, collaborating with companies such as Itelma, Pepsi, and Nautico on various projects. Some of my notable work includes visualizing cellular coverage areas for Megafon using Cesium, improving Moscow City's "Digital Twin," and integrating AI modules for camera administration. Before starting my own business, I held roles in several prominent companies, such as Urent, The NASDAQ Trimble Rus, NAVIS, and RNT, where I developed cross-platform applications, cloud solutions, and integrated advanced technologies into client production processes. I have extensive experience with modern frontend frameworks like Angular, React, and Vue.js, and I'm also proficient in backend technologies such as NestJS, Node.js, .NET Core, and more. I also specialize in optimizing systems to handle large data volumes, utilizing technologies like Kubernetes and Docker for scaling.
+One of my key strengths is understanding client needs and providing them with automated solutions that optimize processes and improve overall efficiency. I've worked on various systems for camera monitoring, transport autopilots, and secure client-server communications, as well as integrating IoT devices and machine learning.
+Throughout my career, I've developed a strong problem-solving mindset, always striving for the most efficient and scalable solutions while ensuring quality. My educational background in ergonomics and engineering psychology also gives me a unique perspective on user-centered design and system optimization, which I bring to every project I work on.
+In addition to my technical expertise, I am passionate about continuous learning and growth. I am always looking for opportunities to improve my skills and stay up to date with emerging technologies.
+I look forward to discussing how my experience and skills can contribute to your team and projects.`,
         worksList: [
             'Adaptive UI design for seamless experience across devices',
             'Real-time search and filtering for efficient data handling',
@@ -226,12 +266,11 @@ const translations: Translations = {
         email: 'Почта',
         featuredProjects: 'Избранные проекты',
         works: 'Работы',
-        greeting: `
-            Я работал над множеством различных проектов: от решений по цифровому картографированию городского уровня до оптимизации backend для высоконагруженных приложений. В настоящее время я работаю как независимый консультант, сотрудничая с такими компаниями как Itelma, Pepsi и Nautico над различными проектами. Среди моих значимых работ - визуализация зон покрытия сотовой связи для Мегафона с использованием Cesium, улучшение "Цифрового двойника" Москвы и интеграция AI-модулей для администрирования камер. До начала собственного бизнеса я работал в нескольких крупных компаниях, таких как Urent, The NASDAQ Trimble Rus, NAVIS и RNT, где разрабатывал кроссплатформенные приложения, облачные решения и внедрял передовые технологии в производственные процессы клиентов. У меня большой опыт работы с современными frontend-фреймворками, такими как Angular, React и Vue.js, а также я владею backend-технологиями, включая NestJS, Node.js, .NET Core и другие. Я также специализируюсь на оптимизации систем для работы с большими объемами данных, используя технологии Kubernetes и Docker для масштабирования.
-            Одна из моих ключевых сильных сторон - понимание потребностей клиентов и предоставление им автоматизированных решений, оптимизирующих процессы и повышающих общую эффективность. Я работал над различными системами мониторинга камер, автопилотами транспорта и защищенными клиент-серверными коммуникациями, а также интегрировал IoT-устройства и машинное обучение.
-            На протяжении своей карьеры я выработал сильный подход к решению проблем, всегда стремясь к наиболее эффективным и масштабируемым решениям при обеспечении качества. Мое образование в области эргономики и инженерной психологии также дает мне уникальный взгляд на проектирование, ориентированное на пользователя, и оптимизацию систем, что я привношу в каждый свой проект.
-            Помимо технической экспертизы, я увлечен постоянным обучением и развитием. Я всегда ищу возможности улучшить свои навыки и быть в курсе новых технологий.
-            Я с нетерпением жду возможности обсудить, как мой опыт и навыки могут принести пользу вашей команде и проектам.`,
+        greeting: `Я работал над множеством различных проектов: от решений по цифровому картографированию городского уровня до оптимизации backend для высоконагруженных приложений. В настоящее время я работаю как независимый консультант, сотрудничая с такими компаниями как Itelma, Pepsi и Nautico над различными проектами. Среди моих значимых работ - визуализация зон покрытия сотовой связи для Мегафона с использованием Cesium, улучшение "Цифрового двойника" Москвы и интеграция AI-модулей для администрирования камер. До начала собственного бизнеса я работал в нескольких крупных компаниях, таких как Urent, The NASDAQ Trimble Rus, NAVIS и RNT, где разрабатывал кроссплатформенные приложения, облачные решения и внедрял передовые технологии в производственные процессы клиентов. У меня большой опыт работы с современными frontend-фреймворками, такими как Angular, React и Vue.js, а также я владею backend-технологиями, включая NestJS, Node.js, .NET Core и другие. Я также специализируюсь на оптимизации систем для работы с большими объемами данных, используя технологии Kubernetes и Docker для масштабирования.
+Одна из моих ключевых сильных сторон - понимание потребностей клиентов и предоставление им автоматизированных решений, оптимизирующих процессы и повышающих общую эффективность. Я работал над различными системами мониторинга камер, автопилотами транспорта и защищенными клиент-серверными коммуникациями, а также интегрировал IoT-устройства и машинное обучение.
+На протяжении своей карьеры я выработал сильный подход к решению проблем, всегда стремясь к наиболее эффективным и масштабируемым решениям при обеспечении качества. Мое образование в области эргономики и инженерной психологии также дает мне уникальный взгляд на проектирование, ориентированное на пользователя, и оптимизацию систем, что я привношу в каждый свой проект.
+Помимо технической экспертизы, я увлечен постоянным обучением и развитием. Я всегда ищу возможности улучшить свои навыки и быть в курсе новых технологий.
+Я с нетерпением жду возможности обсудить, как мой опыт и навыки могут принести пользу вашей команде и проектам.`,
         worksList: [
             'Адаптивный UI дизайн для всех устройств',
             'Поиск и фильтрация данных в реальном времени',
@@ -260,9 +299,18 @@ const translations: Translations = {
 
 const t = computed(() => translations[currentLanguage.value]);
 
-const greetingParagraphs = computed(() => t.value.greeting.split('\n').filter(p => p.trim()));
-const visibleParagraphs = ref<boolean[]>([]);
-const greetingText = ref<HTMLElement | null>(null);
+const greetingParagraphs = computed(() => {
+    return t.value.greeting
+        .split('\n')
+        .map(p => p.trim())
+        .filter(p => p.length > 0);
+});
+
+const onTypewriterComplete = () => {
+    setTimeout(() => {
+        shouldShowGreeting.value = true;
+    }, 500);
+};
 
 const highlightParagraph = (index: number) => {
     const paragraphs = document.querySelectorAll('.greeting-paragraph');
@@ -273,29 +321,6 @@ const unhighlightParagraph = (index: number) => {
     const paragraphs = document.querySelectorAll('.greeting-paragraph');
     paragraphs[index].classList.remove('highlight');
 };
-
-onMounted(() => {
-    // Инициализируем массив видимости параграфов
-    visibleParagraphs.value = new Array(greetingParagraphs.value.length).fill(false);
-    
-    // Наблюдатель за появлением элементов
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const index = parseInt(entry.target.getAttribute('data-index') || '0');
-                setTimeout(() => {
-                    visibleParagraphs.value[index] = true;
-                }, index * 300); // Задержка для каждого параграфа
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    // Добавляем наблюдение за каждым параграфом
-    document.querySelectorAll('.greeting-paragraph').forEach((paragraph, index) => {
-        paragraph.setAttribute('data-index', index.toString());
-        observer.observe(paragraph);
-    });
-});
 </script>
 
 <style scoped>
@@ -505,8 +530,8 @@ onMounted(() => {
     text-align: left;
     width: 0;
     animation: 
-        typing 4s steps(40, end) forwards,
-        blink-caret .75s step-end 4s infinite;
+        typing 3s steps(40, end) forwards,
+        blink-caret .75s step-end infinite;
 }
 
 @keyframes typing {
@@ -537,6 +562,8 @@ onMounted(() => {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeInGreeting 1s ease-out forwards;
 }
 
 .greeting-text {
@@ -668,6 +695,17 @@ onMounted(() => {
     border-radius: 4px;
     background: white;
     padding: 2px;
+}
+
+@keyframes fadeInGreeting {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 768px) {
