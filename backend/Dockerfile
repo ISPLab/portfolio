@@ -23,11 +23,13 @@ WORKDIR /app
 # Copy package files and built code
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/dist ./dist
-
-# Install production dependencies only
-RUN npm install --omit=dev
+COPY --from=build /app/node_modules ./node_modules
 
 # Expose port
 EXPOSE 3000
 
-CMD ["npm", "run", "start:prod"] 
+# Set NODE_ENV to production
+ENV NODE_ENV=production
+
+# Start the application
+CMD ["node", "dist/main.js"] 
