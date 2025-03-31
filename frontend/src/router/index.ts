@@ -10,6 +10,7 @@ import SmartMerchProject from '@/views/SmartMerchProject.vue';
 import Feedback from '@/views/Feedback.vue'
 import CreateFeedback from '@/views/CreateFeedback.vue'
 import TrackFleet from '@/views/TrackFleet.vue';
+import HtmlEditorProject from '../views/HtmlEditorProject.vue';
 
 export const COCKTAIL_CODES = ['margarita', 'mojito', 'martini'];
 
@@ -84,6 +85,11 @@ const routes = [
         path: '/feedback/create',
         name: 'CreateFeedback',
         component: CreateFeedback
+    },
+    {
+        path: '/portfolio/html-editor',
+        name: 'html-editor-project',
+        component: HtmlEditorProject
     },
     {
         path: '/:pathMatch(.*)*',

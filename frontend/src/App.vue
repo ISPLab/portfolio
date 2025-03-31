@@ -30,6 +30,13 @@
                             >
                                 {{ t.projects.items[route.name] }}
                             </router-link>
+                            <router-link 
+                                :to="{ name: 'html-editor-project' }" 
+                                class="dropdown-item"
+                                @click="closeDropdown"
+                            >
+                                HTML Editor
+                            </router-link>
                         </div>
                     </div>
                     <router-link to="/cv" class="nav-item">{{ t.cv }}</router-link>
