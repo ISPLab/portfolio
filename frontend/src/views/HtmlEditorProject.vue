@@ -42,17 +42,18 @@
       </div>
 
       <!-- Optional: Add sections for images, links, tech stack etc. -->
-      <!--
       <section class="project-details">
         <h2>Technologies Used</h2>
         <ul>
+          <li>React</li>
+          <li>Next.js (with SSR - Server-Side Rendering)</li>
+          <li>TypeScript</li>
           <li>HTML5</li>
-          <li>CSS3</li>
+          <li>CSS3 / CSS Modules (or specify styling method)</li>
           <li>JavaScript (ES6+)</li>
           <li>DOM Manipulation</li>
         </ul>
       </section>
-      -->
 
       <!-- Add sections for images, links, tech stack etc. -->
       <section class="project-links">
@@ -153,7 +154,7 @@ code {
 .project-link-button:hover { ... }
 */
 
-/* === Start: Styles copied directly from CocktailPage.vue === */
+/* === Start: Styles copied directly from CocktailPage === */
 .view-project-btn {
     display: inline-flex;
     align-items: center;
@@ -198,7 +199,7 @@ code {
 .view-project-btn:hover .arrow {
     transform: translateX(5px);
 }
-/* === End: Styles copied directly from CocktailPage.vue === */
+/* === End: Styles copied directly from CocktailPage === */
 
 /* Add styles for the screenshot section */
 .project-screenshot {
